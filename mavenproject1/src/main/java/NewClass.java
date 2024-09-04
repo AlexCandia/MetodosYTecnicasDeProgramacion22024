@@ -9,6 +9,6 @@
  */
 public class NewClass {
     public static void main (String [] args){
-    System.out.print("aaaaa");
+    System.out.print("Hola que hace");
     }
 }
