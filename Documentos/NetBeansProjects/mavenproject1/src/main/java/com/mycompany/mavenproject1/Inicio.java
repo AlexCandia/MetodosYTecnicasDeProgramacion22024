@@ -1,5 +1,3 @@
-package com.mycompany.mavenproject1;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,40 +7,60 @@ package com.mycompany.mavenproject1;
  *
  * @author Camila
  */
-import java.util.HashMap;
-import java.util.Map;
+public class Producto {
+    private String nombre;
+    private String unidad;
+    private double cantidad;
+    private String proveedor;
+    private String telefono;
 
-
-public class Inicio{
-    private Map<String, Usuario> usuariosRegistrados;
-    public Inicio() {
-        usuariosRegistrados = new HashMap<>();
+    // Constructor
+    public Producto(String nombre, String unidad, double cantidad, String proveedor, String telefono) {
+        this.nombre = nombre;
+        this.unidad = unidad;
+        this.cantidad = cantidad;
+        this.proveedor = proveedor;
+        this.telefono = telefono;
     }
 
-    public String registrar(String nombre, String contrasena, String rol) {
-        if (usuariosRegistrados.containsKey(nombre)) {
-            return "Usuario ya registrado.";
-        }
-        Usuario nuevoUsuario = new Usuario(nombre, contrasena, rol);
-        usuariosRegistrados.put(nombre, nuevoUsuario);
-        return "Usuario registrado exitosamente.";
+    // Getters y Setters
+    public String getNombre() {
+        return nombre;
     }
 
-  
-    public String acceder(String nombre, String contrasena) {
-        Usuario usuario = usuariosRegistrados.get(nombre);
-        if (usuario != null && usuario.getContrasena().equals(contrasena)) {
-            return "Inicio de sesión exitoso. Rol: " + usuario.getRol();
-        }
-        return "Nombre de usuario o contraseña incorrectos.";
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-  
-    public boolean esAdministrador(String nombre) {
-        Usuario usuario = usuariosRegistrados.get(nombre);
-        return usuario != null && usuario.getRol().equals("administrador");
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+    public double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }
-
-
-
