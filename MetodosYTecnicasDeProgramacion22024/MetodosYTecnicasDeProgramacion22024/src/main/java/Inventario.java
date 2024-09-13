@@ -25,10 +25,33 @@ public class Inventario {
         return false;
     }
 
+    //metodo para buscar la posicion de un elemento
+    private int buscarPos(String nombre){
+        int pos = 0;
+        Producto prod;
+        prod = productos.get(pos);
+        while (pos < productos.size() && nombre != prod.getNombre()){
+            pos++;
+            prod = productos.get(pos);
+        }
+        if(prod.getNombre() != nombre){
+            pos = -1;
+        }
+        return pos;
+    }
+    
     // Método para eliminar un producto del inventario
     public boolean eliminarProducto(String nombre) {
-        // Implementar logica
-        return false;
+        boolean res;
+        int pos;
+        pos = buscarPos(nombre);
+        if (pos != -1){
+            productos.remove(pos);
+            res = true;
+        } else {
+            res = false;
+        }
+        return res;
     }
 
     // Método para modificar información de un producto
