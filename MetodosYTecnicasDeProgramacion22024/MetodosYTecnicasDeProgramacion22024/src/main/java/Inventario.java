@@ -20,10 +20,20 @@ public class Inventario {
     }
 
     // Método para agregar un producto al inventario
-    public boolean registrarNuevoProducto(Producto producto) {
-        // Implementar Logica
-        return false;
-    }
+    public void agregar(Producto producto) {
+        boolean existe = false;
+        for (Producto p : productos) {
+            if (p.getNombre().equals(producto.getNombre())) {
+                existe = true;
+               break;
+            }
+        }
+     if (!existe){
+            productos.add(producto);
+            System.out.println("Producto agregado correctamente.");
+     }else{
+            System.out.println("El producto ya existe en el inventario.");
+        }
 
     // Método para eliminar un producto del inventario
     public boolean eliminarProducto(String nombre) {
