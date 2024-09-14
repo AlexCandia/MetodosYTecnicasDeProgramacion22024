@@ -20,11 +20,21 @@ public class Inventario {
     }
 
     // Método para agregar un producto al inventario
-    public boolean registrarNuevoProducto(Producto producto) {
-        // Implementar Logica
-        return false;
+    public void agregar(Producto producto) {
+        boolean existe = false;
+        for (Producto p : productos) {
+            if (p.getNombre().equals(producto.getNombre())) {
+                existe = true;
+               break;
+            }
+        }
+     if (!existe){
+            productos.add(producto);
+            System.out.println("Producto agregado correctamente.");
+     }else{
+            System.out.println("El producto ya existe en el inventario.");
+        }
     }
-
     //metodo para buscar la posicion de un elemento
     private int buscarPos(String nombre){
         int pos = 0;
@@ -104,7 +114,7 @@ public class Inventario {
         switch (opcion) {
             case 1:
                 // Llamar al método para registrar nuevo producto
-                registrarNuevoProducto(new Producto("Nombre", "Unidad", 0.0, "Proveedor", "Teléfono"));
+                agregar(new Producto("Nombre", "Unidad", 0.0, "Proveedor", "Teléfono"));
                 break;
             case 2:
                 // Llamar al método para eliminar producto
