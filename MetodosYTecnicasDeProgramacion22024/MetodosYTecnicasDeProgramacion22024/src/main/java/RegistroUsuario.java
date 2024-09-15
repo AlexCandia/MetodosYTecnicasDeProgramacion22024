@@ -8,20 +8,19 @@
  * @author developerweb
  */
 public class RegistroUsuario {
-    private GeneradorArchivo fileUser;
-    public RegistroUsuario(GeneradorArchivo generadorArchivo){
+    private GenerarArchivosUsuarios fileUser;
+    public RegistroUsuario(GenerarArchivosUsuarios generadorArchivo){
         fileUser=generadorArchivo;
     }
-    public boolean registrarUsuario(String nombre,String contraseña,String codigoE){
-        if(fileUser.buscarUsuario(codigoE)!= null){
+    public boolean registrarUsuario(Usuario nuevUs){
+        if(fileUser.buscarUsuario(nuevUs.getCodigoE())!= null){
             System.out.println("El usuario ya existe.");
             return false;
-        }else if(contraseña.length()<6){
+        }else if(nuevUs.getContraseña().length()<6){
             System.out.println("Contraseña muy corta.");
             return false;
         }
-        Usuario usuarioNuevo = new Usuario(nombre,contraseña,codigoE);
-        return fileUser.registrar(usuarioNuevo);
+        return fileUser.registrar(nuevUs);
     }
     public boolean login(String codigoE, String contraseña) {
         Usuario user = fileUser.buscarUsuario(codigoE);
