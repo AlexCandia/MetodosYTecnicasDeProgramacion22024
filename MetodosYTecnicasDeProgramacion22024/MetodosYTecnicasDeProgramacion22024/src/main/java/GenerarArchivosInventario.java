@@ -54,4 +54,5 @@ public class GenerarArchivosInventario {
         }
       return productos;
     }
+  //Generar archivos para el inventario
 }
