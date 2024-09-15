@@ -11,7 +11,7 @@ public class MainInicioDeSesion {
   public static void main(String [] args){
        Scanner scanner = new Scanner(System.in);
         GenerarArchivosUsuarios userDatabase = new GenerarArchivosUsuarios();
-        RegistroUsuario authService = new RegistroUsuario(userDatabase);
+        Inicio authService = new Inicio(userDatabase);
 
         while (true) {
             System.out.println("Seleccione una opción: ");
