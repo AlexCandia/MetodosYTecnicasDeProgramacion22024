@@ -14,11 +14,14 @@ import java.util.Comparator;
 
 public class Inventario {
     private ArrayList<Producto> productos;
-
+    private GenerarArchivosInventario productsfile;
     public Inventario() {
-        productos = new ArrayList<>();
+        productsfile= new GenerarArchivosInventario();
+        productos=productsfile.getProductos();
     }
-
+    public ArrayList<Producto> getProductos(){
+        return productos;
+    }
     // Método para agregar un producto al inventario
     public void agregar(Producto producto) {
         boolean existe = false;
@@ -40,15 +43,27 @@ public class Inventario {
         int pos = 0;
         Producto prod;
         prod = productos.get(pos);
-        while (pos < productos.size() && nombre != prod.getNombre()){
+        while (pos < productos.size() && nombre.equals( prod.getNombre())){
             pos++;
             prod = productos.get(pos);
         }
-        if(prod.getNombre() != nombre){
+        if(!prod.getNombre().equals(nombre)){
             pos = -1;
         }
         return pos;
     }
+     private Producto buscarProd(String nombre) {
+    Producto producto = null;  
+
+        for (Producto p : productos) {
+            if (p.getNombre() != null && p.getNombre().equals(nombre)) {
+                producto = p;
+                break;  
+            }
+        }
+
+    return producto; 
+}
     
     // Método para eliminar un producto del inventario
     public boolean eliminarProducto(String nombre) {
@@ -65,14 +80,36 @@ public class Inventario {
     }
 
     // Método para modificar información de un producto
-    public boolean editarProducto(String nombre, String atributo, String nuevoValor) {
-        // implementar logica
-        return false;
+    public void editarProducto(String nombre, String atributo, String nuevoValor) {
+        Producto editado = buscarProd(nombre);
+        if(editado==null){
+           System.out.println("El producto que trata de buscar no existe"); 
+        }else{
+            switch (atributo) {
+            case "nombre" -> editado.setNombre(nuevoValor);
+            case "unidad" -> editado.setUnidad(nuevoValor);
+            case "cantidad" -> {
+                int cantidadAgregada;
+                try {
+                    cantidadAgregada = Integer.parseInt(nuevoValor);
+                } catch (NumberFormatException e) {
+                    System.out.println("Ha ingresado un valor incorrecto");
+                    break;
+                }
+                double cantidadFinal = editado.getCantidad()+ (double)cantidadAgregada;
+                editado.setCantidad(cantidadFinal);
+                }
+            case "proovedor" -> editado.setProveedor(nuevoValor);
+            case "telefono" -> editado.setTelefono(nuevoValor);
+            default -> System.out.println("No existe el atributo descrito");
+        }
+        }
     }
 
     // Método para modificar la cantidad de un producto
     public void modificarCantidad(String nombre, double nuevoValor) {
         // Aquí deberás implementar la lógica para modificar la cantidad de un producto
+        //Implementacion de ventas necesaria
     }
 
     // Método para ordenar el inventario por bajo stock
@@ -87,7 +124,8 @@ public class Inventario {
 
     // Método para guardar el inventario actual en un archivo
     public void guardarInventario() {
-        // Aquí deberás implementar la lógica para guardar el inventario en un archivo
+        productsfile = new GenerarArchivosInventario(productos);
+        productsfile.añadirAlarchivo();
     }
 
     // Método para volver al menú (placeholder, según tu diagrama de clases)
