@@ -1,0 +1,2 @@
+Laptop/unidad/10.0/Proveedor1/123456789
+Mouse/unidad/50.0/Proveedor2/987654321
