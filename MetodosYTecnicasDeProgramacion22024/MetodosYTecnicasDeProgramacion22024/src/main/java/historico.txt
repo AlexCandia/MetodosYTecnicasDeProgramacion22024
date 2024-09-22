@@ -1,0 +1,13 @@
+Ventas Historicas:
+Fecha:21/09/24
+Pedido:2
+Nro Vaso:1Sabor 1 :limonSabor 2 :oreoTama�o :MedianoTipo Perlas:perlasSubTotal:15
+Nro Vaso:2Sabor 1 :teSabor 2 :vainillaTama�o :GrandeTipo Perlas:explosiveSubTotal:20
+Nro Vaso:3Sabor 1 :canelaSabor 2 :churrascoTama�o :MedianoTipo Perlas:explosiveSubTotal:15
+Total: 50
+Pedido:1
+Nro Vaso:1Sabor 1 :moraSabor 2 :duraznoTama�o :GrandeTipo Perlas:perlasSubTotal:20
+Nro Vaso:2Sabor 1 :chocoSabor 2 :frutiTama�o :MedianoTipo Perlas:perlasSubTotal:15
+Nro Vaso:3Sabor 1 :machaSabor 2 :ningunoTama�o :GrandeTipo Perlas:explosiveSubTotal:20
+Total: 55
+Fecha:22/09/2024
