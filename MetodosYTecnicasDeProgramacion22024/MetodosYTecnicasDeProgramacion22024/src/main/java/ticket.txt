@@ -1,0 +1,4 @@
+Nro Pedido:2Nombre:Raul
+Nro Vaso:1Sabor 1 :limonSabor 2 :oreoTamaño :MedianoTipo Perlas:perlas
+Nro Vaso:2Sabor 1 :teSabor 2 :vainillaTamaño :GrandeTipo Perlas:explosive
+Nro Vaso:3Sabor 1 :canelaSabor 2 :churrascoTamaño :MedianoTipo Perlas:explosive
