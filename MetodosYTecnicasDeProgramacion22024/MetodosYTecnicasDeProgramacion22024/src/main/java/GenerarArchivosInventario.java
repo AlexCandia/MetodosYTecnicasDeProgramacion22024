@@ -1,12 +1,13 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
 /**
  *
- * @author israe
+ * @author developerweb
  */
+
 import java.io.*;
 import java.util.ArrayList;
 public class GenerarArchivosInventario {
@@ -55,4 +56,4 @@ public class GenerarArchivosInventario {
       return productos;
     }
   //Generar archivos para el inventario
-}
+} 

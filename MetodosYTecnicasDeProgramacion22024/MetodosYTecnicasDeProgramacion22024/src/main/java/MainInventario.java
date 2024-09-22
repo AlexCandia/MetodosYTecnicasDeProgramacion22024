@@ -10,7 +10,7 @@
 public class MainInventario {
    public static void main(String[] args) {
         // Crear una instancia del inventario
-        Inventario inventario = new Inventario();
+        GestorDeInventario inventario = new GestorDeInventario();
 
         // Crear algunos productos para probar
      //   Producto prod1 = new Producto("Laptop", "unidad", 10.0, "Proveedor1", "123456789");
@@ -41,7 +41,7 @@ public class MainInventario {
 
         // Guardar el inventario en el archivo
     //    inventario.guardarInventario();
-     //   System.out.println("Inventario guardado en el archivo.");
+     //   System.out.println("GestorDeInventario guardado en el archivo.");
 
         // Salir del programa (opcional)
         System.out.println("Fin de la prueba.");

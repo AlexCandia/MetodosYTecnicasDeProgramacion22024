@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Inventario {
-    private ArrayList<Producto> productos;
+public class GestorDeInventario {
+    private final ArrayList<Producto> productos;
     private GenerarArchivosInventario productsfile;
-    public Inventario() {
+    public GestorDeInventario() {
         productsfile= new GenerarArchivosInventario();
         productos=productsfile.getProductos();
     }
