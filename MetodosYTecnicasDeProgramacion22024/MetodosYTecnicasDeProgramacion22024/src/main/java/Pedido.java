@@ -31,9 +31,12 @@ public class Pedido {
     public String getNit(){
         return nit;
     }
-   public Date getFecha(){
+    public Date getFecha(){
        return fecha;
-   }
+    }
+    public void setFecha(Date fecha){
+        this.fecha=fecha;
+    }
     public void setNumPedido(int numPedido){
         this.numPedido=numPedido+"";
     }
