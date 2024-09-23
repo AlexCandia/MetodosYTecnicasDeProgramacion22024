@@ -22,11 +22,11 @@ public class GestorDeVentas {
 
     // Constructor
     public GestorDeVentas() {
-        this.ventasHistoricas = new HashMap<>();
+        generadorArchivosVentas = new GeneradorArchivosVentas();
+        this.ventasHistoricas = generadorArchivosVentas.cargarVentasHistoricasDesdeArchivo();
         this.ventasDiarias = new ArrayList<>();
         this.colaPedidos = new LinkedList<>();
         this.pedidoTemporal= null;
-        generadorArchivosVentas = new GeneradorArchivosVentas();
     }
     // Métodos
     private Vaso buscarVasoEnPedido(String numVaso){
