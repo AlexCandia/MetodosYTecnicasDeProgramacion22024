@@ -7,6 +7,7 @@
  *
  * @author vale
  */
+/*
 import java.util.ArrayList;
 public class GestorDeContabilidad {
 
@@ -45,4 +46,4 @@ public class GestorDeContabilidad {
     private boolean actualizarInventario(){
       return false; 
     }
-}
+}*/
