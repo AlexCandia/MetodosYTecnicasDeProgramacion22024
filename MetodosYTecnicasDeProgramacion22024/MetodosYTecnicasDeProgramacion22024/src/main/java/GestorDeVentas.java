@@ -173,6 +173,23 @@ public class GestorDeVentas {
     private void actualizarIngresos() {
         // PENDIENTE (CONTABILIDAD)
     }
+    // Método para calcular ingresos totales
+    public double calcularIngresosTotales() {
+        double ingresosTotales = 0;
+        
+        for (Pedido pedido : ventasHistoricas.values()) {
+            ingresosTotales += pedido.calcularTotal(); // Sumando el total de cada pedido
+        }
+        
+        return ingresosTotales;
+    }
+
+    // Método que genera el reporte de ingresos
+    public void generarReporteIngresos() {
+        double totalIngresos = calcularIngresosTotales();
+        System.out.println("Total de ingresos: " + totalIngresos);
+        // Aquí podrías agregar más lógica para guardar en un archivo o imprimir más detalles
+    }
 
 
     public void volverMenu() {
