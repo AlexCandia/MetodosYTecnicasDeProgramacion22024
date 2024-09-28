@@ -55,5 +55,12 @@ public class Pedido {
         String fechaFormateada = String.format("%1$tY%1$tm%1$td", fecha); // AAAAMMDD
         return fechaFormateada + "-" + numPedido; // Ejemplo: 20240921-001
     }
+    public double calcularTotal() {
+        double total = 0;
+        for (Vaso vaso : vasos) {
+            total += vaso.getPrecio(); 
+        }
+        return total;
+    }
 }
 
