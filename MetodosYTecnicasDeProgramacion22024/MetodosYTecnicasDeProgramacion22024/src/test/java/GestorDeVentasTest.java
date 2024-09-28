@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
+package com.mycompany.metodostecnicas.Ventas;
 
-import Ventas.Vaso;
-import Ventas.GestorDeVentas;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,9 +14,14 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author developerweb
+ * @author Camila
  */
 public class GestorDeVentasTest {
+    
+    private GestorDeVentas gestorVenta;
+    private Vaso vaso1;
+    private Vaso vaso2;
+    private ArrayList<Vaso>vasos;
     
     public GestorDeVentasTest() {
     }
@@ -31,151 +36,46 @@ public class GestorDeVentasTest {
     
     @Before
     public void setUp() {
+        gestorVenta = new GestorDeVentas();
+        vaso1 = new Vaso("Grande","Leche","Explosiva","Frutilla","Mora");
+        vaso2= new Vaso("Mediano","Agua","Tapioca","Chocolate","Oreo");
+        vasos = new ArrayList<Vaso>();
     }
     
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of registrarCliente method, of class GestorDeVentas.
-     */
-    @Test
-    public void testRegistrarCliente() {
-        System.out.println("registrarCliente");
-        String nomb = "";
-        String nit = "";
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.registrarCliente(nomb, nit);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    
+    @Test 
+    public void testRegistrarCliente(){
+        gestorVenta.registrarCliente("Candy", "13525846");
+        Pedido pedidoTem= gestorVenta.getPedidoTemporal();
+        assertEquals("Candy",pedidoTem.getNombre());    
     }
-
-    /**
-     * Test of agregarVaso method, of class GestorDeVentas.
-     */
+    
     @Test
-    public void testAgregarVaso() {
-        System.out.println("agregarVaso");
-        Vaso vaso = null;
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.agregarVaso(vaso);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testAgregarVaso(){
+        gestorVenta.agregarVaso(vaso1);
+        gestorVenta.agregarVaso(vaso2);
+        Pedido pedidoTem= gestorVenta.getPedidoTemporal();
+        vasos = pedidoTem.getVasos();
+        assertEquals(2,vasos.size());
     }
-
-    /**
-     * Test of editarInfoVaso method, of class GestorDeVentas.
-     */
+    
     @Test
-    public void testEditarInfoVaso() {
-        System.out.println("editarInfoVaso");
-        String numVaso = "";
-        String infoN = "";
-        String parametro = "";
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.editarInfoVaso(numVaso, infoN, parametro);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void TestEditarInfoVaso(){
+        gestorVenta.editarInfoVaso("1","Menta","sabor1");
+        Pedido pedidoTem= gestorVenta.getPedidoTemporal();
+        vasos = pedidoTem.getVasos();
+        assertEquals("Menta",vasos.get(0).getSabor1());
     }
-
-    /**
-     * Test of eliminarVaso method, of class GestorDeVentas.
-     */
+    
     @Test
-    public void testEliminarVaso() {
-        System.out.println("eliminarVaso");
-        String numVaso = "";
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.eliminarVaso(numVaso);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of confirmarPedido method, of class GestorDeVentas.
-     */
-    @Test
-    public void testConfirmarPedido() {
-        System.out.println("confirmarPedido");
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.confirmarPedido();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of marcarPedidoCompletado method, of class GestorDeVentas.
-     */
-    @Test
-    public void testMarcarPedidoCompletado() {
-        System.out.println("marcarPedidoCompletado");
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.marcarPedidoCompletado();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of calcularIngresosTotales method, of class GestorDeVentas.
-     */
-    @Test
-    public void testCalcularIngresosTotales() {
-        System.out.println("calcularIngresosTotales");
-        GestorDeVentas instance = new GestorDeVentas();
-        double expResult = 0.0;
-        double result = instance.calcularIngresosTotales();
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of generarReporteIngresos method, of class GestorDeVentas.
-     */
-    @Test
-    public void testGenerarReporteIngresos() {
-        System.out.println("generarReporteIngresos");
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.generarReporteIngresos();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of volverMenu method, of class GestorDeVentas.
-     */
-    @Test
-    public void testVolverMenu() {
-        System.out.println("volverMenu");
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.volverMenu();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of terminarDia method, of class GestorDeVentas.
-     */
-    @Test
-    public void testTerminarDia() {
-        System.out.println("terminarDia");
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.terminarDia();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of generarReporteVentas method, of class GestorDeVentas.
-     */
-    @Test
-    public void testGenerarReporteVentas() {
-        System.out.println("generarReporteVentas");
-        GestorDeVentas instance = new GestorDeVentas();
-        instance.generarReporteVentas();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void TestEliminarVaso(){
+        gestorVenta.eliminarVaso("1");
+        Pedido pedidoTem= gestorVenta.getPedidoTemporal();
+        vasos = pedidoTem.getVasos();
+        assertEquals(1,vasos.size());
     }
     
 }
