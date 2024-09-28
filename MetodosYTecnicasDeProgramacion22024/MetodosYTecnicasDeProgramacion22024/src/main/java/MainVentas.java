@@ -10,7 +10,7 @@
 public class MainVentas {
     public static void main (String args[]){
        GestorDeVentas gestor = new GestorDeVentas();
-       gestor.registrarCliente("Alex", "123141");
+       gestor.registrarCliente("sadad", "675712");
        Vaso vaso1 = new Vaso("Grande","Leche","perlas","mora","durazno");
        Vaso vaso2 = new Vaso("Mediano","Agua","perlas","choco","fruti");
        Vaso vaso3 = new Vaso("Grande","Agua","explosive","macha","ninguno");
@@ -18,7 +18,7 @@ public class MainVentas {
        gestor.agregarVaso(vaso2);
        gestor.agregarVaso(vaso3);
        gestor.confirmarPedido();
-       gestor.registrarCliente("Raul", "687342");
+       gestor.registrarCliente("afqrfgr", "12873178");
        Vaso vaso4 = new Vaso("Mediano","Agua","perlas","limon","oreo");
        Vaso vaso5 = new Vaso("Grande","Leche","explosive","te","vainilla");
        Vaso vaso6 = new Vaso("Mediano","Agua","explosive","canela","churrasco");
