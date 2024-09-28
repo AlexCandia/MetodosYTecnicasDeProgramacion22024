@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.List;
 class Gasto {
     private String causa;
@@ -38,12 +38,12 @@ class RegistroGastos {
             }
         }
     }
-}
-public class RegistrarGastosVariables {
+}*//*
+public class RegistrarGastosVariablesNoDefinido {
     public static void main(String[] args) {
         RegistroGastos registro = new RegistroGastos();
         registro.agregarGasto("Compra de materiales basicos", 100); // focos, servilletas,etc
         registro.agregarGasto("Pago de horas extras a trabajadores", 150);
         registro.mostrarGastos();
     }
-}
+}*/
