@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
+package com.mycompany.metodostecnicas.Inventario;
 
-import Inventario.Producto;
-import Inventario.GestorDeInventario;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,9 +14,14 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author developerweb
+ * @author Camila
  */
 public class GestorDeInventarioTest {
+    private GestorDeInventario gestor;
+    private ArrayList<Producto> productos;
+    private Producto producto1;
+    private Producto producto2;
+    
     
     public GestorDeInventarioTest() {
     }
@@ -32,129 +36,50 @@ public class GestorDeInventarioTest {
     
     @Before
     public void setUp() {
+        gestor = new GestorDeInventario();
+        productos = new ArrayList<>();
+        producto1 = new Producto("Leche","Litro",0,"Pil","69452070");
+        producto2 = new Producto("Chocolate","kilo",0,"Celinda","69440058");
+        
     }
     
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of getProductos method, of class GestorDeInventario.
-     */
-    @Test
-    public void testGetProductos() {
-        System.out.println("getProductos");
-        GestorDeInventario instance = new GestorDeInventario();
-        ArrayList<Producto> expResult = null;
-        ArrayList<Producto> result = instance.getProductos();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    
+    @Test 
+    public void agregarProducto(){
+        
+        gestor.agregar(producto1);
+        gestor.agregar(producto2);
+        productos = gestor.getProductos();
+        assertEquals(2,productos.size());
     }
-
-    /**
-     * Test of agregar method, of class GestorDeInventario.
-     */
-    @Test
-    public void testAgregar() {
-        System.out.println("agregar");
-        Producto producto = null;
-        GestorDeInventario instance = new GestorDeInventario();
-        instance.agregar(producto);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    
+     @Test 
+    public void eliminarProducto(){
+        gestor.eliminarProducto("Leche");
+        productos = gestor.getProductos();
+        assertEquals(1,productos.size());
     }
-
-    /**
-     * Test of eliminarProducto method, of class GestorDeInventario.
-     */
+    
     @Test
-    public void testEliminarProducto() {
-        System.out.println("eliminarProducto");
-        String nombre = "";
-        GestorDeInventario instance = new GestorDeInventario();
-        boolean expResult = false;
-        boolean result = instance.eliminarProducto(nombre);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void editarInfoProducto(){
+        gestor.editarInfoProducto("Chocolate","nombre","Azucar");
+        Producto editado = productos.get(0);
+        assertEquals("Azucar",editado.getNombre());
     }
-
-    /**
-     * Test of recibirNuevoInsumo method, of class GestorDeInventario.
-     */
     @Test
-    public void testRecibirNuevoInsumo() {
-        System.out.println("recibirNuevoInsumo");
-        String nombre = "";
-        String nuevoCantidad = "";
-        GestorDeInventario instance = new GestorDeInventario();
-        instance.recibirNuevoInsumo(nombre, nuevoCantidad);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void ordenarPorNombre(){
+        gestor.agregar(producto1);
+        gestor.agregar(producto2);
+        gestor.ordenarPorNombre();
+        Producto ordenado = productos.get(2);
+        assertEquals("Leche",ordenado.getNombre());
+        
     }
-
-    /**
-     * Test of editarInfoProducto method, of class GestorDeInventario.
-     */
-    @Test
-    public void testEditarInfoProducto() {
-        System.out.println("editarInfoProducto");
-        String nombre = "";
-        String atributo = "";
-        String nuevoValor = "";
-        GestorDeInventario instance = new GestorDeInventario();
-        instance.editarInfoProducto(nombre, atributo, nuevoValor);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ordenarPorBajoStock method, of class GestorDeInventario.
-     */
-    @Test
-    public void testOrdenarPorBajoStock() {
-        System.out.println("ordenarPorBajoStock");
-        GestorDeInventario instance = new GestorDeInventario();
-        instance.ordenarPorBajoStock();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ordenarPorNombre method, of class GestorDeInventario.
-     */
-    @Test
-    public void testOrdenarPorNombre() {
-        System.out.println("ordenarPorNombre");
-        GestorDeInventario instance = new GestorDeInventario();
-        instance.ordenarPorNombre();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of guardarInventario method, of class GestorDeInventario.
-     */
-    @Test
-    public void testGuardarInventario() {
-        System.out.println("guardarInventario");
-        GestorDeInventario instance = new GestorDeInventario();
-        instance.guardarInventario();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of volverMenu method, of class GestorDeInventario.
-     */
-    @Test
-    public void testVolverMenu() {
-        System.out.println("volverMenu");
-        GestorDeInventario instance = new GestorDeInventario();
-        instance.volverMenu();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   
+}
     
 }
