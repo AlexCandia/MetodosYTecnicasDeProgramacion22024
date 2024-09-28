@@ -9,11 +9,11 @@ package Contabilidad;
  *
  * @author vale
  */
-import Contabilidad.EgresoVariableOtro;
-import Contabilidad.EgresoVariableInsumo;
-import Contabilidad.EgresoFijo;
+import java.util.*;
 import Ventas.GestorDeVentas;
 import Inventario.GestorDeInventario;
+import Ventas.Pedido;
+import Ventas.Vaso;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,13 +30,27 @@ public class GestorDeContabilidad {
     private ArrayList<EgresoVariableOtro> egresosOtros;
     private GestorDeVentas gestorDeVentas;
     private GestorDeInventario gestorDeInventario;
+    private HashMap<String, Pedido> ventasHistoricas;
 
     public GestorDeContabilidad(GestorDeInventario gestorDeInventario,GestorDeVentas gestorDeVentas) {
         egresosFijos = new ArrayList<>();
         egresosInsumos = new ArrayList<>();
         egresosOtros = new ArrayList<>();
-        this.gestorDeInventario=gestorDeInventario;
-        this.gestorDeVentas=gestorDeVentas;
+        this.gestorDeInventario = gestorDeInventario;
+        this.gestorDeVentas = gestorDeVentas;
+        ventasHistoricas = gestorDeVentas.getVentasHistoricas();
+    }
+    public double getIngresosBoba() {
+        return ingresosBoba;
+    }
+    public ArrayList<EgresoFijo> getEgresosFijos() {
+        return egresosFijos;
+    }
+    public ArrayList<EgresoVariableInsumo> getEgresosInsumos() {
+        return egresosInsumos;
+    }
+    public ArrayList<EgresoVariableOtro> getEgresosOtros() {
+        return egresosOtros;
     }
     public void calcularIngreso () {
         ingresosBoba=gestorDeVentas.calcularIngresosTotales();
@@ -71,12 +85,41 @@ public class GestorDeContabilidad {
     }
 
     // Método para calcular el balance (ganancias o pérdidas)
-    private double calcularBalance() {
+    public double calcularBalance() {
         double totalEgresos = calcularTotalEgresosFijos() + calcularTotalEgresosInsumos() + calcularTotalEgresosOtros();
         return ingresosBoba - totalEgresos;
     }
+    public ArrayList<String> obtenerSaboresMasVendidos() {
+        HashMap<String, Integer> conteoSabores = new HashMap<>();
+        for (Pedido pedido : ventasHistoricas.values()) {
+            for (Vaso vaso : pedido.getVasos()) {
+                agregarUnidadesDeSabor(conteoSabores, vaso.getSabor1());
+                if (vaso.getSabor2() != null && !vaso.getSabor2().isEmpty()) {
+                    agregarUnidadesDeSabor(conteoSabores, vaso.getSabor2());
+                }
+            }
+        }
+        List<Map.Entry<String, Integer>> listaSabores = new ArrayList<>(conteoSabores.entrySet());
+        Collections.sort(listaSabores, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o2.getValue() - o1.getValue(); // Ordenar de mayor a menor
+            }
+        });
+        ArrayList<String> saboresMasVendidos = new ArrayList<>();
+        for (Map.Entry<String, Integer> entrada : listaSabores) {
+            saboresMasVendidos.add(entrada.getKey());
+        }
 
-    // Método para generar el reporte mensual
+        return saboresMasVendidos;
+    }
+    private void agregarUnidadesDeSabor(HashMap<String, Integer> conteoSabores, String sabor) {
+        if (conteoSabores.containsKey(sabor)) {
+            conteoSabores.put(sabor, conteoSabores.get(sabor) + 1);
+        } else {
+            conteoSabores.put(sabor, 1);
+        }
+    }
     public String imprimirReporteMensual() {
         StringBuilder reporte = new StringBuilder();
         reporte.append("Reporte Mensual\n");
@@ -87,8 +130,6 @@ public class GestorDeContabilidad {
         reporte.append("Balance: ").append(calcularBalance()).append("\n");
         return reporte.toString();
     }
-
-    // Método para guardar el reporte histórico en un archivo
     public void guardarReporteHistorico() {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String ruta = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
@@ -112,7 +153,6 @@ public class GestorDeContabilidad {
             System.out.println("Error al guardar el reporte histórico: " + e.getMessage());
         }
     }
-    
     public void imprimirReporteHistorico() {
         guardarReporteHistorico();
     }
