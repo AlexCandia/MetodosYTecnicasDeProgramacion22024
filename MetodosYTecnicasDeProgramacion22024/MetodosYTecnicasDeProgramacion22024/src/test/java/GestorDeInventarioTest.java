@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package com.mycompany.metodostecnicas.Inventario;
+//package com.mycompany.metodostecnicas.Inventario;
 
+import Inventario.GestorDeInventario;
+import Inventario.Producto;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,7 +19,7 @@ import static org.junit.Assert.*;
  * @author Camila
  */
 public class GestorDeInventarioTest {
-    private GestorDeInventario gestor;
+    private GestorDeInventario gestorInven;
     private ArrayList<Producto> productos;
     private Producto producto1;
     private Producto producto2;
@@ -36,10 +38,10 @@ public class GestorDeInventarioTest {
     
     @Before
     public void setUp() {
-        gestor = new GestorDeInventario();
+        gestorInven = new GestorDeInventario();
         productos = new ArrayList<>();
-        producto1 = new Producto("Leche","Litro",0,"Pil","69452070");
-        producto2 = new Producto("Chocolate","kilo",0,"Celinda","69440058");
+        producto1 = new Producto("Leche","Litro","Pil","69452070");
+        producto2 = new Producto("Chocolate","kilo","Celinda","69440058");
         
     }
     
@@ -51,35 +53,55 @@ public class GestorDeInventarioTest {
     @Test 
     public void agregarProducto(){
         
-        gestor.agregar(producto1);
-        gestor.agregar(producto2);
-        productos = gestor.getProductos();
+        gestorInven.agregar(producto1);
+        gestorInven.agregar(producto2);
+        productos = gestorInven.getProductos();
         assertEquals(2,productos.size());
     }
     
-     @Test 
-    public void eliminarProducto(){
-        gestor.eliminarProducto("Leche");
-        productos = gestor.getProductos();
+    @Test 
+    public void eliminarProductoExistente(){
+        gestorInven.agregar(producto1);
+        gestorInven.agregar(producto2);
+        gestorInven.eliminarProducto("Leche");
+        productos = gestorInven.getProductos();
         assertEquals(1,productos.size());
+    }
+    @Test 
+    public void eliminarProductoInexistente(){
+        gestorInven.agregar(producto1);
+        gestorInven.agregar(producto2);
+        gestorInven.eliminarProducto("Azucar");
+        productos = gestorInven.getProductos();
+        assertEquals(2,productos.size());
     }
     
     @Test
-    public void editarInfoProducto(){
-        gestor.editarInfoProducto("Chocolate","nombre","Azucar");
+    public void editarInfoProductoExistente(){
+        gestorInven.agregar(producto2);
+        gestorInven.editarInfoProducto("Chocolate","nombre","Azucar");
+        productos = gestorInven.getProductos();
         Producto editado = productos.get(0);
         assertEquals("Azucar",editado.getNombre());
     }
     @Test
+    public void editarInfoProductoInexistente(){
+        gestorInven.agregar(producto2);
+        gestorInven.editarInfoProducto("Oreo","unidad","bolsa");
+        productos = gestorInven.getProductos();
+        Producto editado = productos.get(0);
+        assertEquals("Chocolate",editado.getNombre());
+    }
+    @Test
     public void ordenarPorNombre(){
-        gestor.agregar(producto1);
-        gestor.agregar(producto2);
-        gestor.ordenarPorNombre();
-        Producto ordenado = productos.get(2);
+        gestorInven.agregar(producto1);
+        gestorInven.agregar(producto2);
+        gestorInven.ordenarPorNombre();
+        productos = gestorInven.getProductos();
+        Producto ordenado = productos.get(1);
         assertEquals("Leche",ordenado.getNombre());
         
     }
    
 }
-    
-}
+  
