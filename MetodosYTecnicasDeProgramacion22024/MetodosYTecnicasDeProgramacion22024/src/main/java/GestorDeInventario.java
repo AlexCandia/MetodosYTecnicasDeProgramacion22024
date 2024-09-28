@@ -78,40 +78,37 @@ public class GestorDeInventario {
         }
         return res;
     }
-
+    public void recibirNuevoInsumo(String nombre,String nuevoCantidad) {
+        Producto editado = buscarProd(nombre);
+        if(editado==null){
+           System.out.println("El producto que trata de buscar no existe"); 
+        }else{
+                try { 
+                    double cantidadFinal = editado.getCantidad()+ Double.parseDouble(nuevoCantidad);
+                    editado.setCantidad(cantidadFinal);
+                    System.out.println("Se han ingresado "+nuevoCantidad+" "+ editado.getUnidad()+" de "+nombre+" al inventario");
+                } catch (NumberFormatException e) {
+                    System.out.println("Ha ingresado un valor incorrecto");
+                }
+        } 
+    }
     // Método para modificar información de un producto
-    public void editarProducto(String nombre, String atributo, String nuevoValor) {
+    public void editarInfoProducto(String nombre, String atributo, String nuevoValor) {
         Producto editado = buscarProd(nombre);
         if(editado==null){
            System.out.println("El producto que trata de buscar no existe"); 
         }else{
             switch (atributo) {
-            case "nombre" -> editado.setNombre(nuevoValor);
-            case "unidad" -> editado.setUnidad(nuevoValor);
-            case "cantidad" -> {
-                int cantidadAgregada;
-                try {
-                    cantidadAgregada = Integer.parseInt(nuevoValor);
-                } catch (NumberFormatException e) {
-                    System.out.println("Ha ingresado un valor incorrecto");
-                    break;
-                }
-                double cantidadFinal = editado.getCantidad()+ (double)cantidadAgregada;
-                editado.setCantidad(cantidadFinal);
-                }
-            case "proovedor" -> editado.setProveedor(nuevoValor);
-            case "telefono" -> editado.setTelefono(nuevoValor);
-            default -> System.out.println("No existe el atributo descrito");
-        }
+                case "nombre" -> editado.setNombre(nuevoValor);
+                case "unidad" -> editado.setUnidad(nuevoValor);
+                case "cantidad" -> System.out.println("Parametro no editable");  
+
+                case "proovedor" -> editado.setProveedor(nuevoValor);
+                case "telefono" -> editado.setTelefono(nuevoValor);
+                default -> System.out.println("No existe el atributo descrito");
+            }
         }
     }
-
-    // Método para modificar la cantidad de un producto
-    public void modificarCantidad(String nombre, double nuevoValor) {
-        // Aquí deberás implementar la lógica para modificar la cantidad de un producto
-        //Implementacion de ventas necesaria
-    }
-
     // Método para ordenar el inventario por bajo stock
     public void ordenarPorBajoStock() {
         Collections.sort(productos, Comparator.comparingDouble(Producto::getCantidad));
@@ -152,7 +149,7 @@ public class GestorDeInventario {
         switch (opcion) {
             case 1:
                 // Llamar al método para registrar nuevo producto
-                agregar(new Producto("Nombre", "Unidad", 0.0, "Proveedor", "Teléfono"));
+                agregar(new Producto("Nombre", "Unidad", "Proveedor", "Teléfono"));
                 break;
             case 2:
                 // Llamar al método para eliminar producto
@@ -160,7 +157,7 @@ public class GestorDeInventario {
                 break;
             case 3:
                 // Llamar al método para modificar producto
-                editarProducto("Nombre", "Atributo", "Nuevo Valor");
+                editarInfoProducto("Nombre", "Atributo", "Nuevo Valor");
                 break;
             case 4:
                 // Llamar al método para ordenar por bajo stock
@@ -185,5 +182,4 @@ public class GestorDeInventario {
         }
     }
 }
-
 
