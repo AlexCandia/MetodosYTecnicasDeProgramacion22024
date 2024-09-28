@@ -15,7 +15,14 @@ public class Producto {
     private String telefono;
 
     // Constructor
-    public Producto(String nombre, String unidad, double cantidad, String proveedor, String telefono) {
+    public Producto(String nombre, String unidad, String proveedor, String telefono) {
+        this.nombre = nombre;
+        this.unidad = unidad;
+        cantidad = 0;
+        this.proveedor = proveedor;
+        this.telefono = telefono;
+    }
+    public Producto(String nombre, String unidad,double cantidad, String proveedor, String telefono) {
         this.nombre = nombre;
         this.unidad = unidad;
         this.cantidad = cantidad;
