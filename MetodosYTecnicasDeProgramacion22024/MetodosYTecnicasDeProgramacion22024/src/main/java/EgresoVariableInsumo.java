@@ -3,7 +3,7 @@ public class EgresoVariableInsumo {
     private int cantidad;
     private double valor;
 
-    public EgresoVariableInsumo(String nombre, int cantidad, double valor) {
+    public EgresoVariableInsumo(String nombre,int cantidad, double valor) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.valor = valor;
@@ -13,7 +13,7 @@ public class EgresoVariableInsumo {
         return nombre;
     }
 
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
