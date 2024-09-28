@@ -21,16 +21,18 @@ public class GestorDeContabilidad {
     private ArrayList<EgresoFijo> egresosFijos;
     private ArrayList<EgresoVariableInsumo> egresosInsumos;
     private ArrayList<EgresoVariableOtro> egresosOtros;
+    private GestorDeVentas gestorDeVentas;
+    private GestorDeInventario gestorDeInventario;
 
-    public GestorDeContabilidad() {
-        ingresosBoba = 0;
+    public GestorDeContabilidad(GestorDeInventario gestorDeInventario,GestorDeVentas gestorDeVentas) {
         egresosFijos = new ArrayList<>();
         egresosInsumos = new ArrayList<>();
         egresosOtros = new ArrayList<>();
+        this.gestorDeInventario=gestorDeInventario;
+        this.gestorDeVentas=gestorDeVentas;
     }
-
-    public void registrarIngreso(double ingreso) {
-        ingresosBoba += ingreso;
+    public void calcularIngreso () {
+        ingresosBoba=gestorDeVentas.calcularIngresosTotales();
     }
 
     public void registrarEgresoFijo(EgresoFijo egreso) {
@@ -38,6 +40,7 @@ public class GestorDeContabilidad {
     }
 
     public void registrarEgresoInsumo(EgresoVariableInsumo egreso) {
+        gestorDeInventario.recibirNuevoInsumo(egreso.getNombre(), egreso.getCantidad()+"");
         egresosInsumos.add(egreso);
     }
 
@@ -81,7 +84,7 @@ public class GestorDeContabilidad {
     // Método para guardar el reporte histórico en un archivo
     public void guardarReporteHistorico() {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String ruta = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion2\\src\\test\\java\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
+        String ruta = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
 
         // Verifica si la carpeta existe, si no la crea
         Path path = Paths.get("C://");
