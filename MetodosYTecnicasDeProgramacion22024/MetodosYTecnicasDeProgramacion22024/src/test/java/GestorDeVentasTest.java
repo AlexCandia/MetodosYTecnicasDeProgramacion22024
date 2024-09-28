@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package com.mycompany.metodostecnicas.Ventas;
+//package com.mycompany.metodostecnicas.Ventas;
 
+import Ventas.GestorDeVentas;
+import Ventas.Pedido;
+import Ventas.Vaso;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -39,7 +42,7 @@ public class GestorDeVentasTest {
         gestorVenta = new GestorDeVentas();
         vaso1 = new Vaso("Grande","Leche","Explosiva","Frutilla","Mora");
         vaso2= new Vaso("Mediano","Agua","Tapioca","Chocolate","Oreo");
-        vasos = new ArrayList<Vaso>();
+        vasos = new ArrayList<>();
     }
     
     @After
@@ -54,7 +57,8 @@ public class GestorDeVentasTest {
     }
     
     @Test
-    public void testAgregarVaso(){
+    public void testAgregarVasoCorrecto(){
+        gestorVenta.registrarCliente("Candy", "13525846");
         gestorVenta.agregarVaso(vaso1);
         gestorVenta.agregarVaso(vaso2);
         Pedido pedidoTem= gestorVenta.getPedidoTemporal();
@@ -63,19 +67,45 @@ public class GestorDeVentasTest {
     }
     
     @Test
-    public void TestEditarInfoVaso(){
+    public void testEditarInfoVasoCorrecto(){
+        gestorVenta.registrarCliente("Candy", "13525846");
+        gestorVenta.agregarVaso(vaso1);
+        gestorVenta.agregarVaso(vaso2);
         gestorVenta.editarInfoVaso("1","Menta","sabor1");
         Pedido pedidoTem= gestorVenta.getPedidoTemporal();
         vasos = pedidoTem.getVasos();
         assertEquals("Menta",vasos.get(0).getSabor1());
     }
+    @Test
+    public void testEditarInfoVasoIncorrecto(){
+        gestorVenta.registrarCliente("Candy", "13525846");
+        gestorVenta.agregarVaso(vaso1);
+        gestorVenta.agregarVaso(vaso2);
+        gestorVenta.editarInfoVaso("3","Menta","sabor1");
+        Pedido pedidoTem= gestorVenta.getPedidoTemporal();
+        vasos = pedidoTem.getVasos();
+        assertEquals("Frutilla",vasos.get(0).getSabor1());
+    }
     
     @Test
-    public void TestEliminarVaso(){
+    public void testEliminarVasoCorrecto(){
+        gestorVenta.registrarCliente("Candy", "13525846");
+        gestorVenta.agregarVaso(vaso1);
+        gestorVenta.agregarVaso(vaso2);
         gestorVenta.eliminarVaso("1");
         Pedido pedidoTem= gestorVenta.getPedidoTemporal();
         vasos = pedidoTem.getVasos();
         assertEquals(1,vasos.size());
+    }
+    @Test
+    public void testEliminarVasoIncorrecto(){
+        gestorVenta.registrarCliente("Candy", "13525846");
+        gestorVenta.agregarVaso(vaso1);
+        gestorVenta.agregarVaso(vaso2);
+        gestorVenta.eliminarVaso("3");
+        Pedido pedidoTem= gestorVenta.getPedidoTemporal();
+        vasos = pedidoTem.getVasos();
+        assertEquals(2,vasos.size());
     }
     
 }
