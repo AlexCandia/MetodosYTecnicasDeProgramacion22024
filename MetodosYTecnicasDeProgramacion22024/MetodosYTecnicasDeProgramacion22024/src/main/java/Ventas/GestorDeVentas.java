@@ -32,6 +32,12 @@ public class GestorDeVentas {
         this.pedidoTemporal= null;
     }
     // Métodos
+    public HashMap<String, Pedido> getVentasHistoricas(){
+        return ventasHistoricas;
+    }
+    public Pedido getPedidoTemporal(){
+        return pedidoTemporal;
+    }
     private Vaso buscarVasoEnPedido(String numVaso){
         Vaso res = null;
         if(pedidoTemporal==null){
@@ -106,9 +112,9 @@ public class GestorDeVentas {
     public void eliminarVaso(String numVaso) {
          
         if (eliminarVasoEnPedido(numVaso)){
-          System.out.println("El vaso"+numVaso+"ha sido eliminado");
+          System.out.println("El vaso "+numVaso+" ha sido eliminado");
         }else{
-          System.out.println("El vaso"+numVaso+"no existe en el pedido"); 
+          System.out.println("El vaso "+numVaso+" no existe en el pedido"); 
         }
         // Metodo que recibe un objeto de tipo vaso , y lo añade a un objeto de tipo pedido 
         // mientras cliente no sea nulo
@@ -151,13 +157,9 @@ public class GestorDeVentas {
             System.out.print("El vaso Nro: " + vasoCompletado.getVaso().getNumVaso());
             System.out.print("Del cliente: " + vasoCompletado.getNombreCliente());
             System.out.println(" esta listo");
-            actualizarInventario(vasoCompletado);
         }else{
             System.out.println("No existen vasos pendientes");
         }
-        // Metodo para marcar que un vaso ha sido completado y popea de la cola de pedidos y guarda re
-        // registra en la lista de ventas diarias
-        // LLAMAR A ACTUALIZAR INVENTARIO
     }
     private void agregarVentasAHistoricas() {
         for(Pedido pedidoProcesado : ventasDiarias){
@@ -165,14 +167,6 @@ public class GestorDeVentas {
             ventasHistoricas.put(codigoIdentificador,pedidoProcesado);
         }
     }
-
-    private void actualizarInventario(VasoEnCola vasoCompletado) {
-        
-        // Metodo para descontar automaticamente del inventario los insumos a utilizar en la elaboracion
-        // de un vaso 
-        // RELACIONAR CON MARCAR PEDIDO COMO COMPLETADO
-    }
-
     public double calcularIngresosTotales() {
         double ingresosTotales = 0;
         
@@ -183,11 +177,9 @@ public class GestorDeVentas {
         return ingresosTotales;
     }
 
-    // Método que genera el reporte de ingresos
     public void generarReporteIngresos() {
         double totalIngresos = calcularIngresosTotales();
         System.out.println("Total de ingresos: " + totalIngresos);
-        // Aquí podrías agregar más lógica para guardar en un archivo o imprimir más detalles
     }
 
 
@@ -200,7 +192,7 @@ public class GestorDeVentas {
     }
 
 
-    public void generarReporteVentas(/*Date desde, Date hasta*/) {
+    public void generarReporteVentas() {
         generadorArchivosVentas.generarReporte(ventasHistoricas);
     }
 
