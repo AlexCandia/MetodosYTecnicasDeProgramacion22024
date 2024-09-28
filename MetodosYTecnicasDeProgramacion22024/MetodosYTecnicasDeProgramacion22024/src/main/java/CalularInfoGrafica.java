@@ -1,4 +1,4 @@
-import java.util.*;
+/*import java.util.*;
 class Producto {
     private String nombre;
     private int cantidadVendida;
@@ -60,4 +60,4 @@ public class CalularInfoGrafica {
             System.out.println(producto);
         }
     }
-}
+}*/
