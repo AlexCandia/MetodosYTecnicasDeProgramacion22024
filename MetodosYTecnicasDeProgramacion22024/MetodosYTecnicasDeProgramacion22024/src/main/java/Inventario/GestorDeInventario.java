@@ -45,9 +45,9 @@ public class GestorDeInventario {
         int pos = 0;
         Producto prod;
         prod = productos.get(pos);
-        while (pos < productos.size() && nombre.equals( prod.getNombre())){
-            pos++;
+        while (pos < productos.size() && !nombre.equals( prod.getNombre())){
             prod = productos.get(pos);
+            pos++;
         }
         if(!prod.getNombre().equals(nombre)){
             pos = -1;
@@ -55,7 +55,7 @@ public class GestorDeInventario {
         return pos;
     }
      private Producto buscarProd(String nombre) {
-    Producto producto = null;  
+        Producto producto = null;  
 
         for (Producto p : productos) {
             if (p.getNombre() != null && p.getNombre().equals(nombre)) {
