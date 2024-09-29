@@ -1,11 +1,17 @@
 Ventas Historicas:
 Fecha:23/09/24
 Pedido:2Cliente:ronaldoNIT:12873178
-Nro Vaso:1Sabor 1 :limonSabor 2 :oreoTamaño :MedianoBase:AguaTipo Perlas:perlasSubTotal:15
-Nro Vaso:2Sabor 1 :teSabor 2 :vainillaTamaño :GrandeBase:LecheTipo Perlas:explosiveSubTotal:20
-Nro Vaso:3Sabor 1 :canelaSabor 2 :churrascoTamaño :MedianoBase:AguaTipo Perlas:explosiveSubTotal:15
+Nro Vaso:1Sabor 1 :limonSabor 2 :oreoTamaño :MedianoBase:AguaTipo Perlas:perlasSubTotal:15SubTotal:15
+Nro Vaso:2Sabor 1 :teSabor 2 :vainillaTamaño :GrandeBase:LecheTipo Perlas:explosiveSubTotal:20SubTotal:20
+Nro Vaso:3Sabor 1 :canelaSabor 2 :churrascoTamaño :MedianoBase:AguaTipo Perlas:explosiveSubTotal:15SubTotal:15
 Total: 50
 Pedido:1Cliente:MusculospNIT:675712
+Nro Vaso:1Sabor 1 :moraSabor 2 :duraznoTamaño :GrandeBase:LecheTipo Perlas:perlasSubTotal:20SubTotal:20
+Nro Vaso:2Sabor 1 :chocoSabor 2 :frutiTamaño :MedianoBase:AguaTipo Perlas:perlasSubTotal:15SubTotal:15
+Nro Vaso:3Sabor 1 :machaSabor 2 :ningunoTamaño :GrandeBase:AguaTipo Perlas:explosiveSubTotal:20SubTotal:20
+Total: 55
+Fecha:27/09/24
+Pedido:1Cliente:sadadNIT:675712
 Nro Vaso:1Sabor 1 :moraSabor 2 :duraznoTamaño :GrandeBase:LecheTipo Perlas:perlasSubTotal:20
 Nro Vaso:2Sabor 1 :chocoSabor 2 :frutiTamaño :MedianoBase:AguaTipo Perlas:perlasSubTotal:15
 Nro Vaso:3Sabor 1 :machaSabor 2 :ningunoTamaño :GrandeBase:AguaTipo Perlas:explosiveSubTotal:20
