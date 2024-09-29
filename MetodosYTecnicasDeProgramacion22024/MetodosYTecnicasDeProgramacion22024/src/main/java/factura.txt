@@ -1,5 +1,5 @@
-Nombre:RaulNIT:687342
-Nro Vaso:1Sabor 1 :limonSabor 2 :oreoTamaño :MedianoTipo Perlas:perlas15
-Nro Vaso:2Sabor 1 :teSabor 2 :vainillaTamaño :GrandeTipo Perlas:explosive20
-Nro Vaso:3Sabor 1 :canelaSabor 2 :churrascoTamaño :MedianoTipo Perlas:explosive15
+Nombre:CandyNIT:13525846
+Nro Vaso:1Sabor 1 :FrutillaSabor 2 :ChocolateTamaño :GrandeTipo Perlas:Explosiva20
+Nro Vaso:2Sabor 1 :ChocolateSabor 2 :OreoTamaño :MedianoTipo Perlas:Tapioca15
+Nro Vaso:3Sabor 1 :ChocolateSabor 2 :MentaTamaño :MedianoTipo Perlas:Tapioca15
 Total : 50
