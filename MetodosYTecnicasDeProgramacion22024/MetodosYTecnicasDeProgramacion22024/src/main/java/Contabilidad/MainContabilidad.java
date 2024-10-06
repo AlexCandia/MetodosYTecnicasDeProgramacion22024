@@ -1,10 +1,6 @@
 package Contabilidad;
 
 
-import Contabilidad.GestorDeContabilidad;
-import Contabilidad.EgresoVariableOtro;
-import Contabilidad.EgresoVariableInsumo;
-import Contabilidad.EgresoFijo;
 import Ventas.Vaso;
 import Ventas.GestorDeVentas;
 import Inventario.Producto;
@@ -12,7 +8,8 @@ import Inventario.GestorDeInventario;
 
 public class MainContabilidad {
     public static void main(String[] args) {
-        GestorDeVentas gestorVentas = new GestorDeVentas();
+        GestorDeInventario gestorInventario = new GestorDeInventario();
+        GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
         gestorVentas.registrarCliente("sadad", "675712");
         Vaso vaso1 = new Vaso("Grande","Leche","perlas","mora","durazno");
         Vaso vaso2 = new Vaso("Mediano","Agua","perlas","choco","fruti");
@@ -23,7 +20,6 @@ public class MainContabilidad {
         gestorVentas.confirmarPedido();
         gestorVentas.terminarDia();
         gestorVentas.generarReporteVentas();
-        GestorDeInventario gestorInventario = new GestorDeInventario();
         GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
         Producto teverde = new Producto("Té Verde","bolsa","real","6893213");
         gestorInventario.agregar(teverde);
