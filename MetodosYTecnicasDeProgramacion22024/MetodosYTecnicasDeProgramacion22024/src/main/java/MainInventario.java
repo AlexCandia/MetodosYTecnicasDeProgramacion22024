@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
+import java.util.Scanner;//ñaca 
 
 public class MainInventario {
     Inventario.GestorDeInventario gestor = new Inventario.GestorDeInventario();
