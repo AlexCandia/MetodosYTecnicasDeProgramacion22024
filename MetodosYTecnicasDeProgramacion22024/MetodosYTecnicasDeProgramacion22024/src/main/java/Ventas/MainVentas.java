@@ -1,8 +1,7 @@
 package Ventas;
 
 
-import Ventas.Vaso;
-import Ventas.GestorDeVentas;
+import Inventario.GestorDeInventario;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,7 +14,8 @@ import Ventas.GestorDeVentas;
  */
 public class MainVentas {
     public static void main (String args[]){
-       GestorDeVentas gestor = new GestorDeVentas();
+       GestorDeInventario gestorInven = new GestorDeInventario();
+       GestorDeVentas gestor = new GestorDeVentas(gestorInven);
        gestor.registrarCliente("sadad", "675712");
        Vaso vaso1 = new Vaso("Grande","Leche","perlas","mora","durazno");
        Vaso vaso2 = new Vaso("Mediano","Agua","perlas","choco","fruti");
