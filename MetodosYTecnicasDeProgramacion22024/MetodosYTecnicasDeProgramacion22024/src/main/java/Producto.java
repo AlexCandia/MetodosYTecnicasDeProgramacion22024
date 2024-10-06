@@ -71,6 +71,7 @@ public class Producto {
         this.telefono = telefono;
     }
     @Override
+    //nuevo
     public String toString() {
         return "Nombre: " + nombre +
                ", Unidad: " + unidad +
