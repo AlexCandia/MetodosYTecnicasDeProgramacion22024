@@ -80,13 +80,18 @@ public class GestorDeInventario {
         }
         return res;
     }
-    public void recibirNuevoInsumo(String nombre,String nuevoCantidad) {
+    public void editarCantidadInsumo(String nombre,String nuevoCantidad,Boolean tipoIngreso) {
         Producto editado = buscarProd(nombre);
         if(editado==null){
            System.out.println("El producto que trata de buscar no existe"); 
         }else{
-                try { 
-                    double cantidadFinal = editado.getCantidad()+ Double.parseDouble(nuevoCantidad);
+                try {
+                    double cantidadFinal;
+                    if(tipoIngreso){
+                       cantidadFinal = editado.getCantidad()+ Double.parseDouble(nuevoCantidad); 
+                    }else{
+                       cantidadFinal = editado.getCantidad()- Double.parseDouble(nuevoCantidad); 
+                    }
                     editado.setCantidad(cantidadFinal);
                     System.out.println("Se han ingresado "+nuevoCantidad+" "+ editado.getUnidad()+" de "+nombre+" al inventario");
                 } catch (NumberFormatException e) {
