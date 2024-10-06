@@ -9,6 +9,7 @@ package Ventas;
  *
  * @author Camila
  */
+import Inventario.GestorDeInventario;
 import Ventas.GeneradorArchivosVentas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +17,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.HashMap;
 public class GestorDeVentas {
-    // Atributos de la clase GestorDeVentas 
+    // Atributos de la clase GestorDeVentas
+    private GestorDeInventario inventario;
     private HashMap<String, Pedido> ventasHistoricas;
     private ArrayList<Pedido> ventasDiarias;
     private Queue<VasoEnCola> colaPedidos;
@@ -24,7 +26,8 @@ public class GestorDeVentas {
     private GeneradorArchivosVentas generadorArchivosVentas;
 
     // Constructor
-    public GestorDeVentas() {
+    public GestorDeVentas(GestorDeInventario inventario) {
+        this.inventario=inventario;
         generadorArchivosVentas = new GeneradorArchivosVentas();
         this.ventasHistoricas = generadorArchivosVentas.cargarVentasHistoricasDesdeArchivo();
         this.ventasDiarias = new ArrayList<>();
@@ -154,6 +157,7 @@ public class GestorDeVentas {
     public void marcarPedidoCompletado() {
         if(!colaPedidos.isEmpty()){
             VasoEnCola vasoCompletado=colaPedidos.poll();
+            actualizarinfo(vasoCompletado);
             System.out.print("El vaso Nro: " + vasoCompletado.getVaso().getNumVaso());
             System.out.print("Del cliente: " + vasoCompletado.getNombreCliente());
             System.out.println(" esta listo");
@@ -194,6 +198,23 @@ public class GestorDeVentas {
 
     public void generarReporteVentas() {
         generadorArchivosVentas.generarReporte(ventasHistoricas);
+    }
+
+    private void actualizarinfo(VasoEnCola vasoCompletado) {
+        String sabor1 =vasoCompletado.getVaso().getSabor1();
+        String sabor2 =vasoCompletado.getVaso().getSabor2();
+        String tamaño =vasoCompletado.getVaso().getTamVaso();
+        String perlas =vasoCompletado.getVaso().getTipoBoba();
+        String base =vasoCompletado.getVaso().getBase();
+        inventario.editarCantidadInsumo(sabor1, "0.2",false);
+        inventario.editarCantidadInsumo(sabor2, "0.2",false);
+        if("Grande".equals(tamaño)){
+            inventario.editarCantidadInsumo(tamaño, "20",false);  
+        }else{
+            inventario.editarCantidadInsumo(tamaño, "15",false);
+        }
+        inventario.editarCantidadInsumo(base, "0.2",false);
+        inventario.editarCantidadInsumo(perlas, "0.2",false);  
     }
 
 }
