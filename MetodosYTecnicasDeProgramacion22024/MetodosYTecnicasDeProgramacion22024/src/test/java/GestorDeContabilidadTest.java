@@ -46,7 +46,7 @@ public class GestorDeContabilidadTest {
         egresoFijo = new EgresoFijo("Alquiler",3000);
         egresoVariable = new EgresoVariableInsumo("Leche",5,30);
         egresoOtro = new EgresoVariableOtro("Marketing","Post",300);
-        gestorVenta = new GestorDeVentas();
+        gestorVenta = new GestorDeVentas(gestorInven);
         gestorInven = new GestorDeInventario();
         gestorConta = new GestorDeContabilidad(gestorInven,gestorVenta);
         vaso1 = new Vaso("Grande","Leche","Explosiva","Frutilla","Chocolate");
