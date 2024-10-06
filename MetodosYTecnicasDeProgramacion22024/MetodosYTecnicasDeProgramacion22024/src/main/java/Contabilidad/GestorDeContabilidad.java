@@ -61,7 +61,7 @@ public class GestorDeContabilidad {
     }
 
     public void registrarEgresoInsumo(EgresoVariableInsumo egreso) {
-        gestorDeInventario.recibirNuevoInsumo(egreso.getNombre(), egreso.getCantidad()+"");
+        gestorDeInventario.editarCantidadInsumo(egreso.getNombre(), egreso.getCantidad()+"",true);
         egresosInsumos.add(egreso);
     }
 
