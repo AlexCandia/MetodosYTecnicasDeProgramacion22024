@@ -70,6 +70,16 @@ public class Producto {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+    @Override
+    //nuevo
+    public String toString() {
+        return "Nombre: " + nombre +
+               ", Unidad: " + unidad +
+               ", Cantidad: " + cantidad +
+               ", Proveedor: " + proveedor +
+               ", Teléfono: " + telefono;
+    }
+
 }
 
 
