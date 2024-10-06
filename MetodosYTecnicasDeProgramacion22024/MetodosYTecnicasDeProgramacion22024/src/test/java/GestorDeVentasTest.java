@@ -4,6 +4,7 @@
  */
 //package com.mycompany.metodostecnicas.Ventas;
 
+import Inventario.GestorDeInventario;
 import Ventas.GestorDeVentas;
 import Ventas.Pedido;
 import Ventas.Vaso;
@@ -20,7 +21,7 @@ import static org.junit.Assert.*;
  * @author Camila
  */
 public class GestorDeVentasTest {
-    
+    private GestorDeInventario gestorInven;
     private GestorDeVentas gestorVenta;
     private Vaso vaso1;
     private Vaso vaso2;
@@ -39,7 +40,8 @@ public class GestorDeVentasTest {
     
     @Before
     public void setUp() {
-        gestorVenta = new GestorDeVentas();
+        gestorInven = new GestorDeInventario();
+        gestorVenta = new GestorDeVentas(gestorInven);
         vaso1 = new Vaso("Grande","Leche","Explosiva","Frutilla","Mora");
         vaso2= new Vaso("Mediano","Agua","Tapioca","Chocolate","Oreo");
         vasos = new ArrayList<>();
