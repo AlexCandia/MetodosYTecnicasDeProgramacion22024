@@ -9,17 +9,23 @@ package Inventario;
  *
  * @author Camila
  */
-import java.util.Scanner;
+import PaqueteGeneral.Notificacion;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import PaqueteGeneral.Notificacion;
+import Ventas.GestorDeVentas;
 
 public class GestorDeInventario {
+    private GestorDeVentas ventas;
     private final ArrayList<Producto> productos;
     private GeneradorArchivosInventario productsfile;
     public GestorDeInventario() {
         productsfile= new GeneradorArchivosInventario();
         productos=productsfile.getProductos();
+    }
+    public void vincularVentas(GestorDeVentas ventas){
+        this.ventas=ventas;
     }
     public ArrayList<Producto> getProductos(){
         return productos;
@@ -88,9 +94,19 @@ public class GestorDeInventario {
                 try {
                     double cantidadFinal;
                     if(tipoIngreso){
-                       cantidadFinal = editado.getCantidad()+ Double.parseDouble(nuevoCantidad); 
+                       cantidadFinal = editado.getCantidad()+ Double.parseDouble(nuevoCantidad);
+                       editado.recalcularLimite();
                     }else{
-                       cantidadFinal = editado.getCantidad()- Double.parseDouble(nuevoCantidad); 
+                       cantidadFinal = editado.getCantidad()- Double.parseDouble(nuevoCantidad);
+                       String mensaje="Poca cantidad de"+editado.getNombre();
+                       if(cantidadFinal<=editado.getLimiteMinimo()){
+                           Notificacion notificacionLimiteAlcanzado = new Notificacion(
+                                   "Producto a punto de agotarse",
+                                   mensaje,
+                                   "Inventario");
+                           ventas.getNotificaciones().add(notificacionLimiteAlcanzado);
+                       }
+                       
                     }
                     editado.setCantidad(cantidadFinal);
                     System.out.println("Se han ingresado "+nuevoCantidad+" "+ editado.getUnidad()+" de "+nombre+" al inventario");
@@ -130,63 +146,6 @@ public class GestorDeInventario {
     public void guardarInventario() {
         productsfile = new GeneradorArchivosInventario(productos);
         productsfile.añadirAlarchivo();
-    }
-
-    // Método para volver al menú (placeholder, según tu diagrama de clases)
-   public void volverMenu() {
-        Scanner scanner = new Scanner(System.in);
-        int opcion;
-
-        // Mostrar menú de opciones
-        System.out.println("=== Menú Principal ===");
-        System.out.println("1. Registrar nuevo producto");
-        System.out.println("2. Eliminar producto");
-        System.out.println("3. Modificar producto");
-        System.out.println("4. Ordenar por bajo stock");
-        System.out.println("5. Ordenar por nombre");
-        System.out.println("6. Guardar inventario");
-        System.out.println("7. Salir");
-        System.out.print("Seleccione una opción: ");
-        
-        // Leer la opción seleccionada por el usuario
-        opcion = scanner.nextInt();
-        scanner.nextLine();
-
-        // Realizar la acción correspondiente según la opción seleccionada
-        switch (opcion) {
-            case 1:
-                // Llamar al método para registrar nuevo producto
-                agregar(new Producto("Nombre", "Unidad", "Proveedor", "Teléfono"));
-                break;
-            case 2:
-                // Llamar al método para eliminar producto
-                eliminarProducto("Nombre");
-                break;
-            case 3:
-                // Llamar al método para modificar producto
-                editarInfoProducto("Nombre", "Atributo", "Nuevo Valor");
-                break;
-            case 4:
-                // Llamar al método para ordenar por bajo stock
-                ordenarPorBajoStock();
-                break;
-            case 5:
-                // Llamar al método para ordenar por nombre
-                ordenarPorNombre();
-                break;
-            case 6:
-                // Llamar al método para guardar inventario
-                guardarInventario();
-                break;
-            case 7:
-                // Salir del programa
-                System.out.println("Saliendo...");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Opción no válida. Por favor, intente nuevamente.");
-                break;
-        }
     }
 }
 
