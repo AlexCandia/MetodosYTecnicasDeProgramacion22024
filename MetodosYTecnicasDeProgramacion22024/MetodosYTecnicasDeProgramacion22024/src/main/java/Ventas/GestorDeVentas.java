@@ -10,6 +10,7 @@ package Ventas;
  * @author Camila
  */
 import Inventario.GestorDeInventario;
+import PaqueteGeneral.Notificacion;
 import Ventas.GeneradorArchivosVentas;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,12 +23,14 @@ public class GestorDeVentas {
     private HashMap<String, Pedido> ventasHistoricas;
     private ArrayList<Pedido> ventasDiarias;
     private Queue<VasoEnCola> colaPedidos;
+    private Queue<Notificacion> notificaciones;
     private Pedido pedidoTemporal;
     private GeneradorArchivosVentas generadorArchivosVentas;
 
     // Constructor
     public GestorDeVentas(GestorDeInventario inventario) {
         this.inventario=inventario;
+        inventario.vincularVentas(this);
         generadorArchivosVentas = new GeneradorArchivosVentas();
         this.ventasHistoricas = generadorArchivosVentas.cargarVentasHistoricasDesdeArchivo();
         this.ventasDiarias = new ArrayList<>();
@@ -40,6 +43,9 @@ public class GestorDeVentas {
     }
     public Pedido getPedidoTemporal(){
         return pedidoTemporal;
+    }
+    public Queue<Notificacion> getNotificaciones(){
+        return notificaciones;
     }
     private Vaso buscarVasoEnPedido(String numVaso){
         Vaso res = null;
