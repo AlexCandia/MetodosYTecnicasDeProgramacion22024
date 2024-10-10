@@ -13,6 +13,7 @@ public class Producto {
     private String nombre;
     private String unidad;
     private double cantidad;
+    private double limiteMinimo;
     private String proveedor;
     private String telefono;
 
@@ -31,7 +32,7 @@ public class Producto {
         this.proveedor = proveedor;
         this.telefono = telefono;
     }
-
+    
     // Getters y Setters
     public String getNombre() {
         return nombre;
@@ -71,6 +72,12 @@ public class Producto {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+    public double getLimiteMinimo(){
+        return limiteMinimo;
+    }
+    public void recalcularLimite(){
+        limiteMinimo=0.2*cantidad;
     }
     @Override
     //nuevo
