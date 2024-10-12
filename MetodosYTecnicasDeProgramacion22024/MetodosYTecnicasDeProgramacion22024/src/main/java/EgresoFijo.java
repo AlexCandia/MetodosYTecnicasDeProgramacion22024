@@ -14,4 +14,12 @@ public class EgresoFijo {
     public double getValor() {
         return valor;
     }
+    
+    public void setNombreEgreso(String nombre){
+        nombreEgreso = nombre;
+    }
+    
+    public void setValor (double value){
+        valor = value;
+    }
 }
