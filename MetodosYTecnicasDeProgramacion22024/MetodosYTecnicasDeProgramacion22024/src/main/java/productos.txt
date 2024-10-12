@@ -1,3 +1,0 @@
-LaptopHP/unidad/10.0/Proveedor1/123456789
-MouseInalambrico/unidad/50.0/Proveedor2/987654321
-Compu/unidad/1200.50/XGaming/76945342
