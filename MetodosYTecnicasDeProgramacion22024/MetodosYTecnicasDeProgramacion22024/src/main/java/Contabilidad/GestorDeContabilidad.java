@@ -40,18 +40,23 @@ public class GestorDeContabilidad {
         this.gestorDeVentas = gestorDeVentas;
         ventasHistoricas = gestorDeVentas.getVentasHistoricas();
     }
+    
     public double getIngresosBoba() {
         return ingresosBoba;
     }
+    
     public ArrayList<EgresoFijo> getEgresosFijos() {
         return egresosFijos;
     }
+    
     public ArrayList<EgresoVariableInsumo> getEgresosInsumos() {
         return egresosInsumos;
     }
+    
     public ArrayList<EgresoVariableOtro> getEgresosOtros() {
         return egresosOtros;
     }
+    
     public void calcularIngreso () {
         ingresosBoba=gestorDeVentas.calcularIngresosTotales();
     }
@@ -89,6 +94,7 @@ public class GestorDeContabilidad {
         double totalEgresos = calcularTotalEgresosFijos() + calcularTotalEgresosInsumos() + calcularTotalEgresosOtros();
         return ingresosBoba - totalEgresos;
     }
+    
     public ArrayList<String> obtenerSaboresMasVendidos() {
         HashMap<String, Integer> conteoSabores = new HashMap<>();
         for (Pedido pedido : ventasHistoricas.values()) {
@@ -113,6 +119,7 @@ public class GestorDeContabilidad {
 
         return saboresMasVendidos;
     }
+    
     private void agregarUnidadesDeSabor(HashMap<String, Integer> conteoSabores, String sabor) {
         if (conteoSabores.containsKey(sabor)) {
             conteoSabores.put(sabor, conteoSabores.get(sabor) + 1);
@@ -120,6 +127,7 @@ public class GestorDeContabilidad {
             conteoSabores.put(sabor, 1);
         }
     }
+    
     public String imprimirReporteMensual() {
         StringBuilder reporte = new StringBuilder();
         reporte.append("Reporte Mensual\n");
@@ -130,6 +138,7 @@ public class GestorDeContabilidad {
         reporte.append("Balance: ").append(calcularBalance()).append("\n");
         return reporte.toString();
     }
+    
     public void guardarReporteHistorico() {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String ruta = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
@@ -153,6 +162,7 @@ public class GestorDeContabilidad {
             System.out.println("Error al guardar el reporte histórico: " + e.getMessage());
         }
     }
+    
     public void imprimirReporteHistorico() {
         guardarReporteHistorico();
     }
