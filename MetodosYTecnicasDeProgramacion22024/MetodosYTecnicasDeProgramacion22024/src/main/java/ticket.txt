@@ -1,4 +1,0 @@
-Nro Pedido:1Nombre:Candy
-Nro Vaso:1Sabor 1 :FrutillaSabor 2 :ChocolateTamaño :GrandeBase:LecheTipo Perlas:Explosiva
-Nro Vaso:2Sabor 1 :ChocolateSabor 2 :OreoTamaño :MedianoBase:AguaTipo Perlas:Tapioca
-Nro Vaso:3Sabor 1 :ChocolateSabor 2 :MentaTamaño :MedianoBase:AguaTipo Perlas:Tapioca
