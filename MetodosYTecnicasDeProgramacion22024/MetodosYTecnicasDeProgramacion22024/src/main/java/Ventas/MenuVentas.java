@@ -14,9 +14,10 @@ import Inventario.GestorDeInventario;
  */
 public class MenuVentas {
     public static void main (String args[]){
+
        GestorDeInventario gestorInven = new GestorDeInventario();
        GestorDeVentas gestor = new GestorDeVentas(gestorInven);
-       gestor.registrarCliente("sadad", "675712");
+       gestor.registrarCliente("Dariana Panozo", "675712");
        Vaso vaso1 = new Vaso("Grande","Leche","perlas","mora","durazno");
        Vaso vaso2 = new Vaso("Mediano","Agua","perlas","choco","fruti");
        Vaso vaso3 = new Vaso("Grande","Agua","explosive","macha","ninguno");
@@ -24,7 +25,9 @@ public class MenuVentas {
        gestor.agregarVaso(vaso2);
        gestor.agregarVaso(vaso3);
        gestor.confirmarPedido();
-       gestor.registrarCliente("afqrfgr", "12873178");
+       System.out.println(vaso3.getCodPedido());
+       
+       gestor.registrarCliente("Valery Ortuno", "9479386");
        Vaso vaso4 = new Vaso("Mediano","Agua","perlas","limon","oreo");
        Vaso vaso5 = new Vaso("Grande","Leche","explosive","te","vainilla");
        Vaso vaso6 = new Vaso("Mediano","Agua","explosive","canela","churrasco");
@@ -32,6 +35,8 @@ public class MenuVentas {
        gestor.agregarVaso(vaso5);
        gestor.agregarVaso(vaso6);
        gestor.confirmarPedido();
+       System.out.println(vaso6.getCodPedido());
+       
        gestor.terminarDia();
        gestor.generarReporteVentas();
     }

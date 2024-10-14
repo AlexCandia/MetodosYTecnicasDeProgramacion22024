@@ -9,27 +9,30 @@ package Inventario;
  *
  * @author Camila
  */
-import PaqueteGeneral.Notificacion;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import PaqueteGeneral.Notificacion;
 import Ventas.GestorDeVentas;
 
 public class GestorDeInventario {
+    
     private GestorDeVentas ventas;
     private final ArrayList<Insumo> productos;
     private GeneradorArchivosInventario productsfile;
+    
     public GestorDeInventario() {
         productsfile= new GeneradorArchivosInventario();
         productos=productsfile.getProductos();
     }
+    
     public void vincularVentas(GestorDeVentas ventas){
         this.ventas=ventas;
     }
+    
     public ArrayList<Insumo> getProductos(){
         return productos;
     }
+    
     // Método para agregar un producto al inventario
     public void agregar(Insumo producto) {
         boolean existe = false;
@@ -39,13 +42,14 @@ public class GestorDeInventario {
                break;
             }
         }
-     if (!existe){
-            productos.add(producto);
-            System.out.println("Producto agregado correctamente.");
-     }else{
-            System.out.println("El producto ya existe en el inventario.");
+        if (!existe){
+               productos.add(producto);
+               System.out.println("Producto agregado correctamente.");
+        }else{
+               System.out.println("El producto ya existe en el inventario.");
         }
     }
+    
     //metodo para buscar la posicion de un elemento
     private int buscarPos(String nombre){
         int pos = 0;
@@ -60,7 +64,8 @@ public class GestorDeInventario {
         }
         return pos;
     }
-     private Insumo buscarProd(String nombre) {
+    
+    private Insumo buscarProd(String nombre) {
         Insumo producto = null;  
 
         for (Insumo p : productos) {
@@ -69,9 +74,8 @@ public class GestorDeInventario {
                 break;  
             }
         }
-
-    return producto; 
-}
+        return producto; 
+    }
     
     // Método para eliminar un producto del inventario
     public boolean eliminarProducto(String nombre) {
@@ -86,6 +90,7 @@ public class GestorDeInventario {
         }
         return res;
     }
+    
     public void editarCantidadInsumo(String nombre,String nuevoCantidad,Boolean tipoIngreso) {
         Insumo editado = buscarProd(nombre);
         if(editado==null){
@@ -115,6 +120,7 @@ public class GestorDeInventario {
                 }
         } 
     }
+    
     // Método para modificar información de un producto
     public void editarInfoProducto(String nombre, String atributo, String nuevoValor) {
         Insumo editado = buscarProd(nombre);
@@ -132,6 +138,7 @@ public class GestorDeInventario {
             }
         }
     }
+    
     // Método para ordenar el inventario por bajo stock
     public void ordenarPorBajoStock() {
         Collections.sort(productos, Comparator.comparingDouble(Insumo::getCantidad));
