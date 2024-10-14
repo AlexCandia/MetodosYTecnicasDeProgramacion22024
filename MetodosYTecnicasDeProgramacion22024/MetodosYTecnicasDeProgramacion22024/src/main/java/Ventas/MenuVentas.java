@@ -12,7 +12,7 @@ import Inventario.GestorDeInventario;
  *
  * @author developerweb
  */
-public class MainVentas {
+public class MenuVentas {
     public static void main (String args[]){
        GestorDeInventario gestorInven = new GestorDeInventario();
        GestorDeVentas gestor = new GestorDeVentas(gestorInven);

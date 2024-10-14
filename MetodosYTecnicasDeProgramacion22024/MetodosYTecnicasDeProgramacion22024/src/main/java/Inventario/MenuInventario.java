@@ -7,13 +7,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class MainInventario {
+public class MenuInventario {
     GestorDeInventario gestor = new GestorDeInventario();
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private ArrayList<Insumo> productos = new ArrayList<>();
     private final String FILE_NAME = "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\InventarioCopia\\src\\main\\java\\Inventario\\productos.txt";  // Nombre del archivo donde guardaremos los productos
 
     public static void main(String[] args) {
-        MainInventario inventario = new MainInventario();
+        MenuInventario inventario = new MenuInventario();
         inventario.cargarProductosDesdeArchivo();  // Cargar los productos desde el archivo al iniciar
         inventario.mostrarMenu();
         inventario.guardarProductosEnArchivo();  // Guardar los productos al salir del programa
@@ -77,14 +77,14 @@ public class MainInventario {
         String telefono = scanner.nextLine();
 
         // Crear el nuevo producto y agregarlo al inventario
-        Producto nuevoProducto = new Producto(nombre, unidad, cantidad, proveedor, telefono);
+        Insumo nuevoProducto = new Insumo(nombre, unidad, cantidad, proveedor, telefono);
         productos.add(nuevoProducto);
         System.out.println("Producto agregado exitosamente.");
     }
     // Método para guardar los productos en un archivo de texto
     public void guardarProductosEnArchivo() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
-            for (Producto producto : productos) {
+            for (Insumo producto : productos) {
                 writer.write(producto.getNombre() + "," +
                              producto.getUnidad() + "," +
                              producto.getCantidad() + "," +
@@ -111,7 +111,7 @@ public class MainInventario {
                     String proveedor = datos[3];
                     String telefono = datos[4];
 
-                    Producto producto = new Producto(nombre, unidad, cantidad, proveedor, telefono);
+                    Insumo producto = new Insumo(nombre, unidad, cantidad, proveedor, telefono);
                     productos.add(producto);
                 }
             }
@@ -127,7 +127,7 @@ public class MainInventario {
         System.out.print("Nombre del producto a eliminar: ");
         String nombre = scanner.nextLine();
 
-        Producto productoAEliminar = buscarProductoPorNombre(nombre);
+        Insumo productoAEliminar = buscarProductoPorNombre(nombre);
         if (productoAEliminar != null) {
             productos.remove(productoAEliminar);
             System.out.println("Producto eliminado.");
@@ -136,8 +136,8 @@ public class MainInventario {
         }
     }
     
-    public Producto buscarProductoPorNombre(String nombre) {
-        for (Producto producto : productos) {
+    public Insumo buscarProductoPorNombre(String nombre) {
+        for (Insumo producto : productos) {
             if (producto.getNombre().equalsIgnoreCase(nombre)) {
                 return producto;
             }
@@ -150,7 +150,7 @@ public class MainInventario {
             System.out.println("No hay productos en el inventario.");
         } else {
             System.out.println("\n--- Productos en el inventario ---");
-            for (Producto producto : productos) {
+            for (Insumo producto : productos) {
                 System.out.println(producto);
             }
         }
@@ -161,7 +161,7 @@ public class MainInventario {
     System.out.print("Ingrese el nombre del producto a editar: ");
     String nombre = scanner.nextLine();
     
-    Producto producto = buscarProductoPorNombre(nombre);
+    Insumo producto = buscarProductoPorNombre(nombre);
     
     if (producto == null) {
         System.out.println("No se encontró el producto con ese nombre.");
@@ -224,9 +224,9 @@ public class MainInventario {
     }
     }
     public void ordenarPorCantidad() {
-    Collections.sort(productos, new Comparator<Producto>() {
+    Collections.sort(productos, new Comparator<Insumo>() {
         @Override
-        public int compare(Producto p1, Producto p2) {
+        public int compare(Insumo p1, Insumo p2) {
             return Double.compare(p1.getCantidad(), p2.getCantidad());
         }
     });
@@ -234,9 +234,9 @@ public class MainInventario {
     mostrarProductos();
     }
     public void ordenarPorNombre() {
-    Collections.sort(productos, new Comparator<Producto>() {
+    Collections.sort(productos, new Comparator<Insumo>() {
         @Override
-        public int compare(Producto p1, Producto p2) {
+        public int compare(Insumo p1, Insumo p2) {
             return p1.getNombre().compareToIgnoreCase(p2.getNombre());
         }
     });

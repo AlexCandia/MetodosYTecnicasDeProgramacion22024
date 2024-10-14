@@ -2,7 +2,7 @@ package InicioyRegistro;
 
 import java.util.Scanner;
 
-public class MainInicioDeSesion {
+public class MenuInicio {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         GeneradorArchivosUsuarios userDatabase = new GeneradorArchivosUsuarios();

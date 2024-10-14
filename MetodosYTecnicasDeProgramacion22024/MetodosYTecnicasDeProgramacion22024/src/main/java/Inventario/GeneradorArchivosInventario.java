@@ -10,24 +10,23 @@ package Inventario;
  * @author developerweb
  */
 
-import Inventario.Producto;
 import java.io.*;
 import java.util.ArrayList;
 public class GeneradorArchivosInventario {
-    public ArrayList<Producto> productos = new ArrayList<>();
-    public ArrayList<Producto> getProductos(){
+    public ArrayList<Insumo> productos = new ArrayList<>();
+    public ArrayList<Insumo> getProductos(){
         return productos;
     }
-  public GeneradorArchivosInventario(ArrayList<Producto> productos){
+  public GeneradorArchivosInventario(ArrayList<Insumo> productos){
      this.productos=productos; 
     }
   public GeneradorArchivosInventario(){
         cargarProductos();
     }
-  private static final String FILE_PATH = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\productos.txt";
+  private static final String FILE_PATH = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\insumos.txt";
   public void añadirAlarchivo(){
       try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            for (Producto producto : productos) {
+            for (Insumo producto : productos) {
                 writer.write(producto.getNombre() + "/" + producto.getUnidad()+ "/" + producto.getCantidad()+ "/" + producto.getProveedor()+ "/" + producto.getTelefono());
                 writer.newLine();
             }
@@ -35,7 +34,7 @@ public class GeneradorArchivosInventario {
             System.out.println("Error al guardar usuarios en el archivo: " + e.getMessage());
         }
   }
-  private ArrayList<Producto> cargarProductos(){
+  private ArrayList<Insumo> cargarProductos(){
        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -47,7 +46,7 @@ public class GeneradorArchivosInventario {
                     String proveedor = parts[3];
                     String telefono = parts[4];
                     double cantidadProd = Double.parseDouble(cantidad);
-                    Producto producto =new Producto(nombre, unidad,cantidadProd,proveedor,telefono);
+                    Insumo producto =new Insumo(nombre, unidad,cantidadProd,proveedor,telefono);
                     productos.add(producto);
                 }
             }

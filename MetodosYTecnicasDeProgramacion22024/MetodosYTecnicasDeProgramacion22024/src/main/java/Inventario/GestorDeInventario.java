@@ -18,7 +18,7 @@ import Ventas.GestorDeVentas;
 
 public class GestorDeInventario {
     private GestorDeVentas ventas;
-    private final ArrayList<Producto> productos;
+    private final ArrayList<Insumo> productos;
     private GeneradorArchivosInventario productsfile;
     public GestorDeInventario() {
         productsfile= new GeneradorArchivosInventario();
@@ -27,13 +27,13 @@ public class GestorDeInventario {
     public void vincularVentas(GestorDeVentas ventas){
         this.ventas=ventas;
     }
-    public ArrayList<Producto> getProductos(){
+    public ArrayList<Insumo> getProductos(){
         return productos;
     }
     // Método para agregar un producto al inventario
-    public void agregar(Producto producto) {
+    public void agregar(Insumo producto) {
         boolean existe = false;
-        for (Producto p : productos) {
+        for (Insumo p : productos) {
             if (p.getNombre().equals(producto.getNombre())) {
                 existe = true;
                break;
@@ -49,7 +49,7 @@ public class GestorDeInventario {
     //metodo para buscar la posicion de un elemento
     private int buscarPos(String nombre){
         int pos = 0;
-        Producto prod;
+        Insumo prod;
         prod = productos.get(pos);
         while (pos < productos.size() && !nombre.equals( prod.getNombre())){
             prod = productos.get(pos);
@@ -60,10 +60,10 @@ public class GestorDeInventario {
         }
         return pos;
     }
-     private Producto buscarProd(String nombre) {
-        Producto producto = null;  
+     private Insumo buscarProd(String nombre) {
+        Insumo producto = null;  
 
-        for (Producto p : productos) {
+        for (Insumo p : productos) {
             if (p.getNombre() != null && p.getNombre().equals(nombre)) {
                 producto = p;
                 break;  
@@ -87,7 +87,7 @@ public class GestorDeInventario {
         return res;
     }
     public void editarCantidadInsumo(String nombre,String nuevoCantidad,Boolean tipoIngreso) {
-        Producto editado = buscarProd(nombre);
+        Insumo editado = buscarProd(nombre);
         if(editado==null){
            System.out.println("El producto que trata de buscar no existe"); 
         }else{
@@ -117,7 +117,7 @@ public class GestorDeInventario {
     }
     // Método para modificar información de un producto
     public void editarInfoProducto(String nombre, String atributo, String nuevoValor) {
-        Producto editado = buscarProd(nombre);
+        Insumo editado = buscarProd(nombre);
         if(editado==null){
            System.out.println("El producto que trata de buscar no existe"); 
         }else{
@@ -134,12 +134,12 @@ public class GestorDeInventario {
     }
     // Método para ordenar el inventario por bajo stock
     public void ordenarPorBajoStock() {
-        Collections.sort(productos, Comparator.comparingDouble(Producto::getCantidad));
+        Collections.sort(productos, Comparator.comparingDouble(Insumo::getCantidad));
     }
 
     // Método para ordenar el inventario por nombre
     public void ordenarPorNombre() {
-        Collections.sort(productos, Comparator.comparing(Producto::getNombre));
+        Collections.sort(productos, Comparator.comparing(Insumo::getNombre));
     }
 
     // Método para guardar el inventario actual en un archivo

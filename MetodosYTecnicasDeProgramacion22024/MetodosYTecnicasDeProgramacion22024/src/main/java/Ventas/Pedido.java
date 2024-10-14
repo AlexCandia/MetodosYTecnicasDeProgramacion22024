@@ -9,7 +9,6 @@ package Ventas;
  *
  * @author developerweb
  */
-import Ventas.Vaso;
 import java.util.Date;
 import java.util.ArrayList;
 public class Pedido {
