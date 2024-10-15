@@ -9,13 +9,12 @@ package Ventas;
  *
  * @author Camila
  */
-import java.util.Date;
 
 public class Vaso {
 
     // Atributos
-    private String numVaso; // Número de vaso en la venta
-    private Date fecha; // Fecha en la que se realizó la venta
+    private String codPedido; //Fecha y numero de pedido al que esta asociado el vaso
+    private String numVaso; // Número de vaso en el pedido
     private String tamVaso; // Tamaño del vaso (ej. pequeño, mediano, grande)
     private String base; // Base del vaso (ej. leche, té)
     private String tipoBoba; // Tipo de boba (ej. perlas de tapioca, gelatina)
@@ -26,7 +25,7 @@ public class Vaso {
     // Constructor
     public Vaso(String tamVaso, String base, String tipoBoba, String sabor1, String sabor2) {
         this.numVaso = "0";
-        this.fecha = new Date();
+        this.codPedido = "AAAAMMDD-001";
         this.tamVaso = tamVaso;
         this.base = base;
         this.tipoBoba = tipoBoba;
@@ -41,6 +40,7 @@ public class Vaso {
             return 15;
         }
     }
+    
     // Métodos getter y setter
     public String getNumVaso() {
         return numVaso;
@@ -49,15 +49,15 @@ public class Vaso {
     public void setNumVaso(String numVaso) {
         this.numVaso = numVaso;
     }
-
-    public Date getFecha() {
-        return fecha;
+    
+    public String getCodPedido() {
+        return codPedido;
     }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    
+    public void setCodPedido(String codPed){
+        codPedido = codPed;
     }
-
+    
     public String getTamVaso() {
         return tamVaso;
     }

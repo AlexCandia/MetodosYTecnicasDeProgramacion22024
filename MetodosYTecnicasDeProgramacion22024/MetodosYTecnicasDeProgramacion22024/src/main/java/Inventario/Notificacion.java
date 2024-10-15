@@ -1,4 +1,4 @@
-package PaqueteGeneral;
+package Inventario;
 
 
 import java.util.Date;

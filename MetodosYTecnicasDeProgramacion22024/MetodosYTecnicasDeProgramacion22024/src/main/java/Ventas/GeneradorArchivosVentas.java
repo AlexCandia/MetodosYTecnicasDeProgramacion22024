@@ -21,11 +21,13 @@ import java.util.HashMap;
  * @author developerweb
  */
 public class GeneradorArchivosVentas {
+    
     private HashMap<String, Pedido> ventasHistoricas;
-     private static final String FILE_PATH1 = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\ticket.txt";
-     private static final String FILE_PATH2 = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\factura.txt";
-     private static final String FILE_PATH3 = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\historico.txt";
-     public GeneradorArchivosVentas() {
+    private static final String FILE_PATH1 = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\ticket.txt";
+    private static final String FILE_PATH2 = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\factura.txt";
+    private static final String FILE_PATH3 = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\historico.txt";
+    
+    public GeneradorArchivosVentas() {
     }
     public void generarTicket(Pedido pedido){
        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH1))) {
@@ -127,7 +129,7 @@ public class GeneradorArchivosVentas {
 
                 // Crear un nuevo Vaso y agregarlo al pedido actual
                 Vaso vaso = new Vaso(tamaño, base, perlas, sabor1, sabor2);
-                pedidoActual.añadir(vaso);
+                pedidoActual.agregar(vaso);
             } else if (linea.startsWith("Total:")) {
                 // Podrías procesar el total si es necesario
             }

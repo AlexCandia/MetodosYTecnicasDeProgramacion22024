@@ -3,10 +3,10 @@ package Contabilidad;
 
 import Ventas.Vaso;
 import Ventas.GestorDeVentas;
-import Inventario.Producto;
+import Inventario.Insumo;
 import Inventario.GestorDeInventario;
 
-public class MainContabilidad {
+public class MenuContabilidad {
     public static void main(String[] args) {
         GestorDeInventario gestorInventario = new GestorDeInventario();
         GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
@@ -21,7 +21,7 @@ public class MainContabilidad {
         gestorVentas.terminarDia();
         gestorVentas.generarReporteVentas();
         GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
-        Producto teverde = new Producto("Té Verde","bolsa","real","6893213");
+        Insumo teverde = new Insumo("Té Verde","bolsa","real","6893213");
         gestorInventario.agregar(teverde);
         gestorContabilidad.calcularIngreso();
         // Egresos

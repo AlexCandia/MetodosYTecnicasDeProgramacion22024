@@ -9,7 +9,7 @@ package Inventario;
  *
  * @author Camila
  */
-public class Producto {
+public class Insumo {
     private String nombre;
     private String unidad;
     private double cantidad;
@@ -18,14 +18,14 @@ public class Producto {
     private String telefono;
 
     // Constructor
-    public Producto(String nombre, String unidad, String proveedor, String telefono) {
+    public Insumo(String nombre, String unidad, String proveedor, String telefono) {
         this.nombre = nombre;
         this.unidad = unidad;
         cantidad = 0;
         this.proveedor = proveedor;
         this.telefono = telefono;
     }
-    public Producto(String nombre, String unidad,double cantidad, String proveedor, String telefono) {
+    public Insumo(String nombre, String unidad,double cantidad, String proveedor, String telefono) {
         this.nombre = nombre;
         this.unidad = unidad;
         this.cantidad = cantidad;

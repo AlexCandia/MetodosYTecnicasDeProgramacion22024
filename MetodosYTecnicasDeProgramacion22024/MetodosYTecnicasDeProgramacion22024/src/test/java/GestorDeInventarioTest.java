@@ -5,7 +5,7 @@
 //package com.mycompany.metodostecnicas.Inventario;
 
 import Inventario.GestorDeInventario;
-import Inventario.Producto;
+import Inventario.Insumo;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,9 +20,9 @@ import static org.junit.Assert.*;
  */
 public class GestorDeInventarioTest {
     private GestorDeInventario gestorInven;
-    private ArrayList<Producto> productos;
-    private Producto producto1;
-    private Producto producto2;
+    private ArrayList<Insumo> productos;
+    private Insumo producto1;
+    private Insumo producto2;
     
     
     public GestorDeInventarioTest() {
@@ -40,8 +40,8 @@ public class GestorDeInventarioTest {
     public void setUp() {
         gestorInven = new GestorDeInventario();
         productos = new ArrayList<>();
-        producto1 = new Producto("Leche","Litro","Pil","69452070");
-        producto2 = new Producto("Chocolate","kilo","Celinda","69440058");
+        producto1 = new Insumo("Leche","Litro","Pil","69452070");
+        producto2 = new Insumo("Chocolate","kilo","Celinda","69440058");
         
     }
     
@@ -81,7 +81,7 @@ public class GestorDeInventarioTest {
         gestorInven.agregar(producto2);
         gestorInven.editarInfoProducto("Chocolate","nombre","Azucar");
         productos = gestorInven.getProductos();
-        Producto editado = productos.get(0);
+        Insumo editado = productos.get(0);
         assertEquals("Azucar",editado.getNombre());
     }
     @Test
@@ -89,7 +89,7 @@ public class GestorDeInventarioTest {
         gestorInven.agregar(producto2);
         gestorInven.editarInfoProducto("Oreo","unidad","bolsa");
         productos = gestorInven.getProductos();
-        Producto editado = productos.get(0);
+        Insumo editado = productos.get(0);
         assertEquals("Chocolate",editado.getNombre());
     }
     @Test
@@ -98,7 +98,7 @@ public class GestorDeInventarioTest {
         gestorInven.agregar(producto2);
         gestorInven.ordenarPorNombre();
         productos = gestorInven.getProductos();
-        Producto ordenado = productos.get(1);
+        Insumo ordenado = productos.get(1);
         assertEquals("Leche",ordenado.getNombre());
         
     }
