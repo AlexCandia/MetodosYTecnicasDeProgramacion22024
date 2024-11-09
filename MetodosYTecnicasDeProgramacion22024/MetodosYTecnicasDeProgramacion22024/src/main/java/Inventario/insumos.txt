@@ -1,5 +1,0 @@
-Chocolate,Kg,75.0,Choco,7546516
-Manzana,Kg,84.0,Nicolas,75464065
-asdas,asd,415.0,eqwe,wqeqw
-Manzana,Kg,75.0,Lsonmfdas,75464651
-Pollo,POllo,45.0,2137asda,46576546

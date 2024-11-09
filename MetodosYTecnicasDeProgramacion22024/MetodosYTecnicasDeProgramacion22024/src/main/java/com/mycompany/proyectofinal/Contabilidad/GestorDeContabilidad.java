@@ -136,6 +136,7 @@ public class GestorDeContabilidad {
             conteoSabores.put(sabor, 1);
         }
     }
+    
     public String imprimirReporteMensual() {
         StringBuilder reporte = new StringBuilder();
         reporte.append("Reporte Mensual\n");

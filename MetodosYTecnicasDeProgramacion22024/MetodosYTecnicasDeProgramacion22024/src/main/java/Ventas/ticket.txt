@@ -1,4 +1,0 @@
-Nro Pedido:1Nombre:sadad
-Nro Vaso:1Sabor 1 :moraSabor 2 :duraznoTamaño :GrandeBase:LecheTipo Perlas:perlas
-Nro Vaso:2Sabor 1 :chocoSabor 2 :frutiTamaño :MedianoBase:AguaTipo Perlas:perlas
-Nro Vaso:3Sabor 1 :machaSabor 2 :ningunoTamaño :GrandeBase:AguaTipo Perlas:explosive
