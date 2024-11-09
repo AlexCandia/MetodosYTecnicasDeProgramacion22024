@@ -1,3 +1,5 @@
+package InicioyRegistro;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,9 +11,9 @@ import java.util.Map;
  *
  * @author developerweb
  */
-public class GeneradorArchivo {
+public class GeneradorArchivosUsuarios {
   private Map<String,Usuario> usuarios = new HashMap<>();
-  public GeneradorArchivo(){
+  public GeneradorArchivosUsuarios(){
     cargarUsuarios();  
     }
   private static final String FILE_PATH = "C:\\Users\\developerweb\\Documents\\NetBeansProjects\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\users.txt";
@@ -37,8 +39,8 @@ public class GeneradorArchivo {
        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length == 2) {
+                String[] parts = line.split("/");
+                if (parts.length == 3) {
                     String nombre = parts[0];
                     String contraseña = parts[1];
                     String codigoE = parts[2];

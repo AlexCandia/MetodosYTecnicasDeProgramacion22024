@@ -1,0 +1,91 @@
+
+Historial Contable - Fecha: 26/09/2024
+Reporte Mensual
+Ingresos totales: 5000.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: 3300.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 105.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1595.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 105.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1595.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 105.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1595.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 105.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1595.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 105.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1595.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 105.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1595.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 105.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1595.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 160.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1540.0
+
+-------------------------
+Historial Contable - Fecha: 27/09/2024
+Reporte Mensual
+Ingresos totales: 160.0
+Egresos Fijos: 1200.0
+Egresos Insumos: 200.0
+Egresos Otros: 300.0
+Balance: -1540.0
+
+-------------------------
