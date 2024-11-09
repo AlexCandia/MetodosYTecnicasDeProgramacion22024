@@ -23,6 +23,7 @@ public class Inicio {
         }
         return fileUser.registrar(usuario);
     }
+    
     public boolean login(String codigoE, String contraseña) {
         Usuario user = fileUser.buscarUsuario(codigoE);
         if (user != null) {
