@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author developerweb
  */
 public class PedidoTemporalDialog extends javax.swing.JDialog {
-    private PantallaPrincipalVentas parent;
+    private MenuVentas parent;
     private GestorDeVentas gestor;
     private DefaultTableModel dtm;
     private Object [] o = new Object[6];
@@ -195,7 +195,7 @@ public class PedidoTemporalDialog extends javax.swing.JDialog {
         o[5]=vaso.getSabor2();
         dtm.addRow(o);
     }
-    public void mandarGestorParent(GestorDeVentas gestor,PantallaPrincipalVentas parent) {
+    public void mandarGestorParent(GestorDeVentas gestor,MenuVentas parent) {
         this.gestor=gestor;
         this.parent=parent;
     }
