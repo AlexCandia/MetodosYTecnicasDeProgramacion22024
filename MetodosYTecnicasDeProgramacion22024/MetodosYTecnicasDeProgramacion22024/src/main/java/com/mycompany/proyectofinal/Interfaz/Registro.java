@@ -38,8 +38,8 @@ public class Registro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         RegistrarBoton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        CodigoRegistro = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,14 +85,10 @@ public class Registro extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Registro");
 
-        CodigoRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodigoRegistroActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Codigo");
+        jLabel6.setText("Cargo");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero", "Mesero" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,17 +100,17 @@ public class Registro extends javax.swing.JFrame {
                         .addGap(128, 128, 128)
                         .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(RegistrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(UsuarioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                             .addComponent(ContraRegistro)
-                            .addComponent(CodigoRegistro)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(RegistrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,7 +129,7 @@ public class Registro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CodigoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(RegistrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(57, Short.MAX_VALUE))
@@ -159,10 +155,10 @@ public class Registro extends javax.swing.JFrame {
         
         password = new String(ContraRegistro.getPassword());
         user = new String(UsuarioRegistro.getText());
-        code = new String(CodigoRegistro.getPassword());
+        
         Usuario us = new Usuario(user, password, code);
         if(um.registrarUsuario(us)){
-            InicioDeSes ini = new InicioDeSes();
+            InicioDeSesion ini = new InicioDeSesion();
             ini.setVisible(true);
             this.setVisible(false);
         }
@@ -171,10 +167,6 @@ public class Registro extends javax.swing.JFrame {
     private void ContraRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraRegistroActionPerformed
-
-    private void CodigoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoRegistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CodigoRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,11 +204,11 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField CodigoRegistro;
     private javax.swing.JPasswordField ContraRegistro;
     private javax.swing.JButton RegistrarBoton;
     private javax.swing.JTextField UsuarioRegistro;
     private javax.swing.JLabel fondo;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Camila
  */
-public class PantallaPrincipalVentas extends javax.swing.JFrame {
+public class MenuVentas extends javax.swing.JFrame {
 
     /**
      * Creates new form PantallaPrincipalVentas
@@ -38,7 +38,7 @@ public class PantallaPrincipalVentas extends javax.swing.JFrame {
     PedidoTemporalDialog temp;
     HistorialVentasFrame histo;
     private DefaultTableModel dtm;
-    public PantallaPrincipalVentas() {
+    public MenuVentas() {
         initComponents();
         inventario = new GestorDeInventario();
         gestorVentas = new GestorDeVentas(inventario);
@@ -645,21 +645,23 @@ public class PantallaPrincipalVentas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipalVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipalVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipalVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipalVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaPrincipalVentas().setVisible(true);
+                new MenuVentas().setVisible(true);
             }
         });
     }

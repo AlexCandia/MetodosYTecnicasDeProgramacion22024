@@ -86,7 +86,7 @@ public class GestorDeContabilidad {
     }
     
     // Método para calcular el total de egresos fijos
-    private double calcularTotalEgresosFijos() {
+    public double calcularTotalEgresosFijos() {
         return egresosFijos.stream().mapToDouble(EgresoFijo::getValor).sum();
     }
 

@@ -17,13 +17,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author adri
  */
-public class Egresoinsumo extends javax.swing.JFrame {
+public class EgresosInsumos extends javax.swing.JFrame {
     DefaultTableModel dtm = new DefaultTableModel();
 
     /**
      * Creates new form Egresoinsumo
      */
-    public Egresoinsumo() {
+    public EgresosInsumos() {
         initComponents();
         String[] titulo = new String[]{"Nombre:", "Cantidad:", "Valor:"};
         dtm.setColumnIdentifiers(titulo);
@@ -336,21 +336,22 @@ public class Egresoinsumo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Egresoinsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosInsumos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Egresoinsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosInsumos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Egresoinsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosInsumos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Egresoinsumo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosInsumos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Egresoinsumo().setVisible(true);
+                new EgresosInsumos().setVisible(true);
             }
         });
     }
