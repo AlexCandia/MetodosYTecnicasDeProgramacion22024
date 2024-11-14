@@ -1,12 +1,14 @@
 package com.mycompany.proyectofinal.Contabilidad;
 
-public class EgresoFijo {
+public class EgresoVariable {
     private String fecha;
+    private String nombre;
     private String detalle;
     private double valor;
 
-    public EgresoFijo(String fecha, String detalle, double valor) {
+    public EgresoVariable(String fecha, String nombre, String detalle, double valor) {
         this.fecha = fecha;
+        this.nombre = nombre;
         this.detalle = detalle;
         this.valor = valor;
     }
@@ -15,6 +17,10 @@ public class EgresoFijo {
         return fecha;
     }
     
+    public String getNombre() {
+        return nombre;
+    }
+
     public String getDetalle() {
         return detalle;
     }
@@ -27,11 +33,15 @@ public class EgresoFijo {
         fecha = fec;
     }
     
-    public void setDetalle(String det){
+    public void setNombre(String nom) {
+        nombre = nom;
+    }
+
+    public void setDetalle(String det) {
         detalle = det;
     }
-    
-    public void setValor(double val){
+
+    public void setValor(double val) {
         valor = val;
     }
 }

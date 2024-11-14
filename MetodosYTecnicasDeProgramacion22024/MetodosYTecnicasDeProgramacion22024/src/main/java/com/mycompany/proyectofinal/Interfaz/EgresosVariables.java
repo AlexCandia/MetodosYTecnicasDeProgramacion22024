@@ -4,6 +4,13 @@
  */
 package com.mycompany.proyectofinal.Interfaz;
 
+import com.mycompany.proyectofinal.Contabilidad.EgresoFijo;
+import com.mycompany.proyectofinal.Contabilidad.EgresoVariable;
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
+import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
+import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -12,33 +19,66 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public class EgresosOtros extends javax.swing.JFrame {
+public class EgresosVariables extends javax.swing.JFrame {
      DefaultTableModel dtm = new DefaultTableModel();
 
     /**
      * Creates new form tabala
      */
-    public EgresosOtros() {
+     
+     //Solo es para las pruebas se debe borrar
+    GestorDeInventario gestorInventario = new GestorDeInventario();
+    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
+    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
+     
+    public EgresosVariables() {
         initComponents();
-        String[] titulo = new String[]{"Nombre:", "Valor:", "Detalle:"};
+        String[] titulo = new String[]{"Fecha","Nombre", "Detalle", "Valor"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);
     }
+    
     void agregar(){
-        // Añadir fila al modelo de la tabla con el detalle ingresado en el campo de texto
-        dtm.addRow(new Object[]{
-            txtNombre.getText(),
-            txtValor.getText(),
-            txtDetalle.getText()  // Agregar el valor de "Detalle" desde el campo de texto
-        });
+        SimpleDateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
+        String fechaActual = fecha.format(new Date());
+        
+        String nombre = txtNombre.getText().trim();
+        String detalle = txtDetalle.getText().trim();
+        String valor = txtValor.getText().trim();
+        
+        if(detalle.isEmpty() || valor.isEmpty() || nombre.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+            try{
+                Double value = Double.parseDouble(valor);
+                
+                EgresoVariable egreso = new EgresoVariable(fechaActual, nombre, detalle, value);
+                gestorContabilidad.registrarEgresoVariable(egreso);
+                calcularTotal();
+                    
+                dtm.addRow(new Object[]{fechaActual, 
+                txtNombre.getText(),
+                txtDetalle.getText(), 
+                txtValor.getText()});
+                    
+                txtNombre.setText(null);
+                txtValor.setText(null);
+                txtDetalle.setText(null);
+                
+            }catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Ingrese un valor valido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            }    
     }
+    
     void eliminar(){
         int fila = tblDatos.getSelectedRow();
         if (fila >= 0) {  // Asegurarse de que haya una fila seleccionada
             // Mostrar cuadro de confirmación
             int opcion = JOptionPane.showConfirmDialog(
                     this,
-                    "¿Estás seguro de que deseas eliminar esta fila?",
+                    "¿Estás seguro que deseas eliminar esta fila?",
                     "Confirmar Eliminación",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE
@@ -47,33 +87,77 @@ public class EgresosOtros extends javax.swing.JFrame {
             if (opcion == JOptionPane.YES_OPTION) {
                 // Si elige "Sí", eliminar la fila
                 dtm.removeRow(fila);
+                gestorContabilidad.eliminarEgresoVariable(fila);
+                calcularTotal();
+                
             }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar.");
         }
     }
+    
     void actualizar(){
+        String nombre = txtNombre.getText().trim();
+        String detalle = txtDetalle.getText().trim();
+        String valor = txtValor.getText().trim();
         int fila = tblDatos.getSelectedRow();
-        if (fila >= 0) {  // Asegurarse de que haya una fila seleccionada
-            // Mostrar cuadro de confirmación
-            int opcion = JOptionPane.showConfirmDialog(
-                    this,
-                    "¿Estás seguro de que deseas actualizar esta fila?",
-                    "Confirmar Actualización",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
+        
+        if(fila < 0){
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
+            return;
+        }
 
-            if (opcion == JOptionPane.YES_OPTION) {
-                // Si elige "Sí", actualizar los datos de la fila
-                dtm.setValueAt(txtNombre.getText(), fila, 0);
-                dtm.setValueAt(txtValor.getText(), fila, 1);
+        if(nombre.isEmpty() && detalle.isEmpty() && valor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe ingresar el valor que desea cambiar", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que deseas actualizar esta fila?",
+                "Confirmar Actualización",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+            
+        if (opcion == JOptionPane.YES_OPTION) {
+            try{
+            Double value = Double.parseDouble(valor);
+            gestorContabilidad.editarEgresoVariable(fila, nombre, detalle, value);
+            
+            dtm.setValueAt(txtValor.getText(), fila, 3);
+            if(!nombre.isEmpty()){
+                dtm.setValueAt(txtNombre.getText(), fila, 1);
+            }
+            if(!detalle.isEmpty()){
                 dtm.setValueAt(txtDetalle.getText(), fila, 2);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
+            
+            }catch(NumberFormatException ex){        
+                if(!nombre.isEmpty()){
+                    dtm.setValueAt(txtNombre.getText(), fila, 1);
+                }
+                if(!detalle.isEmpty()){
+                    dtm.setValueAt(txtDetalle.getText(), fila, 2);
+                }
+                gestorContabilidad.editarEgresoVariable(fila, nombre, detalle, -1);
+            }  
         }
+        
+        calcularTotal();
+
+        txtNombre.setText(null);
+        txtValor.setText(null);
+        txtDetalle.setText(null);
     }
+    
+    public void calcularTotal(){
+        String text;
+        text = Double.toString(gestorContabilidad.calcularTotalEgresosVariables());
+        valorTotal.setText(text);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,6 +181,8 @@ public class EgresosOtros extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        valorTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,6 +269,10 @@ public class EgresosOtros extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDatos);
 
+        jLabel1.setText("Total");
+
+        valorTotal.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,30 +287,36 @@ public class EgresosOtros extends javax.swing.JFrame {
                                 .addComponent(TituloColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(lblNombre)
-                        .addGap(221, 221, 221)
-                        .addComponent(lblValor)
-                        .addGap(245, 245, 245)
-                        .addComponent(lblDetalle))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110)
+                        .addGap(68, 68, 68)
                         .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
+                        .addGap(70, 70, 70)
                         .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(31, 31, 31)
+                                .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150)
-                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150)
-                                .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                                .addGap(87, 87, 87)
+                                .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNombre)
+                                .addGap(182, 182, 182)
+                                .addComponent(lblDetalle)))
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblValor)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(662, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,22 +325,23 @@ public class EgresosOtros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TituloColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitulo))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
                     .addComponent(lblDetalle)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre)
-                            .addComponent(lblValor))))
+                    .addComponent(lblValor))
                 .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(valorTotal))
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,14 +381,18 @@ public class EgresosOtros extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EgresosOtros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosVariables.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EgresosOtros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosVariables.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EgresosOtros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosVariables.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EgresosOtros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresosVariables.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -299,7 +400,7 @@ public class EgresosOtros extends javax.swing.JFrame {
 
         /* Create and display the form */
         SwingUtilities.invokeLater(() -> {
-            new EgresosOtros().setVisible(true);
+            new EgresosVariables().setVisible(true);
         });
     }
 
@@ -308,6 +409,7 @@ public class EgresosOtros extends javax.swing.JFrame {
     private java.awt.Button buttonActtualizar;
     private java.awt.Button buttonAñadir;
     private java.awt.Button buttonEliminar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDetalle;
@@ -318,5 +420,6 @@ public class EgresosOtros extends javax.swing.JFrame {
     private javax.swing.JTextField txtDetalle;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtValor;
+    private javax.swing.JLabel valorTotal;
     // End of variables declaration//GEN-END:variables
 }
