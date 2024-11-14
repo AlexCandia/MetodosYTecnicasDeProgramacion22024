@@ -26,8 +26,8 @@ public class GestorDeContabilidad {
 
     private double ingresosBoba;
     private ArrayList<EgresoFijo> egresosFijos;
-    private ArrayList<EgresoVariableInsumo> egresosInsumos;
-    private ArrayList<EgresoVariableOtro> egresosOtros;
+    private ArrayList<EgresoInsumo> egresosInsumos;
+    private ArrayList<EgresoVariable> egresosVariables;
     private GestorDeVentas gestorDeVentas;
     private GestorDeInventario gestorDeInventario;
     private HashMap<String, Pedido> ventasHistoricas;
@@ -35,7 +35,7 @@ public class GestorDeContabilidad {
     public GestorDeContabilidad(GestorDeInventario gestorDeInventario,GestorDeVentas gestorDeVentas) {
         egresosFijos = new ArrayList<>();
         egresosInsumos = new ArrayList<>();
-        egresosOtros = new ArrayList<>();
+        egresosVariables = new ArrayList<>();
         this.gestorDeInventario = gestorDeInventario;
         this.gestorDeVentas = gestorDeVentas;
         ventasHistoricas = gestorDeVentas.getVentasHistoricas();
@@ -46,11 +46,11 @@ public class GestorDeContabilidad {
     public ArrayList<EgresoFijo> getEgresosFijos() {
         return egresosFijos;
     }
-    public ArrayList<EgresoVariableInsumo> getEgresosInsumos() {
+    public ArrayList<EgresoInsumo> getEgresosInsumos() {
         return egresosInsumos;
     }
-    public ArrayList<EgresoVariableOtro> getEgresosOtros() {
-        return egresosOtros;
+    public ArrayList<EgresoVariable> getEgresosVariables() {
+        return egresosVariables;
     }
     public void calcularIngreso () {
         ingresosBoba=gestorDeVentas.calcularIngresosTotales();
@@ -64,47 +64,85 @@ public class GestorDeContabilidad {
         egresosFijos.remove(fila);
     }
     
-    public void editarEgresoFijo(int fila, String nom, double val){
+    public void editarEgresoFijo(int fila, String det, double val){
         EgresoFijo egr = egresosFijos.get(fila);
-        if(!"".equals(nom)){
-            egr.setNombreEgreso(nom);
+        if(!"".equals(det)){
+            egr.setDetalle(det);
         }
-        if(!"".equals(val)){
+        if(val != -1){
             egr.setValor(val);
         }
-        
-        egresosFijos.set(fila, egr);
     }
     
-    public void registrarEgresoInsumo(EgresoVariableInsumo egreso) {
-        gestorDeInventario.recibirNuevoInsumo(egreso.getNombre(), egreso.getCantidad()+"");
+    public void registrarEgresoInsumo(EgresoInsumo egreso) {
+        //Revisar comentario cuando hagamos vinculaciones
+        //gestorDeInventario.recibirNuevoInsumo(egreso.getNombre(), egreso.getCantidad()+"");
         egresosInsumos.add(egreso);
     }
+    
+    public void eliminarEgresoInsumo(int fila){
+        egresosInsumos.remove(fila);
+    }
+    
+    public void editarEgresoInsumo(int fila, String nom, int cant, double val){
+        EgresoInsumo egr = egresosInsumos.get(fila);
+        if(!"".equals(nom)){
+            egr.setNombre(nom);
+        }
+        
+        if(cant != -1){
+            egr.setCantidad(cant);
+        }
+        
+        if(val != -1){
+            egr.setValor(val);
+        }
+    }
 
-    public void registrarEgresoOtro(EgresoVariableOtro egreso) {
-        egresosOtros.add(egreso);
+    public void registrarEgresoVariable(EgresoVariable egreso) {
+        egresosVariables.add(egreso);
+    }
+    
+    public void eliminarEgresoVariable(int fila){
+        egresosVariables.remove(fila);
+    }
+    
+    public void editarEgresoVariable(int fila, String nom, String det, double val){
+        EgresoVariable egr = egresosVariables.get(fila);
+        if(!"".equals(nom)){
+            egr.setNombre(nom);
+        }
+        
+        if(!"".equals(det)){
+            egr.setDetalle(det);
+        }
+        
+        if(val != -1){
+            egr.setValor(val);
+        }
     }
     
     // Método para calcular el total de egresos fijos
-    private double calcularTotalEgresosFijos() {
+    public double calcularTotalEgresosFijos() {
         return egresosFijos.stream().mapToDouble(EgresoFijo::getValor).sum();
     }
 
     // Método para calcular el total de egresos de insumos
-    private double calcularTotalEgresosInsumos() {
-        return egresosInsumos.stream().mapToDouble(EgresoVariableInsumo::getValor).sum();
+    public double calcularTotalEgresosInsumos() {
+        return egresosInsumos.stream().mapToDouble(EgresoInsumo::getValor).sum();
     }
 
     // Método para calcular el total de egresos varios
-    private double calcularTotalEgresosOtros() {
-        return egresosOtros.stream().mapToDouble(EgresoVariableOtro::getValor).sum();
+    public double calcularTotalEgresosVariables() {
+        return egresosVariables.stream().mapToDouble(EgresoVariable::getValor).sum();
     }
 
     // Método para calcular el balance (ganancias o pérdidas)
     public double calcularBalance() {
-        double totalEgresos = calcularTotalEgresosFijos() + calcularTotalEgresosInsumos() + calcularTotalEgresosOtros();
+        double totalEgresos = calcularTotalEgresosFijos() + calcularTotalEgresosInsumos() + calcularTotalEgresosVariables();
         return ingresosBoba - totalEgresos;
     }
+    
     public ArrayList<String> obtenerSaboresMasVendidos() {
         HashMap<String, Integer> conteoSabores = new HashMap<>();
         for (Pedido pedido : ventasHistoricas.values()) {
@@ -129,6 +167,7 @@ public class GestorDeContabilidad {
 
         return saboresMasVendidos;
     }
+    
     private void agregarUnidadesDeSabor(HashMap<String, Integer> conteoSabores, String sabor) {
         if (conteoSabores.containsKey(sabor)) {
             conteoSabores.put(sabor, conteoSabores.get(sabor) + 1);
@@ -136,13 +175,14 @@ public class GestorDeContabilidad {
             conteoSabores.put(sabor, 1);
         }
     }
+    
     public String imprimirReporteMensual() {
         StringBuilder reporte = new StringBuilder();
         reporte.append("Reporte Mensual\n");
         reporte.append("Ingresos totales: ").append(ingresosBoba).append("\n");
         reporte.append("Egresos Fijos: ").append(calcularTotalEgresosFijos()).append("\n");
         reporte.append("Egresos Insumos: ").append(calcularTotalEgresosInsumos()).append("\n");
-        reporte.append("Egresos Otros: ").append(calcularTotalEgresosOtros()).append("\n");
+        reporte.append("Egresos Otros: ").append(calcularTotalEgresosVariables()).append("\n");
         reporte.append("Balance: ").append(calcularBalance()).append("\n");
         return reporte.toString();
     }
@@ -169,6 +209,7 @@ public class GestorDeContabilidad {
             System.out.println("Error al guardar el reporte histórico: " + e.getMessage());
         }
     }
+    
     public void imprimirReporteHistorico() {
         guardarReporteHistorico();
     }

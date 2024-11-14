@@ -4,8 +4,8 @@
  */
 package com.mycompany.proyectofinal.Interfaz;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
-import com.mycompany.proyectofinal.Interfaz.PantallaPrincipalVentas;
-import com.mycompany.proyectofinal.Interfaz.JFramePrincipal;
+import com.mycompany.proyectofinal.Interfaz.MenuVentas;
+import com.mycompany.proyectofinal.Interfaz.MenuInventario;
 
 /**
  *
@@ -86,14 +86,14 @@ public class MenuBoba extends javax.swing.JFrame {
     private void InventarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioBotonActionPerformed
         // TODO add your handling code here:
         
-        JFramePrincipal inv = new JFramePrincipal();
+        MenuInventario inv = new MenuInventario();
         inv.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_InventarioBotonActionPerformed
 
     private void ContabilidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContabilidadBotonActionPerformed
         // TODO add your handling code here:
-        Conta cont = new Conta();
+        MenuContabilidad cont = new MenuContabilidad();
         cont.setVisible(true);
         this.setVisible(false);
         
@@ -102,7 +102,7 @@ public class MenuBoba extends javax.swing.JFrame {
     private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
         // TODO add your handling code here:
         
-        PantallaPrincipalVentas vent = new PantallaPrincipalVentas();
+        MenuVentas vent = new MenuVentas();
         vent.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VentasBotonActionPerformed

@@ -10,23 +10,25 @@ import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import  com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Camila
  */
-public class EgresoFijoInterfaz extends javax.swing.JFrame {
+public class EgresosFijos extends javax.swing.JFrame {
     DefaultTableModel dtm = new DefaultTableModel();
     /**
      * Creates new form EgresoFijo_InterFaz
      */
     
+    //Solo es para las pruebas, se debe borrar
     GestorDeInventario gestorInventario = new GestorDeInventario();
     GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
     GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
     
-    public EgresoFijoInterfaz() {
+    public EgresosFijos() {
         initComponents();
         String[] titulo = new String[]{"Fecha", "Nombre","Valor" };
         dtm.setColumnIdentifiers(titulo);
@@ -36,31 +38,106 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
     public void agregar(){
         SimpleDateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
         String fechaActual = fecha.format(new Date());
-        dtm.addRow(new Object[]{fechaActual, txtDetalle.getText(), txtValor.getText()
-        });
         
-        EgresoFijo egreso = new EgresoFijo(fechaActual, txtDetalle.getText(), Double.parseDouble(txtValor.getText()));
-        gestorContabilidad.registrarEgresoFijo(egreso);
+        String detalle = txtDetalle.getText().trim();
+        String valor = txtValor.getText().trim();
         
+        if(detalle.isEmpty() || valor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+            try{
+                Double value = Double.parseDouble(valor);
+                
+                EgresoFijo egreso = new EgresoFijo(fechaActual, detalle, value);
+                gestorContabilidad.registrarEgresoFijo(egreso);
+                calcularTotal();
+                    
+                dtm.addRow(new Object[]{fechaActual, 
+                txtDetalle.getText(), 
+                txtValor.getText()});
+                    
+                txtDetalle.setText(null);
+                txtValor.setText(null);
+                
+            }catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Ingrese un valor valido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            }     
     }
     
     public void eliminar(){
         int fila = jTable1.getSelectedRow();
-        dtm.removeRow(fila);
-        
-        gestorContabilidad.eliminarEgresoFijo(fila);
+        if(fila >= 0) {
+            int opcion = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Estás seguro de que deseas eliminar esta fila?",
+                    "Confirmar Eliminación",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if (opcion == JOptionPane.YES_OPTION) {
+                // Si elige "Sí", eliminar la fila
+                dtm.removeRow(fila);
+                gestorContabilidad.eliminarEgresoFijo(fila);
+                calcularTotal();
+            } 
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar.");
+        }
     }
     
     public void editar(){
+        String detalle = txtDetalle.getText().trim();
+        String valor = txtValor.getText().trim();
         int fila = jTable1.getSelectedRow();
-        if(!"".equals(txtDetalle.getText())){
-            dtm.setValueAt(txtDetalle.getText(), fila, 1);}
-            
-        if(!"".equals(txtValor.getText())){
-            dtm.setValueAt(txtValor.getText(), fila, 2);
+        
+        if(fila < 0){
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
+            return;
+        }
+
+        if(detalle.isEmpty() && valor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe ingresar el valor que desea cambiar", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que deseas actualizar esta fila?",
+                "Confirmar Actualización",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+            
+        if (opcion == JOptionPane.YES_OPTION) {
+            try{
+            Double value = Double.parseDouble(valor);
+            gestorContabilidad.editarEgresoFijo(fila, detalle, value);
+            
+            dtm.setValueAt(txtValor.getText(), fila, 2);
+            if(!detalle.isEmpty()){
+                dtm.setValueAt(txtDetalle.getText(), fila, 1);
+            }
+            
+            }catch(NumberFormatException ex){        
+                dtm.setValueAt(txtDetalle.getText(), fila, 1);
+                gestorContabilidad.editarEgresoFijo(fila, detalle, -1);
+            }  
+        }
+        
+        calcularTotal();
+
+        txtDetalle.setText(null);
+        txtValor.setText(null);                 
     }
+    
+    public void calcularTotal(){
+        String text;
+        text = Double.toString(gestorContabilidad.calcularTotalEgresosFijos());
+        valorTotal.setText(text);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +162,8 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        valorTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -158,6 +237,10 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Total");
+
+        valorTotal.setText("0");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -189,7 +272,11 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
                                 .addGap(230, 230, 230)
                                 .addComponent(jButton2)
                                 .addGap(201, 201, 201)
-                                .addComponent(jButton3)))))
+                                .addComponent(jButton3))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -211,7 +298,11 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -253,14 +344,18 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EgresoFijoInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresoFijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EgresoFijoInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresoFijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EgresoFijoInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresoFijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EgresoFijoInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EgresoFijo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -269,7 +364,7 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EgresoFijoInterfaz().setVisible(true);
+                new EgresosFijos().setVisible(true);
             }
         });
     }
@@ -283,6 +378,7 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -290,5 +386,6 @@ public class EgresoFijoInterfaz extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDetalle;
     private javax.swing.JTextField txtValor;
+    private javax.swing.JLabel valorTotal;
     // End of variables declaration//GEN-END:variables
 }

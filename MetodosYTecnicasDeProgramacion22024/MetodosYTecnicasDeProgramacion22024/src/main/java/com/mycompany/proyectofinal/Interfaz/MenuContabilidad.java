@@ -3,27 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectofinal.Interfaz;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 /**
  *
  * @author Camila
  */
-public class Conta extends javax.swing.JFrame {
+public class MenuContabilidad extends javax.swing.JFrame {
 
      private DefaultTableModel modeloTabla;
     /**
      * Creates new form Conta
      */
-    public Conta() {
+    public MenuContabilidad() {
         initComponents();
-         modeloTabla = new DefaultTableModel(new String[]{"Nombre del Egreso", "Valor", "Categoría"}, 0);
-        tablaPrincipal.setModel(modeloTabla); 
+         
     }
     
     
-    public DefaultTableModel getModeloTabla() {
-        return modeloTabla;
-    }
+ 
     
     
     
@@ -38,9 +42,6 @@ public class Conta extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        egresoVariable = new javax.swing.JButton();
-        egresoInsumo = new javax.swing.JButton();
-        egresoFijo = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -52,63 +53,32 @@ public class Conta extends javax.swing.JFrame {
         lblNumero1 = new javax.swing.JLabel();
         lblNumero2 = new javax.swing.JLabel();
         lblNumero3 = new javax.swing.JLabel();
+        insumo = new javax.swing.JLabel();
+        insumos = new javax.swing.JLabel();
         btnCalcular = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblResultado = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tablaPrincipal = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tablaPrincipal1 = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tablaPrincipal2 = new javax.swing.JTable();
+        miGrafica = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        Reportes = new javax.swing.JComboBox<>();
+        Reportes1 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        egresoVariableOtro = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        egresoInsumoo = new javax.swing.JTextField();
+        egresoFijoo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Registar Egresos");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 170, -1));
-
-        egresoVariable.setBackground(new java.awt.Color(204, 204, 255));
-        egresoVariable.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        egresoVariable.setForeground(new java.awt.Color(255, 255, 255));
-        egresoVariable.setText("Agregar Egreso Variable");
-        egresoVariable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                egresoVariableActionPerformed(evt);
-            }
-        });
-        getContentPane().add(egresoVariable, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 580, -1, 50));
-
-        egresoInsumo.setBackground(new java.awt.Color(204, 204, 255));
-        egresoInsumo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        egresoInsumo.setForeground(new java.awt.Color(255, 255, 255));
-        egresoInsumo.setText("Agregar Egreso Insumo");
-        egresoInsumo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                egresoInsumoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(egresoInsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 300, 50));
-
-        egresoFijo.setBackground(new java.awt.Color(204, 204, 255));
-        egresoFijo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        egresoFijo.setForeground(new java.awt.Color(255, 255, 255));
-        egresoFijo.setText("Agregar Egreso Fijo");
-        egresoFijo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                egresoFijoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(egresoFijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 300, 50));
+        jLabel4.setText("Imprimir Reportes");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 170, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(153, 153, 255));
@@ -116,7 +86,7 @@ public class Conta extends javax.swing.JFrame {
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 210, 60));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Ingresos Totales:");
+        jLabel3.setText("Ingresos / Egresos");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 180, -1));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
@@ -149,15 +119,15 @@ public class Conta extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Ventas de Snacks:   ");
+        jLabel6.setText("Egresos Fijos:   ");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Servicios de Eventos: ");
+        jLabel10.setText("Egresos Variables: ");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Venta de Bebidas:      ");
+        jLabel7.setText("Ingresos:      ");
 
         lblNumero1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNumero1.setForeground(new java.awt.Color(102, 102, 102));
@@ -171,26 +141,40 @@ public class Conta extends javax.swing.JFrame {
         lblNumero3.setForeground(new java.awt.Color(102, 102, 102));
         lblNumero3.setText("200");
 
+        insumo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        insumo.setForeground(new java.awt.Color(102, 102, 102));
+        insumo.setText("Egresos Insumos: ");
+
+        insumos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        insumos.setForeground(new java.awt.Color(102, 102, 102));
+        insumos.setText("200");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(insumo)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNumero3))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblNumero3)
+                                    .addComponent(insumos))))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,25 +191,29 @@ public class Conta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(lblNumero3))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(insumo)
+                    .addComponent(insumos))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 320, 120));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 320, 150));
 
-        btnCalcular.setBackground(new java.awt.Color(0, 204, 204));
+        btnCalcular.setBackground(new java.awt.Color(204, 204, 255));
         btnCalcular.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCalcular.setForeground(new java.awt.Color(255, 255, 255));
-        btnCalcular.setText("Calcular Ingresos");
+        btnCalcular.setText("Calcular ");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 180, 40));
+        getContentPane().add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setText("Total de Ingresos :");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 160, 40));
+        jLabel9.setText("Situacion Actual:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 160, 40));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -248,135 +236,92 @@ public class Conta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 150, 30));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 150, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Egresos Fijos:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 170, -1));
+        jLabel2.setText("Frutilla");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 620, 80, -1));
 
-        tablaPrincipal.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nombre Egreso", "Valor", "Categoria"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
+        miGrafica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(tablaPrincipal);
+        javax.swing.GroupLayout miGraficaLayout = new javax.swing.GroupLayout(miGrafica);
+        miGrafica.setLayout(miGraficaLayout);
+        miGraficaLayout.setHorizontalGroup(
+            miGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        miGraficaLayout.setVerticalGroup(
+            miGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 340, 120));
+        getContentPane().add(miGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 490, 380));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setText("Egresos Insumos");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, 170, -1));
-
-        tablaPrincipal1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nombre Egreso", "Valor", "Categoria"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        jButton2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Graficar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
-        jScrollPane4.setViewportView(tablaPrincipal1);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, 130, 40));
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 340, 120));
-
-        tablaPrincipal2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nombre Egreso", "Valor", "Categoria"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        Reportes.setBackground(new java.awt.Color(204, 204, 255));
+        Reportes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Reportes.setForeground(new java.awt.Color(255, 255, 255));
+        Reportes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Egreso Fijo", "Egreso Insumo", "Egreso Variable" }));
+        Reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportesActionPerformed(evt);
             }
         });
-        jScrollPane5.setViewportView(tablaPrincipal2);
+        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 210, 50));
 
-        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 340, 120));
+        Reportes1.setBackground(new java.awt.Color(204, 204, 255));
+        Reportes1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Reportes1.setForeground(new java.awt.Color(255, 255, 255));
+        Reportes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte Mensual", "Reporte Historico" }));
+        Reportes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reportes1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Reportes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 540, 210, 50));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Registar Egresos");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
+        getContentPane().add(egresoVariableOtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 620, 130, 20));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setText("Sabores mas vendidos");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 200, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setText("Egresos Insumos");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 170, -1));
+        jLabel14.setText("Mora");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 590, 80, -1));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setText("Egresos Variables");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 410, 170, -1));
-
-        jButton6.setBackground(new java.awt.Color(0, 204, 204));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Reporte Mensual");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 600, 190, 50));
-
-        jButton5.setBackground(new java.awt.Color(0, 204, 204));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Reporte Historico");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 600, -1, 50));
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setText("Chocolate");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 560, 100, -1));
+        getContentPane().add(egresoInsumoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 590, 130, 20));
+        getContentPane().add(egresoFijoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 560, 130, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void egresoInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_egresoInsumoActionPerformed
-        Egresoinsumo egresoF = new Egresoinsumo(); // Agrega paréntesis aquí
-        egresoF.setVisible(true); // Muestra la ventana
-        this.setVisible(false);
-    }//GEN-LAST:event_egresoInsumoActionPerformed
-
-    private void egresoFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_egresoFijoActionPerformed
-        EgresoFijoInterfaz egresoF = new EgresoFijoInterfaz(); // Agrega paréntesis aquí
-        egresoF.setVisible(true); // Muestra la ventana
-        this.setVisible(false);
-    }//GEN-LAST:event_egresoFijoActionPerformed
-
-    private void egresoVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_egresoVariableActionPerformed
-        EgresoOtro egresoF = new EgresoOtro();// Agrega paréntesis aquí
-        egresoF.setVisible(true); // Muestra la ventana
-        this.setVisible(false);
-    }//GEN-LAST:event_egresoVariableActionPerformed
-
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         try {
         // Obtén los valores de los JLabel y conviértelos a enteros
+   
         int numero1 = Integer.parseInt(lblNumero1.getText());
         int numero2 = Integer.parseInt(lblNumero2.getText());
         int numero3 = Integer.parseInt(lblNumero3.getText());
-
+        int numero4 = Integer.parseInt(insumo.getText());
         // Realiza la suma
-        int resultado = numero1 + numero2 + numero3;
+        int resultado = numero1 - numero2 - numero3 - numero4;
 
         // Verifica si el resultado es cero
         if (resultado == 0) {
@@ -391,6 +336,45 @@ public class Conta extends javax.swing.JFrame {
         lblResultado.setText("Error: valores no válidos en etiquetas.");
     }
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReportesActionPerformed
+
+    private void Reportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reportes1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Reportes1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        int egresoFijo = Integer.parseInt(egresoFijoo.getText());
+        int egresoVariable = Integer.parseInt(egresoVariableOtro.getText());
+        int egresoInsumo = Integer.parseInt(egresoInsumoo.getText());
+        DefaultCategoryDataset datos = new DefaultCategoryDataset();
+        datos.setValue(egresoFijo,"Sabor1","Chocolate");
+        datos.setValue(egresoVariable,"Sabor2","Mora");
+        datos.setValue(egresoInsumo,"Sabor3","Frutilla");
+        JFreeChart grafico_barras = ChartFactory.createBarChart(
+                "Boba Queen",
+                "Sabores",
+                "Vasos", 
+                datos,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        ChartPanel panel = new ChartPanel(grafico_barras);
+        panel.setMouseWheelEnabled(true);
+        panel.setPreferredSize(new Dimension(400,300));
+        
+        miGrafica.setLayout(new BorderLayout());
+        miGrafica.add(panel,BorderLayout.NORTH);
+        
+        pack();
+        repaint();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,55 +393,57 @@ public class Conta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuContabilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuContabilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuContabilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuContabilidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Conta().setVisible(true);
+                new MenuContabilidad().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Reportes;
+    private javax.swing.JComboBox<String> Reportes1;
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JButton egresoFijo;
-    private javax.swing.JButton egresoInsumo;
-    private javax.swing.JButton egresoVariable;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JTextField egresoFijoo;
+    private javax.swing.JTextField egresoInsumoo;
+    private javax.swing.JTextField egresoVariableOtro;
+    private javax.swing.JLabel insumo;
+    private javax.swing.JLabel insumos;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblNumero1;
     private javax.swing.JLabel lblNumero2;
     private javax.swing.JLabel lblNumero3;
     private javax.swing.JLabel lblResultado;
-    private javax.swing.JTable tablaPrincipal;
-    private javax.swing.JTable tablaPrincipal1;
-    private javax.swing.JTable tablaPrincipal2;
+    private javax.swing.JPanel miGrafica;
     // End of variables declaration//GEN-END:variables
 }
