@@ -27,8 +27,8 @@ public class MainContabilidad {
         gestorContabilidad.calcularIngreso();
         // Egresos
         gestorContabilidad.registrarEgresoFijo(new EgresoFijo("30/10/2024","Alquiler", 1200));
-        gestorContabilidad.registrarEgresoInsumo(new EgresoVariableInsumo("Té Verde", 50, 200.0));
-        gestorContabilidad.registrarEgresoOtro(new EgresoVariableOtro("Publicidad", "Facebook Ads", 300));
+        gestorContabilidad.registrarEgresoInsumo(new EgresoInsumo("25/07/1205", "Té Verde", 50, 200.0));
+        gestorContabilidad.registrarEgresoVariable(new EgresoVariable("25/07/1205", "Publicidad", "Facebook Ads", 300));
         
         // Imprimir reporte mensual
         System.out.println(gestorContabilidad.imprimirReporteMensual());

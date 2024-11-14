@@ -10,6 +10,7 @@ import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import  com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,7 @@ public class EgresosFijos extends javax.swing.JFrame {
      * Creates new form EgresoFijo_InterFaz
      */
     
+    //Solo es para las pruebas, se debe borrar
     GestorDeInventario gestorInventario = new GestorDeInventario();
     GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
     GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
@@ -36,42 +38,106 @@ public class EgresosFijos extends javax.swing.JFrame {
     public void agregar(){
         SimpleDateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
         String fechaActual = fecha.format(new Date());
-        dtm.addRow(new Object[]{fechaActual, txtDetalle.getText(), txtValor.getText()
-        });
         
-        EgresoFijo egreso = new EgresoFijo(fechaActual, txtDetalle.getText(), Double.parseDouble(txtValor.getText()));
-        gestorContabilidad.registrarEgresoFijo(egreso);
-        calcularTotal();
+        String detalle = txtDetalle.getText().trim();
+        String valor = txtValor.getText().trim();
         
+        if(detalle.isEmpty() || valor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+            try{
+                Double value = Double.parseDouble(valor);
+                
+                EgresoFijo egreso = new EgresoFijo(fechaActual, detalle, value);
+                gestorContabilidad.registrarEgresoFijo(egreso);
+                calcularTotal();
+                    
+                dtm.addRow(new Object[]{fechaActual, 
+                txtDetalle.getText(), 
+                txtValor.getText()});
+                    
+                txtDetalle.setText(null);
+                txtValor.setText(null);
+                
+            }catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Ingrese un valor valido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            }     
     }
     
     public void eliminar(){
         int fila = jTable1.getSelectedRow();
-        dtm.removeRow(fila);
-        
-        gestorContabilidad.eliminarEgresoFijo(fila);
-        calcularTotal();
+        if(fila >= 0) {
+            int opcion = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Estás seguro de que deseas eliminar esta fila?",
+                    "Confirmar Eliminación",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if (opcion == JOptionPane.YES_OPTION) {
+                // Si elige "Sí", eliminar la fila
+                dtm.removeRow(fila);
+                gestorContabilidad.eliminarEgresoFijo(fila);
+                calcularTotal();
+            } 
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar.");
+        }
     }
+    
+    public void editar(){
+        String detalle = txtDetalle.getText().trim();
+        String valor = txtValor.getText().trim();
+        int fila = jTable1.getSelectedRow();
+        
+        if(fila < 0){
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
+            return;
+        }
+
+        if(detalle.isEmpty() && valor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe ingresar el valor que desea cambiar", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que deseas actualizar esta fila?",
+                "Confirmar Actualización",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+            
+        if (opcion == JOptionPane.YES_OPTION) {
+            try{
+            Double value = Double.parseDouble(valor);
+            gestorContabilidad.editarEgresoFijo(fila, detalle, value);
+            
+            dtm.setValueAt(txtValor.getText(), fila, 2);
+            if(!detalle.isEmpty()){
+                dtm.setValueAt(txtDetalle.getText(), fila, 1);
+            }
+            
+            }catch(NumberFormatException ex){        
+                dtm.setValueAt(txtDetalle.getText(), fila, 1);
+                gestorContabilidad.editarEgresoFijo(fila, detalle, -1);
+            }  
+        }
+        
+        calcularTotal();
+
+        txtDetalle.setText(null);
+        txtValor.setText(null);                 
+    }
+    
     public void calcularTotal(){
         String text;
         text = Double.toString(gestorContabilidad.calcularTotalEgresosFijos());
         valorTotal.setText(text);
     }
     
-    public void editar(){
-        
-        int fila = jTable1.getSelectedRow();
-        if(!"".equals(txtDetalle.getText())){
-            dtm.setValueAt(txtDetalle.getText(), fila, 1);}
-            
-        if(!"".equals(txtValor.getText())){
-            dtm.setValueAt(txtValor.getText(), fila, 2);
-            
-        }
-        
-        calcularTotal();
-        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
