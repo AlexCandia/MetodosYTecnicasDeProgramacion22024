@@ -88,8 +88,7 @@ public class EgresosVariables extends javax.swing.JFrame {
                 // Si elige "Sí", eliminar la fila
                 dtm.removeRow(fila);
                 gestorContabilidad.eliminarEgresoVariable(fila);
-                calcularTotal();
-                
+                calcularTotal();    
             }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar.");
