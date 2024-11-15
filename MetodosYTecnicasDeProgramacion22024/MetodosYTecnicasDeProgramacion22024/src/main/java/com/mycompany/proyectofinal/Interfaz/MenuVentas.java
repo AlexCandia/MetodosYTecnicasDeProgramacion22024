@@ -530,6 +530,7 @@ public class MenuVentas extends javax.swing.JFrame {
         return; 
         }
         Vaso vaso = new Vaso(tamaño,base,tipoBoba,sabor1,sabor2);
+        boolean hola= gestorVentas.verificarExistencia();
         gestorVentas.getPedidoTemporal().añadir(vaso);
         JOptionPane.showMessageDialog(
             null,
