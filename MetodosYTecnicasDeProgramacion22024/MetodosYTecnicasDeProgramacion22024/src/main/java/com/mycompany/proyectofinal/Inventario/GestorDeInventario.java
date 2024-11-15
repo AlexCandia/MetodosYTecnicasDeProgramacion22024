@@ -28,24 +28,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class GestorDeInventario {
-    private final ArrayList<Insumo> insumos;
+    private ArrayList<Insumo> insumos;
     private GeneradorArchivosInventario productsfile;
-    private Map <String, Integer> inventarioInsumos = new HashMap<>();//tal vez no sirva!!!!!!!!!!!!!!!
     private GestorDeVentas gestorDeVentas;
     private GestorDeContabilidad gestorDeContabilidad;
 
 
     public GestorDeInventario(GestorDeContabilidad gestorDeContabilidad, GestorDeVentas gestorDeVentas) {
-        insumos= new ArrayList<>();//tal vez no sirva!!!!!!!!!!!!!!!
+        insumos= new ArrayList<>();
         this.gestorDeContabilidad = gestorDeContabilidad;
         this.gestorDeVentas = gestorDeVentas;       
     }
 
     public GestorDeInventario() {
-        insumos= new ArrayList<>();//tal vez no sirva!!!!!!!!!!!!!!!
-        this.gestorDeContabilidad = gestorDeContabilidad;
-        this.gestorDeVentas = gestorDeVentas;    // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
     public ArrayList<Insumo> getInsumos(){
         return insumos;
     }
@@ -80,7 +79,7 @@ public class GestorDeInventario {
     
     
     // Método para guardar el inventario actual en un archivo
-    public void guardarInventario() {
+    /*public void guardarInventario() {
         productsfile = new GeneradorArchivosInventario(insumos);
         productsfile.añadirAlarchivo();
     }
@@ -98,6 +97,6 @@ public class GestorDeInventario {
             // Si no existe, lo agregamos como un nuevo insumo
             inventarioInsumos.put(nombreInsumo, cantidad);
         }
-    }
+    }*/
 
 }
