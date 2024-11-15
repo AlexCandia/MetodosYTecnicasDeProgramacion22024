@@ -179,7 +179,7 @@ public class GestorDeVentas {
     public void marcarPedidoCompletado() {
         if(!colaPedidos.isEmpty()){
             VasoEnCola vasoCompletado=colaPedidos.poll();
-            actualizarinfo(vasoCompletado);
+            //actualizarinfo(vasoCompletado);
             System.out.print("El vaso Nro: " + vasoCompletado.getVaso().getNumVaso());
             System.out.print("Del cliente: " + vasoCompletado.getNombreCliente());
             System.out.println(" esta listo");
@@ -222,7 +222,7 @@ public class GestorDeVentas {
         generadorArchivosVentas.generarReporte(ventasHistoricas);
     }
 
-    private void actualizarinfo(VasoEnCola vasoCompletado) {
+    /*private void actualizarinfo(VasoEnCola vasoCompletado) {
         String sabor1 =vasoCompletado.getVaso().getSabor1();
         String sabor2 =vasoCompletado.getVaso().getSabor2();
         String tamaño =vasoCompletado.getVaso().getTamVaso();
@@ -238,6 +238,7 @@ public class GestorDeVentas {
         inventario.editarCantidadInsumo(base, "0.2",false);
         inventario.editarCantidadInsumo(perlas, "0.2",false);  
     }
+   */
 
     private void recalcularnums() {
         ArrayList<Vaso> recorrido=pedidoTemporal.getVasos();

@@ -3,7 +3,7 @@ package com.mycompany.proyectofinal.Contabilidad;
 
 import com.mycompany.proyectofinal.Ventas.Vaso;
 import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
-import com.mycompany.proyectofinal.Inventario.Producto;
+import com.mycompany.proyectofinal.Inventario.Insumo;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 
@@ -22,8 +22,7 @@ public class MainContabilidad {
         gestorVentas.terminarDia();
         gestorVentas.generarReporteVentas();
         GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
-        Producto teverde = new Producto("Té Verde","bolsa","real","6893213");
-        gestorInventario.agregar(teverde);
+        
         gestorContabilidad.calcularIngreso();
         // Egresos
         gestorContabilidad.registrarEgresoFijo(new EgresoFijo("30/10/2024","Alquiler", 1200));
