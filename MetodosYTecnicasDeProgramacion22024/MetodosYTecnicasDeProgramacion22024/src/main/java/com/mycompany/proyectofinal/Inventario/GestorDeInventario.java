@@ -36,6 +36,14 @@ public class GestorDeInventario {
                 existe = true;
                break;
             }
+            
+            
+            
+            
+            
+            
+            
+            
         }
      if (!existe){
             productos.add(producto);
@@ -44,6 +52,12 @@ public class GestorDeInventario {
             System.out.println("El producto ya existe en el inventario.");
         }
     }
+    
+    
+    
+    
+    
+    
     //metodo para buscar la posicion de un elemento
     private int buscarPos(String nombre){
         int pos = 0;
@@ -58,6 +72,10 @@ public class GestorDeInventario {
         }
         return pos;
     }
+    
+    
+    
+    
      private Producto buscarProd(String nombre) {
         Producto producto = null;  
 
