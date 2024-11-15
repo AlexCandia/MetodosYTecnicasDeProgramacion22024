@@ -248,4 +248,8 @@ public class GestorDeVentas {
         }
     }
 
+    public boolean verificarExistencia() {
+       return true;
+    }
+
 }
