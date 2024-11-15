@@ -116,6 +116,7 @@ public class EgresosFijos extends javax.swing.JFrame {
             gestorContabilidad.editarEgresoFijo(fila, detalle, value);
             
             dtm.setValueAt(txtValor.getText(), fila, 2);
+            
             if(!detalle.isEmpty()){
                 dtm.setValueAt(txtDetalle.getText(), fila, 1);
             }
