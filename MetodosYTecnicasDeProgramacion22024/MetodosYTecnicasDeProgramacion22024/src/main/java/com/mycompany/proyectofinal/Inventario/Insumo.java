@@ -14,6 +14,7 @@ public class Insumo {
     private String nombre;
     private String unidad;
     private int cantidad;
+    private double porunidad;
 
 
     // Constructor
@@ -21,6 +22,7 @@ public class Insumo {
         this.nombre = nombre;
         this.unidad = unidad;
         this.cantidad = cantidad;
+        definirlimite();
     }
 
     // Getters y Setters
@@ -44,9 +46,30 @@ public class Insumo {
     public void setUnidad(String uni) {
         unidad = uni;
     }
+    public void setCantidad(int cant) {
+        cantidad = cant;
+    }
 
-    public void setCantidad(int can) {
-        cantidad = can;
+    public boolean descontarCantidad() {
+        int nuevocantidad=cantidad-(int)porunidad;
+        if (nuevocantidad<0){
+            return false;
+        }else{
+           setCantidad(nuevocantidad);
+           return true;
+        }            
+    }
+
+    private void definirlimite() {
+        if("Grande".equals(nombre) || "Mediano".equals(nombre)){
+            porunidad=1;
+        }else if("Leche".equals(nombre)||"Explosivo".equals(nombre)||"Regular".equals(nombre)){    
+           porunidad=2; 
+        }else if ("Agua".equals(nombre)){
+           porunidad=1; 
+        }else{
+           porunidad=1; 
+        }
     }
 }
 

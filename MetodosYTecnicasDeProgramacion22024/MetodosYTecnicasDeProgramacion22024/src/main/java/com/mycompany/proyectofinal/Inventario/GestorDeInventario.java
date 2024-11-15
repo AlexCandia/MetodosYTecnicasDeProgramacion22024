@@ -13,6 +13,7 @@ import java.util.*;
 import com.mycompany.proyectofinal.Contabilidad.EgresoInsumo;
 import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
 import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
+import com.mycompany.proyectofinal.Ventas.Vaso;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +42,7 @@ public class GestorDeInventario {
     }
 
     public GestorDeInventario() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       insumos= new ArrayList<>();
     }
 
     
@@ -98,5 +99,36 @@ public class GestorDeInventario {
             inventarioInsumos.put(nombreInsumo, cantidad);
         }
     }*/
+
+    public String verificarInsumos(Vaso vaso) {
+        String logrado = "No";
+        String tamaño = vaso.getTamVaso();
+        String base = vaso.getBase();
+        String tipoBoba = vaso.getTipoBoba();
+        String sabor1 = vaso.getSabor1();
+        String sabor2 = vaso.getSabor2();
+        ArrayList<String> carac = new ArrayList<>();
+        carac.add(tamaño);
+        carac.add(base);
+        carac.add(tipoBoba);
+        carac.add(sabor1);
+        carac.add(sabor2);
+        for(String car : carac){
+            for (Insumo insumo : insumos) {
+                if(insumo.getNombre().equals(car)){
+                    boolean posible=insumo.descontarCantidad();
+                    if(posible){
+                        logrado="Log";
+                    }
+                    else{
+                        logrado= "No se tienen suficientes"+insumo.getNombre();
+                    }
+                }
+            }
+           if(logrado.charAt(0)=='N') break; 
+        }
+        return logrado;
+        
+    }
 
 }
