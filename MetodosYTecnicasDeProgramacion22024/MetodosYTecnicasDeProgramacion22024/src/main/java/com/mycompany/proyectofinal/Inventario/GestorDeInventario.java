@@ -36,6 +36,9 @@ public class GestorDeInventario {
                 existe = true;
                break;
             }
+            
+            
+            
         }
      if (!existe){
             productos.add(producto);
