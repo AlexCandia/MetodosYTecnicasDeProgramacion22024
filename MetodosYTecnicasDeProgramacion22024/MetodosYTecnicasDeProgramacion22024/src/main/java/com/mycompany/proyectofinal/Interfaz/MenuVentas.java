@@ -6,6 +6,7 @@ package com.mycompany.proyectofinal.Interfaz;
 
 import javax.swing.JOptionPane;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
+import com.mycompany.proyectofinal.Inventario.Insumo;
 import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import com.mycompany.proyectofinal.Ventas.Pedido;
 import com.mycompany.proyectofinal.Ventas.Vaso;
@@ -41,6 +42,7 @@ public class MenuVentas extends javax.swing.JFrame {
     public MenuVentas() {
         initComponents();
         inventario = new GestorDeInventario();
+        llenarinventarioprov();
         gestorVentas = new GestorDeVentas(inventario);
         temp = new PedidoTemporalDialog(this,true);
         histo = new HistorialVentasFrame();
@@ -530,6 +532,16 @@ public class MenuVentas extends javax.swing.JFrame {
         return; 
         }
         Vaso vaso = new Vaso(tamaño,base,tipoBoba,sabor1,sabor2);
+        String logrado = inventario.verificarInsumos(vaso);
+        if(logrado.charAt(0)=='N'){
+           JOptionPane.showMessageDialog(
+            null,
+            logrado,
+            "Insumo Insuficiente",
+            JOptionPane.WARNING_MESSAGE
+            );
+           return;
+        }
         gestorVentas.getPedidoTemporal().añadir(vaso);
         JOptionPane.showMessageDialog(
             null,
@@ -706,5 +718,18 @@ public class MenuVentas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton terminarDiaButton;
     // End of variables declaration//GEN-END:variables
+
+    private void llenarinventarioprov() {
+       Insumo insum1 = new Insumo ("Grande","Unidad",10); 
+       inventario.agregarInsumo(insum1);
+       Insumo insum2 = new Insumo ("Leche","L",10); 
+       inventario.agregarInsumo(insum2);
+       Insumo insum3 = new Insumo ("Explosivo","Bolsa",10); 
+       inventario.agregarInsumo(insum3);
+       Insumo insum4 = new Insumo ("Chocolate","L",2); 
+       inventario.agregarInsumo(insum4);
+       Insumo insum5 = new Insumo ("Limon","L",2); 
+       inventario.agregarInsumo(insum5);
+    }
 
 }

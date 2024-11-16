@@ -4,6 +4,11 @@
  */
 package com.mycompany.proyectofinal.Interfaz;
 
+import com.mycompany.proyectofinal.Contabilidad.EgresoVariable;
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
+import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
+import com.mycompany.proyectofinal.Inventario.Insumo;
+import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -11,6 +16,10 @@ import javax.swing.table.TableRowSorter;
 import java.util.Comparator;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -19,18 +28,19 @@ import javax.swing.SortOrder;
 public class MenuInventario extends javax.swing.JFrame {
      DefaultTableModel dtm = new DefaultTableModel();
      private TableRowSorter<DefaultTableModel> sorter; // Para ordenar la tabla
-
+    
+    GestorDeInventario gestorInventario = new GestorDeInventario();
+    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
+    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
     /**
      * Creates new form tabala
      */
     public MenuInventario() {
         initComponents();
-        String[] titulo = new String[]{"Nombre", "Unidad", "Cantidad", "Proveedor", "Teléfono"};
+        String[] titulo = new String[]{"Nombre", "Unidad", "Cantidad"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);
          // Configurar el TableRowSorter y asociarlo al modelo de la tabla
-        sorter = new TableRowSorter<>(dtm);
-        tblDatos.setRowSorter(sorter);
         
         // Añadir opciones al comboBox directamente en el código o desde el diseño
         comboOrdenar.addItem("Ordenar por Nombre");
@@ -54,21 +64,47 @@ public class MenuInventario extends javax.swing.JFrame {
         }
     }
     void agregar(){
-        dtm.addRow(new Object[]{
-            txtNombre.getText(),
-            txtUnidad.getText(),
-            txtCantidad.getText(),
-            txtProveedor.getText(),
-            txtTelefono.getText()
-        });
+        String nombre = txtNombre.getText().trim();
+        String unidad = txtUnidad.getText().trim();
+        String cantidad = txtCantidad.getText().trim();
+        if(nombre.isEmpty() || unidad.isEmpty() || cantidad.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+        // Validación para que `nombre` y `unidad` solo contengan letras
+        if (!nombre.matches("[a-zA-Z]+") || !unidad.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Los campos 'Nombre' y 'Unidad' deben contener solo letras.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validación para que `cantidad` sea un número entero
+            int cantidadInt = Integer.parseInt(cantidad); // Si no es un número, lanzará una excepción
+            Insumo insu = new Insumo(nombre, unidad, cantidadInt);
+                gestorInventario.agregarInsumo(insu);
+
+                dtm.addRow(new Object[]{
+                txtNombre.getText(),
+                txtUnidad.getText(), 
+                txtCantidad.getText()});
+                    
+                txtNombre.setText(null);
+                txtUnidad.setText(null);
+                txtCantidad.setText(null);
+        
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El campo 'Cantidad' debe contener solo números.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
     void eliminar(){
         int fila = tblDatos.getSelectedRow();
         if (fila >= 0) {  // Asegurarse de que haya una fila seleccionada
             // Mostrar cuadro de confirmación
             int opcion = JOptionPane.showConfirmDialog(
                     this,
-                    "¿Estás seguro de que deseas eliminar esta fila?",
+                    "¿Estás seguro que deseas eliminar esta fila?",
                     "Confirmar Eliminación",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE
@@ -77,34 +113,63 @@ public class MenuInventario extends javax.swing.JFrame {
             if (opcion == JOptionPane.YES_OPTION) {
                 // Si elige "Sí", eliminar la fila
                 dtm.removeRow(fila);
+                gestorInventario.eliminarInsumo(fila);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar.");
         }
     }
+    
     void actualizar(){
+        String nombre = txtNombre.getText().trim();
+        String unidad = txtUnidad.getText().trim();
+        String cantidad = txtCantidad.getText().trim();
         int fila = tblDatos.getSelectedRow();
-        if (fila >= 0) {  // Asegurarse de que haya una fila seleccionada
-            // Mostrar cuadro de confirmación
-            int opcion = JOptionPane.showConfirmDialog(
-                    this,
-                    "¿Estás seguro de que deseas actualizar esta fila?",
-                    "Confirmar Actualización",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-
-            if (opcion == JOptionPane.YES_OPTION) {
-                // Si elige "Sí", actualizar los datos de la fila
-                dtm.setValueAt(txtNombre.getText(), fila, 0);
-                dtm.setValueAt(txtUnidad.getText(), fila, 1);
-                dtm.setValueAt(txtCantidad.getText(), fila, 2);
-                dtm.setValueAt(txtProveedor.getText(), fila, 3);
-                dtm.setValueAt(txtTelefono.getText(), fila, 4);
-            }
-        } else {
+        
+        if(fila < 0){
             JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
+            return;
         }
+
+        if(nombre.isEmpty() && unidad.isEmpty() && cantidad.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe ingresar el valor que desea cambiar", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que deseas actualizar esta fila?",
+                "Confirmar Actualización",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+            
+        if (opcion == JOptionPane.YES_OPTION) {
+            try{
+            int value = Integer.parseInt(cantidad); 
+            gestorInventario.editarInsumo(fila, nombre, unidad, value);
+            dtm.setValueAt(txtCantidad.getText(), fila, 3);
+            if(!nombre.isEmpty()){
+                dtm.setValueAt(txtNombre.getText(), fila, 1);
+            }
+            if(!unidad.isEmpty()){
+                dtm.setValueAt(txtUnidad.getText(), fila, 2);
+            }
+            
+            }catch(NumberFormatException ex){        
+                if(!nombre.isEmpty()){
+                    dtm.setValueAt(txtNombre.getText(), fila, 1);
+                }
+                if(!unidad.isEmpty()){
+                    dtm.setValueAt(txtUnidad.getText(), fila, 2);
+                }
+                gestorContabilidad.editarEgresoVariable(fila, nombre, unidad, -1);
+            }  
+        }
+
+        txtNombre.setText(null);
+        txtUnidad.setText(null);
+        txtCantidad.setText(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,10 +192,6 @@ public class MenuInventario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
         txtCantidad = new javax.swing.JTextField();
-        txtProveedor = new javax.swing.JTextField();
-        lblProveedor = new javax.swing.JLabel();
-        lblTelefono = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
         comboOrdenar = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -209,20 +270,6 @@ public class MenuInventario extends javax.swing.JFrame {
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 130, 30));
 
-        txtProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        getContentPane().add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 130, 30));
-
-        lblProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblProveedor.setText("Proveedor");
-        getContentPane().add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
-
-        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTelefono.setText("Telefono");
-        getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, -1, -1));
-
-        txtTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        getContentPane().add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, 130, 30));
-
         comboOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboOrdenarActionPerformed(evt);
@@ -275,22 +322,6 @@ public class MenuInventario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         SwingUtilities.invokeLater(() -> {
             new MenuInventario().setVisible(true);
@@ -305,15 +336,11 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblProveedor;
-    private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUnidad;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtProveedor;
-    private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtUnidad;
     // End of variables declaration//GEN-END:variables
 }

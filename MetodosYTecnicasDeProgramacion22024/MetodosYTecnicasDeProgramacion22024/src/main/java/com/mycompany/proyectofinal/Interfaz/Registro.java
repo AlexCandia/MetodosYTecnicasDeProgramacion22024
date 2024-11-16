@@ -6,18 +6,24 @@ package com.mycompany.proyectofinal.Interfaz;
 
 import com.mycompany.proyectofinal.InicioyRegistro.Usuario;
 import com.mycompany.proyectofinal.InicioyRegistro.UsuarioManager;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Camila
  */
 public class Registro extends javax.swing.JFrame {
-
+    private UsuarioManager usuarioManager;
     /**
      * Creates new form Registro
      */
-    public Registro() {
+    public Registro(UsuarioManager usuarioManager) {
         initComponents();
+        this.usuarioManager = usuarioManager;
+    }
+
+    private Registro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -89,6 +95,11 @@ public class Registro extends javax.swing.JFrame {
         jLabel6.setText("Cargo");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero", "Mesero" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,32 +152,48 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    UsuarioManager um = new UsuarioManager();
-    private String user = "";
-    private String password = "";
-    private String code = "";
     private void UsuarioRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UsuarioRegistroActionPerformed
 
     private void RegistrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarBotonActionPerformed
-        // TODO add your handling code here:
-        
-        password = new String(ContraRegistro.getPassword());
-        user = new String(UsuarioRegistro.getText());
-        
-        Usuario us = new Usuario(user, password, code);
-        if(um.registrarUsuario(us)){
-            InicioDeSesion ini = new InicioDeSesion();
-            ini.setVisible(true);
-            this.setVisible(false);
+        // Obtener los valores ingresados por el usuario
+        String usuario = UsuarioRegistro.getText();
+        String contraseña = ContraRegistro.getText();
+        String cargo = jComboBox1.getSelectedItem().toString();  // Obtenemos el cargo seleccionado del combo box
+
+        // Crear una nueva instancia de Usuario con los datos ingresados
+        Usuario nuevoUsuario = new Usuario(usuario, contraseña, cargo);
+
+        // Intentar registrar el usuario en UsuarioManager
+        boolean registroExitoso = usuarioManager.registrarUsuario(nuevoUsuario);
+
+        if (registroExitoso) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario registrado con éxito");
+            // Opcional: Limpiar los campos después de un registro exitoso
+            UsuarioRegistro.setText("");
+            ContraRegistro.setText("");
+            jComboBox1.setSelectedIndex(0);
+            this.dispose();  // Cerrar la ventana actual de Registro
+
+            // Crear una nueva instancia de InicioDeSesion con el UsuarioManager
+            InicioDeSesion inicioDeSesion = new InicioDeSesion(usuarioManager);
+            inicioDeSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            inicioDeSesion.setSize(1000, 700);
+            inicioDeSesion.setLocationRelativeTo(null);
+            inicioDeSesion.setVisible(true);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe. Por favor, elige otro.");
         }
     }//GEN-LAST:event_RegistrarBotonActionPerformed
 
     private void ContraRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraRegistroActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

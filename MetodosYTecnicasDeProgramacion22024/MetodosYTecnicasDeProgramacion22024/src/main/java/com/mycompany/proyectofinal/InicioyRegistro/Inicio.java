@@ -14,7 +14,7 @@ public class Inicio {
         fileUser=generadorArchivo;
     }
     public boolean registrarUsuario(Usuario usuario){
-        if(fileUser.buscarUsuario(usuario.getCodigoE())!= null){
+        if(fileUser.buscarUsuario(usuario.getCargo())!= null){
             System.out.println("El usuario ya existe.");
             return false;
         }else if(usuario.getContraseña().length()<6){

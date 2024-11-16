@@ -5,11 +5,18 @@
 
 package com.mycompany.proyectofinal.Interfaz;
 
+import com.mycompany.proyectofinal.Contabilidad.EgresoInsumo;
+import com.mycompany.proyectofinal.Contabilidad.EgresoVariable;
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
+import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
+import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -23,20 +30,53 @@ public class EgresosInsumos extends javax.swing.JFrame {
     /**
      * Creates new form Egresoinsumo
      */
+    
+     //Solo es para las pruebas se debe borrar
+    GestorDeInventario gestorInventario = new GestorDeInventario();
+    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
+    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
+    
     public EgresosInsumos() {
         initComponents();
-        String[] titulo = new String[]{"Nombre:", "Cantidad:", "Valor:"};
+        String[] titulo = new String[]{"Fecha", "Nombre:", "Cantidad:", "Valor:"};
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);
     }
     void agregar(){
-        // Añadir fila al modelo de la tabla con el detalle ingresado en el campo de texto
-        dtm.addRow(new Object[]{
-            jTextField1.getText(),
-            jTextField2.getText(),
-            jTextField3.getText() 
-        });
+        SimpleDateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
+        String fechaActual = fecha.format(new Date());
+        
+        String nombre = jTextField1.getText().trim();
+        String cantidad = jTextField2.getText().trim();
+        String valor = jTextField3.getText().trim();
+        
+        if(cantidad.isEmpty() || valor.isEmpty() || nombre.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+            try{
+                Double value = Double.parseDouble(valor);
+                int cant = Integer.parseInt(cantidad);
+                
+                EgresoInsumo egreso = new EgresoInsumo(fechaActual, nombre, cant, value);
+                gestorContabilidad.registrarEgresoInsumo(egreso);
+                calcularTotal();
+                    
+                dtm.addRow(new Object[]{fechaActual, 
+                jTextField1.getText(),
+                jTextField2.getText(), 
+                jTextField3.getText()});
+                    
+                jTextField1.setText(null);
+                jTextField2.setText(null); 
+                jTextField3.setText(null);
+                
+            }catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Ingrese un valor valido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            }    
     }
+    
     void eliminar(){
         int fila = jTable1.getSelectedRow();
         if (fila >= 0) {  // Asegurarse de que haya una fila seleccionada
@@ -51,32 +91,85 @@ public class EgresosInsumos extends javax.swing.JFrame {
 
             if (opcion == JOptionPane.YES_OPTION) {
                 dtm.removeRow(fila);
+                gestorContabilidad.eliminarEgresoInsumo(fila);
+                calcularTotal();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una fila para eliminar.");
         }
     }
+    
     void editar(){
+        String nombre = jTextField1.getText().trim();
+        String cantidad = jTextField2.getText().trim();
+        String valor = jTextField3.getText().trim();
         int fila = jTable1.getSelectedRow();
-        if (fila >= 0) { 
-            int opcion = JOptionPane.showConfirmDialog(
-                    this,
-                    "¿Estás seguro de que deseas editar esta fila?",
-                    "Confirmar Edición.",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-
-            if (opcion == JOptionPane.YES_OPTION) {
-                // Si elige "Sí", actualizar los datos de la fila
-                dtm.setValueAt(jTextField1.getText(), fila, 0);
-                dtm.setValueAt(jTextField2.getText(), fila, 1);
-                dtm.setValueAt(jTextField3.getText(), fila, 2);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila para editar.");
+        
+        if(fila < 0){
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para actualizar.");
+            return;
         }
+
+        if(nombre.isEmpty() && cantidad.isEmpty() && valor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe ingresar el valor que desea cambiar", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int opcion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Estás seguro de que deseas actualizar esta fila?",
+                "Confirmar Actualización",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+        
+        if (opcion == JOptionPane.YES_OPTION) {
+            int cant;
+            double value;
+            
+            if(!nombre.isEmpty()){
+                dtm.setValueAt(nombre, fila, 1);
+            }
+            
+            if(!cantidad.isEmpty()){
+                try{
+                    cant = Integer.parseInt(cantidad);
+                    dtm.setValueAt(cantidad, fila, 2);
+                }catch(NumberFormatException ex){        
+                    JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }else{
+                cant = -1;
+            }
+            
+            if(!valor.isEmpty()){
+                try{
+                    value = Double.parseDouble(valor);
+                    dtm.setValueAt(valor, fila, 3);
+
+                }catch(NumberFormatException ex){        
+                    JOptionPane.showMessageDialog(this, "Ingrese un valor valido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+                    return;    
+                }
+            }else{
+                value = -1;
+            }
+            
+            gestorContabilidad.editarEgresoInsumo(fila, nombre, cant, value);
+        }
+        
+        jTextField1.setText(null);
+        jTextField2.setText(null); 
+        jTextField3.setText(null);
     }
+    
+    public void calcularTotal(){
+        String text;
+        text = Double.toString(gestorContabilidad.calcularTotalEgresosInsumos());
+        valorTotal.setText(text);
+    }
+    
     // Método para guardar los datos de la tabla en un archivo de texto
     private void guardarDatosEnArchivo() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("datos_tabla.txt"))) {
@@ -129,6 +222,8 @@ public class EgresosInsumos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        valorTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -231,6 +326,10 @@ public class EgresosInsumos extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Total");
+
+        valorTotal.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -239,12 +338,6 @@ public class EgresosInsumos extends javax.swing.JFrame {
                 .addGap(100, 100, 100)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -256,14 +349,25 @@ public class EgresosInsumos extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(141, 141, 141)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(101, 101, 101)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(148, 148, 148)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(152, 152, 152)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(199, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -285,12 +389,16 @@ public class EgresosInsumos extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(valorTotal))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -366,11 +474,13 @@ public class EgresosInsumos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel valorTotal;
     // End of variables declaration//GEN-END:variables
 }
