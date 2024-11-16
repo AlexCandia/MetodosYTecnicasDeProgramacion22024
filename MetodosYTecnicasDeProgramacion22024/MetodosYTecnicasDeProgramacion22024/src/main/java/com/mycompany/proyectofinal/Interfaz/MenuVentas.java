@@ -10,7 +10,6 @@ import com.mycompany.proyectofinal.Inventario.Insumo;
 import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import com.mycompany.proyectofinal.Ventas.Pedido;
 import com.mycompany.proyectofinal.Ventas.Vaso;
-import com.mycompany.proyectofinal.Ventas.VasoEnCola;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -621,15 +620,12 @@ public class MenuVentas extends javax.swing.JFrame {
     public void llenarColaDePedidos(Pedido pedidoConfirmado){
         ArrayList<Vaso> vasos=pedidoConfirmado.getVasos();
         for(Vaso vaso :vasos){
-            VasoEnCola vasoEnCola = new VasoEnCola(
-                pedidoConfirmado.getNumPedido(),
-                pedidoConfirmado.getNombre(),
-                vaso
-            );
-            llenarFilaDeCola(vasoEnCola);
+            vaso.setNombreCliente(pedidoConfirmado.getNombre());
+            vaso.setNumPedido(pedidoConfirmado.getNombre());
+            llenarFilaDeCola(vaso);
         }
     }
-    public void llenarFilaDeCola(VasoEnCola vaso){
+    public void llenarFilaDeCola(Vaso vaso){
         o[0]=vaso.getNumPedido();
         o[1]=vaso.getNombreCliente();
         o[2]=vaso.getVaso().getNumVaso();
