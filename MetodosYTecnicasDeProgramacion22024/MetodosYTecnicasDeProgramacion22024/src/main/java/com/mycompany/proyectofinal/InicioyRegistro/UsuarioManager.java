@@ -6,37 +6,50 @@ import java.util.List;
 public class UsuarioManager {
 
     private static final String FILE_NAME = "ListaUsuarios.txt";
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> listaUsuarios;
 
-    // Constructor que carga los usuarios desde el archivo
+    // Constructor que carga los listaUsuarios desde el archivo
     public UsuarioManager() {
+        this.listaUsuarios = new ArrayList<>();
         cargarUsuarios();
     }
 
     // Método para registrar un usuario
-    public boolean registrarUsuario(Usuario usuario) {
-        for (Usuario u : usuarios) {
-            if (u.getNombre().equals(usuario.getNombre())) {
-                System.out.println("El usuario ya existe.");
+    public boolean registrarUsuario(Usuario nuevoUsuario) {
+        // Podrías agregar validaciones aquí, como verificar que el usuario no exista
+        for (Usuario usuario : listaUsuarios) {
+            if (usuario.getUsuario().equals(nuevoUsuario.getUsuario())) {
+                // Si el usuario ya existe, no lo registramos y retornamos false
                 return false;
             }
         }
-        usuarios.add(usuario);
+
+        // Si no existe, lo añadimos a la lista de usuarios
+        listaUsuarios.add(nuevoUsuario);
         guardarUsuarios();
         return true;
     }
+     
 
     // Método para iniciar sesión
-    public boolean iniciarSesion(String nombre, String contrasena) {
-        for (Usuario usuario : usuarios) {
-            if (usuario.getNombre().equals(nombre) && usuario.getContraseña().equals(contrasena)) {
-                return true;
+    public boolean iniciarSesion(String usuario, String contraseña) {
+        for (Usuario u : listaUsuarios) {
+            if (u.getUsuario().equals(usuario) && u.getContraseña().equals(contraseña)) {
+                return true; 
             }
         }
-        return false;
+        return false; 
+    }
+    public String obtenerCargo(String usuario) {
+        for (Usuario u : listaUsuarios) {
+            if (u.getUsuario().equals(usuario)) {
+                return u.getCargo();
+            }
+        }
+        return null; // Si no se encuentra el usuario
     }
 
-    // Cargar usuarios desde el archivo
+    // Cargar listaUsuarios desde el archivo
     private void cargarUsuarios() {
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME))) {
             String linea;
@@ -44,7 +57,7 @@ public class UsuarioManager {
                 String[] partes = linea.split(";");
                 if (partes.length == 3) {
                     Usuario usuario = new Usuario(partes[0], partes[1], partes[2]);
-                    usuarios.add(usuario);
+                    listaUsuarios.add(usuario);
                 }
             }
         } catch (IOException e) {
@@ -52,11 +65,11 @@ public class UsuarioManager {
         }
     }
 
-    // Guardar usuarios en el archivo
+    // Guardar listaUsuarios en el archivo
     private void guardarUsuarios() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
-            for (Usuario usuario : usuarios) {
-                bw.write(usuario.getNombre() + ";" + usuario.getContraseña() + ";" + usuario.getCodigoE());
+            for (Usuario usuario : listaUsuarios) {
+                bw.write(usuario.getUsuario() + ";" + usuario.getContraseña() + ";" + usuario.getCargo());
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -64,11 +77,11 @@ public class UsuarioManager {
         }
     }
 
-    // Método opcional para mostrar usuarios (para depuración)
+    // Método opcional para mostrar listaUsuarios (para depuración)
     public void mostrarUsuarios() {
-        usuarios.forEach(usuario -> 
-            System.out.println("Nombre: " + usuario.getNombre() +
+        listaUsuarios.forEach(usuario -> 
+            System.out.println("Nombre: " + usuario.getUsuario() +
                                ", Contraseña: " + usuario.getContraseña() +
-                               ", CódigoE: " + usuario.getCodigoE()));
+                               ", CódigoE: " + usuario.getCargo()));
     }
 }

@@ -35,17 +35,11 @@ public class GestorDeInventario {
     private GestorDeContabilidad gestorDeContabilidad;
 
 
-    public GestorDeInventario(GestorDeContabilidad gestorDeContabilidad, GestorDeVentas gestorDeVentas) {
+    public GestorDeInventario() {
         insumos= new ArrayList<>();
         this.gestorDeContabilidad = gestorDeContabilidad;
         this.gestorDeVentas = gestorDeVentas;       
-    }
-
-    public GestorDeInventario() {
-       insumos= new ArrayList<>();
-    }
-
-    
+    }   
     public ArrayList<Insumo> getInsumos(){
         return insumos;
     }

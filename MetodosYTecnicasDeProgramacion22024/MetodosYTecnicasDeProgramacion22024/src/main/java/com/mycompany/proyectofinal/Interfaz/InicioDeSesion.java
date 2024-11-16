@@ -5,18 +5,24 @@
 package com.mycompany.proyectofinal.Interfaz;
 
 import com.mycompany.proyectofinal.InicioyRegistro.UsuarioManager;
+import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  *
  * @author Camila
  */
 public class InicioDeSesion extends javax.swing.JFrame {
-
-    /**
+    private UsuarioManager usuarioManager;    /**
      * Creates new form InicioDeSes
      */
-    public InicioDeSesion() {
-        initComponents();
+    public InicioDeSesion(UsuarioManager usuarioManager) {
+        initComponents();  // Inicializa los componentes del JFrame
+        this.usuarioManager = usuarioManager;  // Almacena la instancia de UsuarioManager para ser utilizada
+    }
+
+    private InicioDeSesion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -143,11 +149,6 @@ public class InicioDeSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
-    UsuarioManager um = new UsuarioManager();
-    
-    private String user = "";
-    private String password = "";
     private void EntradaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaUsuarioActionPerformed
         // TODO add your handling code here:
        
@@ -156,19 +157,62 @@ public class InicioDeSesion extends javax.swing.JFrame {
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // TODO add your handling code here:
         
-        Registro reg = new Registro();
+        Registro reg = new Registro(usuarioManager); 
+        reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        reg.setSize(1000, 700);  // Tamaño de la ventana
+        reg.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
         reg.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     private void botonAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAccederActionPerformed
-        // TODO add your handling code here:
-        
-        password = new String(EntradaContra.getPassword());
-        user = new String(EntradaUsuario.getText());
-        if(um.iniciarSesion(user, password)){
-            MenuBoba menu = new MenuBoba();
-            menu.setVisible(true);
+        String usuario = EntradaUsuario.getText();
+        String contraseña = EntradaContra.getText();
+
+        // Verificar si las credenciales son correctas usando UsuarioManager
+        boolean loginExitoso = usuarioManager.iniciarSesion(usuario, contraseña);
+
+        if (loginExitoso) {
+            // Obtener el cargo del usuario autenticado
+            String cargo = usuarioManager.obtenerCargo(usuario);
+
+            // Cerrar la ventana de inicio de sesión
+            this.dispose();
+
+            // Redirigir al menú correspondiente según el cargo del usuario
+            if (cargo != null) {
+                switch (cargo) {
+                    case "Administrador":
+                        MenuBobaAdmin menuAdmin = new MenuBobaAdmin();
+                        menuAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        menuAdmin.setSize(1000, 700);
+                        menuAdmin.setLocationRelativeTo(null);
+                        menuAdmin.setVisible(true);
+                        break;
+
+                    case "Cajero":
+                        MenuBobaCajero menuCajero = new MenuBobaCajero();
+                        menuCajero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        menuCajero.setSize(1000, 700);
+                        menuCajero.setLocationRelativeTo(null);
+                        menuCajero.setVisible(true);
+                        break;
+
+                    case "Mesero":
+                        MenuBobaMesero menuMesero = new MenuBobaMesero();
+                        menuMesero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        menuMesero.setSize(1000, 700);
+                        menuMesero.setLocationRelativeTo(null);
+                        menuMesero.setVisible(true);
+                        break;
+
+                    default:
+                        JOptionPane.showMessageDialog(this, "Cargo no reconocido");
+                        break;
+                }
+            }
+        } else {
+            // Mostrar un mensaje de error si el inicio de sesión es incorrecto
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         }
     }//GEN-LAST:event_botonAccederActionPerformed
 
