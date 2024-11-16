@@ -22,6 +22,8 @@ public class Vaso {
     private String sabor1; // Primer sabor
     private String sabor2; // Segundo sabor (opcional)
     private int precio;
+    private String numPedido; 
+    private String nombreCliente;
 
     // Constructor Vaso(numVaso, tamVaso, base, tipoBoba, sabor1, sabor2
     public Vaso(String tamVaso, String base, String tipoBoba, String sabor1, String sabor2) {
@@ -103,5 +105,23 @@ public class Vaso {
     }
     public void setPrecio(int i) {
         precio=i;
+    }
+    public String getNumPedido() {
+        return numPedido;
+    }
+
+    public void setNumPedido(String numPedido) {
+        this.numPedido = numPedido;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+     public Vaso getVaso() {
+        return this;
     }
 }
