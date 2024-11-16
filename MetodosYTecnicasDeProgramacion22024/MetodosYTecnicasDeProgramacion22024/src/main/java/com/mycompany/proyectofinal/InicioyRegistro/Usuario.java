@@ -10,36 +10,45 @@ package com.mycompany.proyectofinal.InicioyRegistro;
  * @author developerweb
  */
 public class Usuario {
-  private String nombre;
+  private String usuario;
   private String contraseña;
-  private String codigoE;
+  private String cargo;
   
-  public Usuario(String nombre,String contraseña,String codigoE){
-      this.nombre=nombre;
+  public Usuario(String usuario,String contraseña,String codigoE){
+      this.usuario=usuario;
       this.contraseña=contraseña;
-      this.codigoE=codigoE;
+      this.cargo=codigoE;
   }
   
-  public String getNombre(){
-      return nombre;
-  }
-  
-  public String getContraseña(){
-      return contraseña;
-  }
-  
-  public String getCodigoE(){
-      return codigoE;
-  }
-  
-  public void setNombre(String nuevoNombre){
-      nombre=nuevoNombre;
-  }
-  
-  public void setContraseña(String nuevaContraseña){
-      contraseña=nuevaContraseña;
-  }
-  
-  public void registrarUsuario(){   
-  }
+  public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "usuario='" + usuario + '\'' +
+                ", cargo='" + cargo + '\'' +
+                '}';
+    }
 }

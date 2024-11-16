@@ -21,14 +21,14 @@ public class GeneradorArchivosUsuarios {
       return usuarios.get(codigoE);  
     }
   public boolean registrar(Usuario nuevoUsuario){
-        usuarios.put(nuevoUsuario.getCodigoE(), nuevoUsuario);
+        usuarios.put(nuevoUsuario.getCargo(), nuevoUsuario);
         añadirAlarchivo();  
         return true;  
   }
   public void añadirAlarchivo(){
       try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Usuario usuario : usuarios.values()) {
-                writer.write(usuario.getNombre() + "/" + usuario.getContraseña()+ "/" + usuario.getCodigoE());
+                writer.write(usuario.getUsuario()+ "/" + usuario.getContraseña()+ "/" + usuario.getCargo());
                 writer.newLine();
             }
         } catch (IOException e) {
