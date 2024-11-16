@@ -21,7 +21,7 @@ public class GestorDeVentas {
     private GestorDeInventario inventario;
     private HashMap<String, Pedido> ventasHistoricas;
     private ArrayList<Pedido> ventasDiarias;
-    private Queue<VasoEnCola> colaPedidos;
+    private Queue<Vaso> colaPedidos;
     private Pedido pedidoTemporal;
     private GeneradorArchivosVentas generadorArchivosVentas;
     
@@ -154,12 +154,9 @@ public class GestorDeVentas {
             return;
         }
         for(Vaso vaso :vasos){
-            VasoEnCola vasoEnCola = new VasoEnCola(
-                pedidoTemporal.getNumPedido(),
-                pedidoTemporal.getNombre(),
-                vaso
-            );
-            colaPedidos.add(vasoEnCola);
+            vaso.setNumPedido(pedidoTemporal.getNumPedido());
+            vaso.setNombreCliente(pedidoTemporal.getNombre());
+            colaPedidos.add(vaso);
         }
         generadorArchivosVentas.generarTicket(pedidoTemporal);
         generadorArchivosVentas.generarFactura(pedidoTemporal);
@@ -178,7 +175,7 @@ public class GestorDeVentas {
 
     public void marcarPedidoCompletado() {
         if(!colaPedidos.isEmpty()){
-            VasoEnCola vasoCompletado=colaPedidos.poll();
+            Vaso vasoCompletado=colaPedidos.poll();
             //actualizarinfo(vasoCompletado);
             System.out.print("El vaso Nro: " + vasoCompletado.getVaso().getNumVaso());
             System.out.print("Del cliente: " + vasoCompletado.getNombreCliente());
