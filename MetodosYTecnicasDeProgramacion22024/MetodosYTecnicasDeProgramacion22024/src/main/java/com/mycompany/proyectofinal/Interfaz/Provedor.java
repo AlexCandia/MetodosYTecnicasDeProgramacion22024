@@ -38,6 +38,7 @@ public class Provedor extends javax.swing.JFrame {
         agregarProv = new javax.swing.JButton();
         eliminarProv = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        editar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -64,7 +65,7 @@ public class Provedor extends javax.swing.JFrame {
                 agregarProvActionPerformed(evt);
             }
         });
-        getContentPane().add(agregarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 590, 120, 40));
+        getContentPane().add(agregarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 590, 120, 40));
 
         eliminarProv.setText("Eliminar");
         eliminarProv.addActionListener(new java.awt.event.ActionListener() {
@@ -72,51 +73,122 @@ public class Provedor extends javax.swing.JFrame {
                 eliminarProvActionPerformed(evt);
             }
         });
-        getContentPane().add(eliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 590, 130, 40));
+        getContentPane().add(eliminarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 590, 130, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Proveedor");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 140, 40));
 
+        editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, 110, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProvActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tablita.getModel();
+         DefaultTableModel model = (DefaultTableModel) tablita.getModel();
 
-        // Pedir al usuario que ingrese el nombre, teléfono y dirección
-        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del proveedor:");
-        String telefono = JOptionPane.showInputDialog("Ingrese el teléfono del proveedor:");
-        String direccion = JOptionPane.showInputDialog("Ingrese la dirección del proveedor:");
+    // Pedir al usuario que ingrese el nombre
+    String nombre = JOptionPane.showInputDialog("Ingrese el nombre del proveedor:");
 
-        // Agregar una nueva fila con los datos ingresados
-        if (nombre != null && telefono != null && direccion != null) {
-            model.addRow(new Object[]{nombre, telefono, direccion});
+    // Crear un ciclo para validar el teléfono
+    String telefonoStr = null;
+    boolean telefonoValido = false;
+    while (!telefonoValido) {
+        telefonoStr = JOptionPane.showInputDialog("Ingrese el teléfono del proveedor:");
+        try {
+            Integer.parseInt(telefonoStr); // Intentamos convertir el teléfono a int
+            telefonoValido = true; // Si es válido, salir del ciclo
+        } catch (NumberFormatException e) {
+            // Si no es un número, mostramos un mensaje de error
+            JOptionPane.showMessageDialog(this, "Debe colocar solo números en el campo de teléfono.");
         }
+    }
+
+    // Pedir la dirección
+    String direccion = JOptionPane.showInputDialog("Ingrese la dirección del proveedor:");
+
+    // Agregar una nueva fila con los datos ingresados si todo es válido
+    if (nombre != null && telefonoStr != null && direccion != null) {
+        model.addRow(new Object[]{nombre, Integer.parseInt(telefonoStr), direccion});
+    }
     }//GEN-LAST:event_agregarProvActionPerformed
 
     private void eliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProvActionPerformed
         int selectedRow = tablita.getSelectedRow();
 
     // Verificar que haya una fila seleccionada
-    if (selectedRow >= 0) {
-        // Mostrar cuadro de confirmación
-        int confirm = JOptionPane.showConfirmDialog(this, 
-                "¿Estás seguro de que deseas eliminar este proveedor?", 
-                "Confirmar eliminación", 
-                JOptionPane.YES_NO_OPTION);
+        if (selectedRow >= 0) {
+            // Mostrar cuadro de confirmación
+            int confirm = JOptionPane.showConfirmDialog(this, 
+                    "¿Estás seguro de que deseas eliminar este proveedor?", 
+                    "Confirmar eliminación", 
+                    JOptionPane.YES_NO_OPTION);
 
         // Si el usuario selecciona "Sí", eliminar la fila
-        if (confirm == JOptionPane.YES_OPTION) {
-            DefaultTableModel model = (DefaultTableModel) tablita.getModel();
-            model.removeRow(selectedRow);
-        }
-    } else {
+            if (confirm == JOptionPane.YES_OPTION) {
+                DefaultTableModel model = (DefaultTableModel) tablita.getModel();
+                model.removeRow(selectedRow);
+            }
+        } else {
         // Mostrar mensaje si no se ha seleccionado ninguna fila
-        JOptionPane.showMessageDialog(this, "Selecciona un proveedor para eliminar.");
-    }
+            JOptionPane.showMessageDialog(this, "Selecciona un proveedor para eliminar.");
+        }
     }//GEN-LAST:event_eliminarProvActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+         int selectedRow = tablita.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            // Obtener los valores actuales de la fila seleccionada
+            String nombre = (String) tablita.getValueAt(selectedRow, 0);
+            String telefono = (String) tablita.getValueAt(selectedRow, 1).toString();
+            String direccion = (String) tablita.getValueAt(selectedRow, 2);
+
+            // Crear opciones para editar solo el nombre, teléfono, dirección o todo
+            String[] opciones = {"Nombre", "Teléfono", "Dirección", "Todo"};
+            String opcion = (String) JOptionPane.showInputDialog(this, 
+                    "¿Qué desea editar?", "Seleccionar campo", 
+                    JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+
+            if (opcion != null) {
+                // Editar el campo correspondiente
+                if (opcion.equals("Nombre") || opcion.equals("Todo")) {
+                    nombre = JOptionPane.showInputDialog("Nuevo nombre:", nombre);
+                }
+                if (opcion.equals("Teléfono") || opcion.equals("Todo")) {
+                    boolean telefonoValido = false;
+                    while (!telefonoValido) {
+                        String nuevoTelefonoStr = JOptionPane.showInputDialog("Nuevo teléfono:", telefono);
+                        try {
+                            Integer.parseInt(nuevoTelefonoStr); // Intentamos convertirlo a int
+                            telefono = nuevoTelefonoStr;
+                            telefonoValido = true;
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(this, "El teléfono debe ser un número entero.");
+                        }
+                    }
+                }
+                if (opcion.equals("Dirección") || opcion.equals("Todo")) {
+                    direccion = JOptionPane.showInputDialog("Nueva dirección:", direccion);
+                }
+
+                // Actualizar la fila con los nuevos datos
+                DefaultTableModel model = (DefaultTableModel) tablita.getModel();
+                model.setValueAt(nombre, selectedRow, 0);
+                model.setValueAt(telefono, selectedRow, 1);
+                model.setValueAt(direccion, selectedRow, 2);
+            }
+        } else {
+            // Mostrar un mensaje si no se seleccionó ninguna fila
+            JOptionPane.showMessageDialog(this, "Selecciona un proveedor para editar.");
+        }
+    }//GEN-LAST:event_editarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +216,7 @@ public class Provedor extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Provedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -155,6 +228,7 @@ public class Provedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarProv;
+    private javax.swing.JButton editar;
     private javax.swing.JButton eliminarProv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
