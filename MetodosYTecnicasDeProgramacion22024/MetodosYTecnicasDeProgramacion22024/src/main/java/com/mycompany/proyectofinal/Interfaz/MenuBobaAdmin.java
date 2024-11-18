@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectofinal.Interfaz;
+import com.mycompany.proyectofinal.InicioyRegistro.UsuarioManager;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Interfaz.MenuVentas;
 import com.mycompany.proyectofinal.Interfaz.MenuInventario;
@@ -34,6 +35,8 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
         InventarioBoton = new javax.swing.JButton();
         VentasBoton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        CerrarSesionBoton = new javax.swing.JButton();
+        RegistroBoton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,6 +80,28 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
         jLabel3.setText("Menu");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 130, 60));
 
+        CerrarSesionBoton.setBackground(new java.awt.Color(204, 204, 255));
+        CerrarSesionBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CerrarSesionBoton.setForeground(new java.awt.Color(255, 255, 255));
+        CerrarSesionBoton.setText("Cerrar Sesión");
+        CerrarSesionBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarSesionBotonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CerrarSesionBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 600, 180, 60));
+
+        RegistroBoton.setBackground(new java.awt.Color(204, 204, 255));
+        RegistroBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        RegistroBoton.setForeground(new java.awt.Color(255, 255, 255));
+        RegistroBoton.setText("Registro");
+        RegistroBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistroBotonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegistroBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 180, 60));
+
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
 
@@ -87,6 +112,7 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         MenuInventario inv = new MenuInventario();
+        inv.setCargo("Admin");
         inv.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_InventarioBotonActionPerformed
@@ -94,6 +120,7 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
     private void ContabilidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContabilidadBotonActionPerformed
         // TODO add your handling code here:
         MenuContabilidad cont = new MenuContabilidad();
+        cont.setCargo("Admin");
         cont.setVisible(true);
         this.setVisible(false);
         
@@ -103,9 +130,29 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         MenuVentas vent = new MenuVentas();
+        vent.setCargo("Admin");
         vent.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VentasBotonActionPerformed
+
+            UsuarioManager um = new UsuarioManager();
+
+    private void CerrarSesionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionBotonActionPerformed
+        // TODO add your handling code here:
+        
+        InicioDeSesion ini = new InicioDeSesion(um);
+        ini.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CerrarSesionBotonActionPerformed
+
+    private void RegistroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroBotonActionPerformed
+        // TODO add your handling code here:
+        
+        Registro reg = new Registro(um);
+        reg.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_RegistroBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,8 +193,10 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CerrarSesionBoton;
     private javax.swing.JButton ContabilidadBoton;
     private javax.swing.JButton InventarioBoton;
+    private javax.swing.JButton RegistroBoton;
     private javax.swing.JButton VentasBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

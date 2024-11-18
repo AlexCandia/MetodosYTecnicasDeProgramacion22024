@@ -193,6 +193,7 @@ public class MenuInventario extends javax.swing.JFrame {
         tblDatos = new javax.swing.JTable();
         txtCantidad = new javax.swing.JTextField();
         comboOrdenar = new javax.swing.JComboBox<>();
+        VolverBoton = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -246,7 +247,7 @@ public class MenuInventario extends javax.swing.JFrame {
                 buttonActtualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonActtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 570, 210, 50));
+        getContentPane().add(buttonActtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 570, 210, 50));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitulo.setText("Inventario");
@@ -277,6 +278,17 @@ public class MenuInventario extends javax.swing.JFrame {
         });
         getContentPane().add(comboOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
 
+        VolverBoton.setBackground(new java.awt.Color(204, 153, 255));
+        VolverBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        VolverBoton.setForeground(new java.awt.Color(255, 255, 255));
+        VolverBoton.setLabel("Volver");
+        VolverBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverBotonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(VolverBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 140, 50));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -295,6 +307,22 @@ public class MenuInventario extends javax.swing.JFrame {
     private void comboOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrdenarActionPerformed
         
     }//GEN-LAST:event_comboOrdenarActionPerformed
+    private String cargo;
+    public void setCargo(String s){
+        cargo = s;
+    }
+    private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
+        // TODO add your handling code here:
+        if(cargo.equals("Admin")){
+            MenuBobaAdmin menu =  new MenuBobaAdmin();
+            menu.setVisible(true);
+            this.setVisible(false);
+        }else{
+            MenuBoba men =  new MenuBoba();
+            men.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_VolverBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,6 +357,7 @@ public class MenuInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button VolverBoton;
     private java.awt.Button buttonActtualizar;
     private java.awt.Button buttonAñadir;
     private java.awt.Button buttonEliminar;

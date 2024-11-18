@@ -38,6 +38,7 @@ public class MenuVentas extends javax.swing.JFrame {
     PedidoTemporalDialog temp;
     HistorialVentasFrame histo;
     private DefaultTableModel dtm;
+    private String cargo; 
     public MenuVentas() {
         initComponents();
         inventario = new GestorDeInventario();
@@ -389,7 +390,7 @@ public class MenuVentas extends javax.swing.JFrame {
                 VerPedidoButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(VerPedidoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, 190, 40));
+        getContentPane().add(VerPedidoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 580, 190, 40));
 
         AgregarVasoButton.setBackground(new java.awt.Color(204, 204, 255));
         AgregarVasoButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -444,7 +445,7 @@ public class MenuVentas extends javax.swing.JFrame {
 
         Fondo.setBackground(new java.awt.Color(204, 204, 255));
         Fondo.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 30, 1000, 700));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1000, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -477,8 +478,20 @@ public class MenuVentas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_NitFieldActionPerformed
 
+    public void setCargo(String s){
+        cargo = s;
+    }
     private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
         // TODO add your handling code here:
+        if(cargo.equals("Admin")){
+            MenuBobaAdmin menu =  new MenuBobaAdmin();
+            menu.setVisible(true);
+            this.setVisible(false);
+        }else{
+            MenuBoba men =  new MenuBoba();
+            men.setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void NuevoClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoClienteButtonActionPerformed
@@ -591,6 +604,7 @@ public class MenuVentas extends javax.swing.JFrame {
         dtm.removeRow(0);
     }//GEN-LAST:event_VasoTerminadoButtonActionPerformed
 
+    
     public void setOptionsDefault(){
         TamañoBox.setSelectedIndex(0);
         BaseBox.setSelectedIndex(0);
