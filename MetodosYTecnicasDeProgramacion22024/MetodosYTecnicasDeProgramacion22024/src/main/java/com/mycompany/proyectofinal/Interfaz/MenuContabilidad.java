@@ -71,6 +71,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         egresoInsumoo = new javax.swing.JTextField();
         egresoFijoo = new javax.swing.JTextField();
+        VolverBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -248,11 +249,11 @@ public class MenuContabilidad extends javax.swing.JFrame {
         miGrafica.setLayout(miGraficaLayout);
         miGraficaLayout.setHorizontalGroup(
             miGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
         miGraficaLayout.setVerticalGroup(
             miGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 378, Short.MAX_VALUE)
         );
 
         getContentPane().add(miGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 490, 380));
@@ -308,6 +309,17 @@ public class MenuContabilidad extends javax.swing.JFrame {
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 560, 100, -1));
         getContentPane().add(egresoInsumoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 590, 130, 20));
         getContentPane().add(egresoFijoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 560, 130, 20));
+
+        VolverBoton.setBackground(new java.awt.Color(0, 204, 204));
+        VolverBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        VolverBoton.setForeground(new java.awt.Color(255, 255, 255));
+        VolverBoton.setText("Volver");
+        VolverBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverBotonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(VolverBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 20, 140, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -376,6 +388,23 @@ public class MenuContabilidad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private String cargo;
+    public void setCargo(String s){
+        cargo = s;
+    }
+    private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
+        // TODO add your handling code here:
+        if(cargo.equals("Admin")){
+            MenuBobaAdmin menu =  new MenuBobaAdmin();
+            menu.setVisible(true);
+            this.setVisible(false);
+        }else{
+            MenuBoba men =  new MenuBoba();
+            men.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_VolverBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -417,6 +446,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Reportes;
     private javax.swing.JComboBox<String> Reportes1;
+    private javax.swing.JButton VolverBoton;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JTextField egresoFijoo;
     private javax.swing.JTextField egresoInsumoo;

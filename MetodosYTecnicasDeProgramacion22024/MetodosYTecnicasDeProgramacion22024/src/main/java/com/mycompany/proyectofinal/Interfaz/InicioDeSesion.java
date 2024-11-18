@@ -40,7 +40,6 @@ public class InicioDeSesion extends javax.swing.JFrame {
         EntradaContra = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         botonAcceder = new javax.swing.JButton();
-        botonRegistro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -77,16 +76,6 @@ public class InicioDeSesion extends javax.swing.JFrame {
             }
         });
 
-        botonRegistro.setBackground(new java.awt.Color(0, 204, 204));
-        botonRegistro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        botonRegistro.setText("Registrar");
-        botonRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegistroActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Inicio de Sesion");
 
@@ -94,12 +83,6 @@ public class InicioDeSesion extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(botonAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -111,8 +94,11 @@ public class InicioDeSesion extends javax.swing.JFrame {
                             .addComponent(EntradaContra)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
-                        .addComponent(jLabel5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(botonAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,11 +113,9 @@ public class InicioDeSesion extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(EntradaContra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                .addGap(26, 26, 26)
+                .addComponent(botonAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 320, 290));
@@ -154,16 +138,6 @@ public class InicioDeSesion extends javax.swing.JFrame {
        
     }//GEN-LAST:event_EntradaUsuarioActionPerformed
 
-    private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
-        // TODO add your handling code here:
-        
-        Registro reg = new Registro(usuarioManager); 
-        reg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        reg.setSize(1000, 700);  // Tamaño de la ventana
-        reg.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-        reg.setVisible(true);
-    }//GEN-LAST:event_botonRegistroActionPerformed
-
     private void botonAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAccederActionPerformed
         String usuario = EntradaUsuario.getText();
         String contraseña = EntradaContra.getText();
@@ -180,35 +154,20 @@ public class InicioDeSesion extends javax.swing.JFrame {
 
             // Redirigir al menú correspondiente según el cargo del usuario
             if (cargo != null) {
-                switch (cargo) {
-                    case "Administrador":
-                        MenuBobaAdmin menuAdmin = new MenuBobaAdmin();
-                        menuAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        menuAdmin.setSize(1000, 700);
-                        menuAdmin.setLocationRelativeTo(null);
-                        menuAdmin.setVisible(true);
-                        break;
-
-                    case "Cajero":
-                        MenuBobaCajero menuCajero = new MenuBobaCajero();
-                        menuCajero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        menuCajero.setSize(1000, 700);
-                        menuCajero.setLocationRelativeTo(null);
-                        menuCajero.setVisible(true);
-                        break;
-
-                    case "Mesero":
-                        MenuBobaMesero menuMesero = new MenuBobaMesero();
-                        menuMesero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        menuMesero.setSize(1000, 700);
-                        menuMesero.setLocationRelativeTo(null);
-                        menuMesero.setVisible(true);
-                        break;
-
-                    default:
-                        JOptionPane.showMessageDialog(this, "Cargo no reconocido");
-                        break;
+                if(cargo.equals("Administrador")){
+                    MenuBobaAdmin menuAdmin = new MenuBobaAdmin();
+                    menuAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    menuAdmin.setSize(1000, 700);
+                    menuAdmin.setLocationRelativeTo(null);
+                    menuAdmin.setVisible(true);
+                }else{
+                    MenuBoba menu = new MenuBoba();
+                    menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    menu.setSize(1000, 700);
+                    menu.setLocationRelativeTo(null);
+                    menu.setVisible(true);
                 }
+                
             }
         } else {
             // Mostrar un mensaje de error si el inicio de sesión es incorrecto
@@ -261,7 +220,6 @@ public class InicioDeSesion extends javax.swing.JFrame {
     private javax.swing.JTextField EntradaUsuario;
     private javax.swing.JLabel FONDO;
     private javax.swing.JButton botonAcceder;
-    private javax.swing.JButton botonRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

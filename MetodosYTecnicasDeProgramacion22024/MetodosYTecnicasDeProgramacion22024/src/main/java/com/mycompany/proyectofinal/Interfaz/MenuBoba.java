@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectofinal.Interfaz;
+import com.mycompany.proyectofinal.InicioyRegistro.UsuarioManager;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Interfaz.MenuVentas;
 import com.mycompany.proyectofinal.Interfaz.MenuInventario;
@@ -11,12 +12,12 @@ import com.mycompany.proyectofinal.Interfaz.MenuInventario;
  *
  * @author Usuario
  */
-public class MenuBobaMesero extends javax.swing.JFrame {
+public class MenuBoba extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
-    public MenuBobaMesero() {
+    public MenuBoba() {
         initComponents();
     }
 
@@ -30,25 +31,15 @@ public class MenuBobaMesero extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        ContabilidadBoton = new javax.swing.JButton();
         InventarioBoton = new javax.swing.JButton();
+        VentasBoton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        CerrarSesionBoton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 50, 50));
-
-        ContabilidadBoton.setBackground(new java.awt.Color(204, 204, 255));
-        ContabilidadBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        ContabilidadBoton.setForeground(new java.awt.Color(255, 255, 255));
-        ContabilidadBoton.setText("Contabilidad");
-        ContabilidadBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContabilidadBotonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(ContabilidadBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 180, 60));
 
         InventarioBoton.setBackground(new java.awt.Color(204, 204, 255));
         InventarioBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -59,11 +50,33 @@ public class MenuBobaMesero extends javax.swing.JFrame {
                 InventarioBotonActionPerformed(evt);
             }
         });
-        getContentPane().add(InventarioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 180, 60));
+        getContentPane().add(InventarioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 180, 60));
+
+        VentasBoton.setBackground(new java.awt.Color(204, 204, 255));
+        VentasBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        VentasBoton.setForeground(new java.awt.Color(255, 255, 255));
+        VentasBoton.setText("Ventas");
+        VentasBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VentasBotonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(VentasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 160, 60));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
         jLabel3.setText("Menu");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 130, 60));
+
+        CerrarSesionBoton.setBackground(new java.awt.Color(204, 204, 255));
+        CerrarSesionBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CerrarSesionBoton.setForeground(new java.awt.Color(255, 255, 255));
+        CerrarSesionBoton.setText("Cerrar Sesión");
+        CerrarSesionBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarSesionBotonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CerrarSesionBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 610, 180, 60));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
@@ -75,17 +88,29 @@ public class MenuBobaMesero extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         MenuInventario inv = new MenuInventario();
+        inv.setCargo("Empleado");
         inv.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_InventarioBotonActionPerformed
 
-    private void ContabilidadBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContabilidadBotonActionPerformed
+    private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
         // TODO add your handling code here:
-        MenuContabilidad cont = new MenuContabilidad();
-        cont.setVisible(true);
-        this.setVisible(false);
         
-    }//GEN-LAST:event_ContabilidadBotonActionPerformed
+        MenuVentas vent = new MenuVentas();
+        vent.setCargo("Empleado");
+        vent.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_VentasBotonActionPerformed
+
+        UsuarioManager um = new UsuarioManager();
+
+    private void CerrarSesionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionBotonActionPerformed
+        // TODO add your handling code here:
+        
+        InicioDeSesion ini = new InicioDeSesion(um);
+        ini.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CerrarSesionBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,13 +129,13 @@ public class MenuBobaMesero extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuBobaMesero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuBoba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuBobaMesero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuBoba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuBobaMesero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuBoba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuBobaMesero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuBoba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -124,14 +149,15 @@ public class MenuBobaMesero extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuBobaMesero().setVisible(true);
+                new MenuBoba().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ContabilidadBoton;
+    private javax.swing.JButton CerrarSesionBoton;
     private javax.swing.JButton InventarioBoton;
+    private javax.swing.JButton VentasBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
