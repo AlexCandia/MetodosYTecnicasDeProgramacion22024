@@ -196,7 +196,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(insumo)
                     .addComponent(insumos))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 320, 150));
@@ -351,10 +351,29 @@ public class MenuContabilidad extends javax.swing.JFrame {
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
         // TODO add your handling code here:
+        
+        String s = Reportes.getSelectedItem().toString();
+        
+        switch (s){
+            case "Egreso Fijo" -> {
+                EgresosFijos ef = new EgresosFijos();
+                ef.setVisible(true);
+             }
+            case "Egreso Insumo" -> {
+                EgresosInsumos ei = new EgresosInsumos();
+                ei.setVisible(true);
+             }
+            case "Egreso Variable" -> {
+                EgresosVariables ev = new EgresosVariables();
+                ev.setVisible(true);
+             }
+        }
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void Reportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reportes1ActionPerformed
         // TODO add your handling code here:
+        String s = Reportes.getSelectedItem().toString();
+        
     }//GEN-LAST:event_Reportes1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

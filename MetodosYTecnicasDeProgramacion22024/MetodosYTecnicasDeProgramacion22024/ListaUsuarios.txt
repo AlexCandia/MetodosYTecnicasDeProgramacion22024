@@ -1,1 +1,1 @@
-Candy;12345677;
+;;Administrador
