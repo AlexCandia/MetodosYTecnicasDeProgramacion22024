@@ -18,6 +18,7 @@ public class InicioDeSesion extends javax.swing.JFrame {
      */
     public InicioDeSesion(UsuarioManager usuarioManager) {
         initComponents();  // Inicializa los componentes del JFrame
+        this.setLocationRelativeTo(null);
         this.usuarioManager = usuarioManager;  // Almacena la instancia de UsuarioManager para ser utilizada
     }
 

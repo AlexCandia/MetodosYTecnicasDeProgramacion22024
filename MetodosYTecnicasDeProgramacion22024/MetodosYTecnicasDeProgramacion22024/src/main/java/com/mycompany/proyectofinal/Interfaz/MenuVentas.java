@@ -41,6 +41,7 @@ public class MenuVentas extends javax.swing.JFrame {
     private String cargo; 
     public MenuVentas() {
         initComponents();
+        this.setLocationRelativeTo(null);
         inventario = new GestorDeInventario();
         llenarinventarioprov();
         gestorVentas = new GestorDeVentas(inventario);

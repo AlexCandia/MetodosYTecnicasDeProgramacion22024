@@ -19,6 +19,7 @@ public class MenuBoba extends javax.swing.JFrame {
      */
     public MenuBoba() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -19,6 +19,7 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
      */
     public MenuBobaAdmin() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

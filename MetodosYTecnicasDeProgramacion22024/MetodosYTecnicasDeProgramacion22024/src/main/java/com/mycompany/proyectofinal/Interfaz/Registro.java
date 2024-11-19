@@ -19,6 +19,7 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro(UsuarioManager usuarioManager) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.usuarioManager = usuarioManager;
     }
 

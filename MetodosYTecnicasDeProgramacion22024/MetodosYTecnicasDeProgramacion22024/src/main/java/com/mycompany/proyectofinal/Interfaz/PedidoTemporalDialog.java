@@ -26,6 +26,7 @@ public class PedidoTemporalDialog extends javax.swing.JDialog {
     public PedidoTemporalDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         dtm=(DefaultTableModel)TablaPedidoTemporal.getModel();
     }
 

@@ -37,6 +37,7 @@ public class MenuInventario extends javax.swing.JFrame {
      */
     public MenuInventario() {
         initComponents();
+        this.setLocationRelativeTo(null);
         String[] titulo = new String[]{"Nombre", "Unidad", "Cantidad"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);
@@ -194,6 +195,7 @@ public class MenuInventario extends javax.swing.JFrame {
         txtCantidad = new javax.swing.JTextField();
         comboOrdenar = new javax.swing.JComboBox<>();
         VolverBoton = new java.awt.Button();
+        ProveedoresBoton = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,7 +238,7 @@ public class MenuInventario extends javax.swing.JFrame {
                 buttonEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 570, 200, 50));
+        getContentPane().add(buttonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, 200, 50));
 
         buttonActtualizar.setBackground(new java.awt.Color(204, 153, 255));
         buttonActtualizar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -289,6 +291,17 @@ public class MenuInventario extends javax.swing.JFrame {
         });
         getContentPane().add(VolverBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 140, 50));
 
+        ProveedoresBoton.setBackground(new java.awt.Color(204, 153, 255));
+        ProveedoresBoton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ProveedoresBoton.setForeground(new java.awt.Color(255, 255, 255));
+        ProveedoresBoton.setLabel("Proveedores");
+        ProveedoresBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProveedoresBotonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ProveedoresBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 120, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -324,6 +337,13 @@ public class MenuInventario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_VolverBotonActionPerformed
 
+    private void ProveedoresBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedoresBotonActionPerformed
+        // TODO add your handling code here:
+        
+        Provedor p = new Provedor();
+        p.setVisible(true);
+    }//GEN-LAST:event_ProveedoresBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -357,6 +377,7 @@ public class MenuInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button ProveedoresBoton;
     private java.awt.Button VolverBoton;
     private java.awt.Button buttonActtualizar;
     private java.awt.Button buttonAñadir;

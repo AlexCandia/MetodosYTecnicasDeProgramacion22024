@@ -23,6 +23,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
      */
     public MenuContabilidad() {
         initComponents();
+        this.setLocationRelativeTo(null);
          
     }
     

@@ -18,6 +18,7 @@ public class Provedor extends javax.swing.JFrame {
      */
     public Provedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
         tablita.setModel(new DefaultTableModel(
         new Object[][] {}, // Lista vacía para evitar filas por defecto
         new String[] {"Nombre", "Teléfono", "Dirección"}
@@ -39,6 +40,7 @@ public class Provedor extends javax.swing.JFrame {
         eliminarProv = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         editar = new javax.swing.JButton();
+        Cerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,7 +87,15 @@ public class Provedor extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, 110, 40));
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 590, 110, 40));
+
+        Cerrar.setText("Cerrar");
+        Cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 110, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -190,6 +200,11 @@ public class Provedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_editarActionPerformed
 
+    private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_CerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,6 +242,7 @@ public class Provedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cerrar;
     private javax.swing.JButton agregarProv;
     private javax.swing.JButton editar;
     private javax.swing.JButton eliminarProv;
