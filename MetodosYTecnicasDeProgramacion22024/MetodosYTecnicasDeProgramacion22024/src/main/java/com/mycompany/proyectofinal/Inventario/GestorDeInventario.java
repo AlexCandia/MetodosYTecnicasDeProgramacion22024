@@ -27,6 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class GestorDeInventario {
     private ArrayList<Insumo> insumos;
@@ -49,7 +50,7 @@ public class GestorDeInventario {
     public void eliminarInsumo(int fila){
         insumos.remove(fila);
     }
-    public void editarInsumo(int fila, String nom, String uni, int can){
+    public void editarInsumo(int fila, String nom, String uni, int can, int min){
         Insumo in = insumos.get(fila);
         if(!"".equals(nom)){
             in.setNombre(nom);
@@ -62,13 +63,29 @@ public class GestorDeInventario {
         if(can != -1){
             in.setCantidad(can);
         }
+        if(can != -1){
+            in.setMinimo(min);
+        }
     }
+    
     public void ordenarPorNombre() {
         insumos.sort(Comparator.comparing(Insumo::getNombre));
     }
     public void ordenarPorCantidadDescendente() {
         insumos.sort((i1, i2) -> Integer.compare(i2.getCantidad(), i1.getCantidad()));
     }
+    public void verificarNivelMinimo() {
+        for (Insumo insumo : insumos) {
+            if (insumo.getCantidad() <= insumo.getMinimo()) {
+                JOptionPane.showMessageDialog(null,
+                        "Advertencia: El insumo \"" + insumo.getNombre() + "\" está por debajo del nivel mínimo (" + insumo.getMinimo() + ").",
+                        "Alerta de Stock Bajo",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
+    
+
     
   
     
