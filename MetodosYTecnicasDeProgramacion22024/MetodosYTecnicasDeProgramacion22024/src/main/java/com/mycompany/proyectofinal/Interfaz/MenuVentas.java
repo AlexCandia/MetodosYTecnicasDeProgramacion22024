@@ -731,15 +731,15 @@ public class MenuVentas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void llenarinventarioprov() {
-       Insumo insum1 = new Insumo ("Grande","Unidad",10); 
+       Insumo insum1 = new Insumo ("Grande","Unidad",10,3); 
        inventario.agregarInsumo(insum1);
-       Insumo insum2 = new Insumo ("Leche","L",10); 
+       Insumo insum2 = new Insumo ("Leche","L",10,3); 
        inventario.agregarInsumo(insum2);
-       Insumo insum3 = new Insumo ("Explosivo","Bolsa",10); 
+       Insumo insum3 = new Insumo ("Explosivo","Bolsa",10,3); 
        inventario.agregarInsumo(insum3);
-       Insumo insum4 = new Insumo ("Chocolate","L",2); 
+       Insumo insum4 = new Insumo ("Chocolate","L",2,1); 
        inventario.agregarInsumo(insum4);
-       Insumo insum5 = new Insumo ("Limon","L",2); 
+       Insumo insum5 = new Insumo ("Limon","L",2,1); 
        inventario.agregarInsumo(insum5);
     }
 

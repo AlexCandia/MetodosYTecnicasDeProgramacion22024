@@ -15,13 +15,14 @@ public class Insumo {
     private String unidad;
     private int cantidad;
     private double porunidad;
-
+    private int minimo;
 
     // Constructor
-    public Insumo(String nombre, String unidad, int cantidad) {
+    public Insumo(String nombre, String unidad, int cantidad,int minimo) {
         this.nombre = nombre;
         this.unidad = unidad;
         this.cantidad = cantidad;
+        this.minimo = minimo;
         definirlimite();
     }
 
@@ -39,6 +40,10 @@ public class Insumo {
         return cantidad;
     }
 
+    public int getMinimo() {
+        return minimo;
+    }
+
     public void setNombre(String nom) {
         nombre = nom;
     }
@@ -48,6 +53,10 @@ public class Insumo {
     }
     public void setCantidad(int cant) {
         cantidad = cant;
+    }
+    
+    public void setMinimo(int minimo) {
+        this.minimo = minimo;
     }
 
     public boolean descontarCantidad() {

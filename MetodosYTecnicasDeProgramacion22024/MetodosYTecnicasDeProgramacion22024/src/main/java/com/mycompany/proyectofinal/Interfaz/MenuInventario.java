@@ -68,7 +68,8 @@ public class MenuInventario extends javax.swing.JFrame {
         String nombre = txtNombre.getText().trim();
         String unidad = txtUnidad.getText().trim();
         String cantidad = txtCantidad.getText().trim();
-        if(nombre.isEmpty() || unidad.isEmpty() || cantidad.isEmpty()){
+        String minimo = txtMinimo.getText().trim();
+        if(nombre.isEmpty() || unidad.isEmpty() || cantidad.isEmpty() || minimo.isEmpty()){
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos", "Error de entrada", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -82,7 +83,8 @@ public class MenuInventario extends javax.swing.JFrame {
         
         // Validación para que `cantidad` sea un número entero
             int cantidadInt = Integer.parseInt(cantidad); // Si no es un número, lanzará una excepción
-            Insumo insu = new Insumo(nombre, unidad, cantidadInt);
+            int minimoInt = Integer.parseInt(minimo); 
+            Insumo insu = new Insumo(nombre, unidad, cantidadInt, minimoInt);
                 gestorInventario.agregarInsumo(insu);
 
                 dtm.addRow(new Object[]{
@@ -93,9 +95,11 @@ public class MenuInventario extends javax.swing.JFrame {
                 txtNombre.setText(null);
                 txtUnidad.setText(null);
                 txtCantidad.setText(null);
+                txtMinimo.setText(null);
+                verificarNivelMinimoInventario() ;
         
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "El campo 'Cantidad' debe contener solo números.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El campo 'Cantidad' y 'Limite de producto' debe contener solo números.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -121,10 +125,16 @@ public class MenuInventario extends javax.swing.JFrame {
         }
     }
     
+    public void verificarNivelMinimoInventario() {
+        gestorInventario.verificarNivelMinimo();
+    }
+    
     void actualizar(){
         String nombre = txtNombre.getText().trim();
         String unidad = txtUnidad.getText().trim();
         String cantidad = txtCantidad.getText().trim();
+        String minimo = txtMinimo.getText().trim();
+
         int fila = tblDatos.getSelectedRow();
         
         if(fila < 0){
@@ -132,7 +142,7 @@ public class MenuInventario extends javax.swing.JFrame {
             return;
         }
 
-        if(nombre.isEmpty() && unidad.isEmpty() && cantidad.isEmpty()){
+        if(nombre.isEmpty() && unidad.isEmpty() && cantidad.isEmpty() && minimo.isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe ingresar el valor que desea cambiar", "Error de entrada", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -144,39 +154,52 @@ public class MenuInventario extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
         );
-            
         if (opcion == JOptionPane.YES_OPTION) {
-            try{
-            int value = Integer.parseInt(cantidad); 
-            gestorInventario.editarInsumo(fila, nombre, unidad, value);
-            dtm.setValueAt(txtCantidad.getText(), fila, 3);
+            int cant;
+            int min;   
             if(!nombre.isEmpty()){
-                dtm.setValueAt(txtNombre.getText(), fila, 1);
+                dtm.setValueAt(nombre, fila, 0);
             }
             if(!unidad.isEmpty()){
-                dtm.setValueAt(txtUnidad.getText(), fila, 2);
+                dtm.setValueAt(nombre, fila, 1);
             }
-            
-            }catch(NumberFormatException ex){        
-                if(!nombre.isEmpty()){
-                    dtm.setValueAt(txtNombre.getText(), fila, 1);
+            if(!cantidad.isEmpty()){
+                try{
+                    cant = Integer.parseInt(cantidad);
+                    dtm.setValueAt(cantidad, fila,2);
+                }catch(NumberFormatException ex){        
+                    JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
-                if(!unidad.isEmpty()){
-                    dtm.setValueAt(txtUnidad.getText(), fila, 2);
+            }else{
+                cant = -1;
+            }
+            if(!minimo.isEmpty()){
+                try{
+                    min = Integer.parseInt(minimo);
+                    
+                }catch(NumberFormatException ex){        
+                    JOptionPane.showMessageDialog(this, "Ingrese una cantidad valida", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
-                gestorContabilidad.editarEgresoVariable(fila, nombre, unidad, -1);
-            }  
+            }else{
+                min = -1;
+            }
+            gestorInventario.editarInsumo(fila, nombre, unidad, cant, min);
         }
-
+        
+        
         txtNombre.setText(null);
         txtUnidad.setText(null);
         txtCantidad.setText(null);
+        txtMinimo.setText(null);
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
-     */
+     */                                                                             
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -196,6 +219,8 @@ public class MenuInventario extends javax.swing.JFrame {
         comboOrdenar = new javax.swing.JComboBox<>();
         VolverBoton = new java.awt.Button();
         ProveedoresBoton = new java.awt.Button();
+        txtMinimo = new javax.swing.JTextField();
+        lblMinimo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -300,7 +325,19 @@ public class MenuInventario extends javax.swing.JFrame {
                 ProveedoresBotonActionPerformed(evt);
             }
         });
-        getContentPane().add(ProveedoresBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 120, -1));
+        getContentPane().add(ProveedoresBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 160, 120, -1));
+
+        txtMinimo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMinimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMinimoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 130, 30));
+
+        lblMinimo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMinimo.setText("Minimo");
+        getContentPane().add(lblMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -344,6 +381,10 @@ public class MenuInventario extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_ProveedoresBotonActionPerformed
 
+    private void txtMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMinimoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -385,11 +426,13 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboOrdenar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblMinimo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUnidad;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtMinimo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtUnidad;
     // End of variables declaration//GEN-END:variables
