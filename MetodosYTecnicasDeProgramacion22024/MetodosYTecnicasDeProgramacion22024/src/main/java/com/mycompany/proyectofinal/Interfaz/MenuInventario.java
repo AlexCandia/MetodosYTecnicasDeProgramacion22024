@@ -28,10 +28,7 @@ import javax.swing.JOptionPane;
 public class MenuInventario extends javax.swing.JFrame {
      DefaultTableModel dtm = new DefaultTableModel();
      private TableRowSorter<DefaultTableModel> sorter; // Para ordenar la tabla
-    
-    GestorDeInventario gestorInventario = new GestorDeInventario();
-    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
-    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
+     private GestorDeInventario gestorInventario = new GestorDeInventario();
     /**
      * Creates new form tabala
      */

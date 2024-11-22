@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectofinal.Interfaz;
 
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
 import javax.swing.JOptionPane;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Inventario.Insumo;
@@ -21,7 +22,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Camila
  */
 public class MenuVentas extends javax.swing.JFrame {
-
+    GestorDeInventario gestorInventario = new GestorDeInventario();
+    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario);
+    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario, gestorContabilidad);
+    
     /**
      * Creates new form PantallaPrincipalVentas
      */
@@ -33,8 +37,6 @@ public class MenuVentas extends javax.swing.JFrame {
     String nombreCliente;
     String nit;
     private Object [] o = new Object[8];
-    GestorDeVentas gestorVentas;
-    GestorDeInventario inventario;
     PedidoTemporalDialog temp;
     HistorialVentasFrame histo;
     private DefaultTableModel dtm;
@@ -42,9 +44,7 @@ public class MenuVentas extends javax.swing.JFrame {
     public MenuVentas() {
         initComponents();
         this.setLocationRelativeTo(null);
-        inventario = new GestorDeInventario();
         llenarinventarioprov();
-        gestorVentas = new GestorDeVentas(inventario);
         temp = new PedidoTemporalDialog(this,true);
         histo = new HistorialVentasFrame();
         histo.rellenarVentas();
@@ -545,7 +545,7 @@ public class MenuVentas extends javax.swing.JFrame {
         return; 
         }
         Vaso vaso = new Vaso(tamaño,base,tipoBoba,sabor1,sabor2);
-        String logrado = inventario.verificarInsumos(vaso);
+        String logrado = gestorInventario.verificarInsumos(vaso);
         if(logrado.charAt(0)=='N'){
            JOptionPane.showMessageDialog(
             null,
@@ -732,15 +732,15 @@ public class MenuVentas extends javax.swing.JFrame {
 
     private void llenarinventarioprov() {
        Insumo insum1 = new Insumo ("Grande","Unidad",10,3); 
-       inventario.agregarInsumo(insum1);
+       gestorInventario.agregarInsumo(insum1);
        Insumo insum2 = new Insumo ("Leche","L",10,3); 
-       inventario.agregarInsumo(insum2);
+       gestorInventario.agregarInsumo(insum2);
        Insumo insum3 = new Insumo ("Explosivo","Bolsa",10,3); 
-       inventario.agregarInsumo(insum3);
+       gestorInventario.agregarInsumo(insum3);
        Insumo insum4 = new Insumo ("Chocolate","L",2,1); 
-       inventario.agregarInsumo(insum4);
+       gestorInventario.agregarInsumo(insum4);
        Insumo insum5 = new Insumo ("Limon","L",2,1); 
-       inventario.agregarInsumo(insum5);
+       gestorInventario.agregarInsumo(insum5);
     }
 
 }

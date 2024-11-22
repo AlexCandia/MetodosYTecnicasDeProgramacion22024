@@ -17,9 +17,6 @@ import javax.swing.JFrame;
 public class Main {
     public static void main(String[] args) {
         // Inicializar todos los gestores
-        GestorDeInventario gestorDeInventario = new GestorDeInventario();
-        GestorDeVentas gestorDeVentas = new GestorDeVentas(gestorDeInventario);
-        GestorDeContabilidad gestorDeContabilidad = new GestorDeContabilidad(gestorDeInventario, gestorDeVentas);
         UsuarioManager usuarioManager = new UsuarioManager();
 
         // Usa EventQueue para inicializar la GUI en el hilo adecuado

@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectofinal.Interfaz;
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
 import com.mycompany.proyectofinal.InicioyRegistro.UsuarioManager;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Interfaz.MenuVentas;
 import com.mycompany.proyectofinal.Interfaz.MenuInventario;
+import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 
 /**
  *
@@ -19,9 +21,9 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
      */
     public MenuBobaAdmin() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); 
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

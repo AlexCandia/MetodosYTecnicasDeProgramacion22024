@@ -28,17 +28,14 @@ public class GestorDeContabilidad {
     private ArrayList<EgresoFijo> egresosFijos;
     private ArrayList<EgresoInsumo> egresosInsumos;
     private ArrayList<EgresoVariable> egresosVariables;
-    private GestorDeVentas gestorDeVentas;
     private GestorDeInventario gestorDeInventario;
     private HashMap<String, Pedido> ventasHistoricas;
 
-    public GestorDeContabilidad(GestorDeInventario gestorDeInventario,GestorDeVentas gestorDeVentas) {
+    public GestorDeContabilidad(GestorDeInventario gestorDeInventario) {
         egresosFijos = new ArrayList<>();
         egresosInsumos = new ArrayList<>();
         egresosVariables = new ArrayList<>();
         this.gestorDeInventario = gestorDeInventario;
-        this.gestorDeVentas = gestorDeVentas;
-        ventasHistoricas = gestorDeVentas.getVentasHistoricas();
     }
     public double getIngresosBoba() {
         return ingresosBoba;
@@ -52,9 +49,9 @@ public class GestorDeContabilidad {
     public ArrayList<EgresoVariable> getEgresosVariables() {
         return egresosVariables;
     }
-    public void calcularIngreso () {
-        ingresosBoba=gestorDeVentas.calcularIngresosTotales();
-    }
+//    public void calcularIngreso () {
+//        ingresosBoba=gestorDeVentas.calcularIngresosTotales();
+//    }
 
     public void registrarEgresoFijo(EgresoFijo egreso) {
         egresosFijos.add(egreso);

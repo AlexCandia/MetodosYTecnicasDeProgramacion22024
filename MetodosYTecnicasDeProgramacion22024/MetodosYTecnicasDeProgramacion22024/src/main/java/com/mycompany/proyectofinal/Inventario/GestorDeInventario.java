@@ -32,14 +32,10 @@ import javax.swing.JOptionPane;
 public class GestorDeInventario {
     private ArrayList<Insumo> insumos;
     private GeneradorArchivosInventario productsfile;
-    private GestorDeVentas gestorDeVentas;
-    private GestorDeContabilidad gestorDeContabilidad;
 
 
     public GestorDeInventario() {
-        insumos= new ArrayList<>();
-        this.gestorDeContabilidad = gestorDeContabilidad;
-        this.gestorDeVentas = gestorDeVentas;       
+        insumos= new ArrayList<>();     
     }   
     public ArrayList<Insumo> getInsumos(){
         return insumos;
