@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectofinal.Interfaz;
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
+import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +20,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class MenuContabilidad extends javax.swing.JFrame {
 
      private DefaultTableModel modeloTabla;
+     private GestorDeInventario gestorInventario = new GestorDeInventario();
+     private GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario);
+     
     /**
      * Creates new form Conta
      */
@@ -332,7 +337,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
         int numero1 = Integer.parseInt(lblNumero1.getText());
         int numero2 = Integer.parseInt(lblNumero2.getText());
         int numero3 = Integer.parseInt(lblNumero3.getText());
-        int numero4 = Integer.parseInt(insumo.getText());
+        int numero4 = Integer.parseInt(insumos.getText());
         // Realiza la suma
         int resultado = numero1 - numero2 - numero3 - numero4;
 

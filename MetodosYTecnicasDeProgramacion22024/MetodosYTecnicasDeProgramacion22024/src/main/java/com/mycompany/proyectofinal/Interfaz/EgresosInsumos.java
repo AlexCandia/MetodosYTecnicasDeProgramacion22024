@@ -32,9 +32,8 @@ public class EgresosInsumos extends javax.swing.JFrame {
      */
     
      //Solo es para las pruebas se debe borrar
-    GestorDeInventario gestorInventario = new GestorDeInventario();
-    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
-    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
+    private GestorDeInventario gestorInventario = new GestorDeInventario();
+    private GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario); 
     
     public EgresosInsumos() {
         initComponents();

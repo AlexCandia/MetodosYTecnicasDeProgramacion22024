@@ -8,6 +8,7 @@ package com.mycompany.proyectofinal.Ventas;
  *
  * @author Camila
  */
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,18 +19,20 @@ public class GestorDeVentas {
     // Atributos de la clase GestorDeVentas
     
     private ArrayList<Vaso> pedidoActual;
-    private GestorDeInventario inventario;
+    private GestorDeInventario gestorInventario;
     private HashMap<String, Pedido> ventasHistoricas;
     private ArrayList<Pedido> ventasDiarias;
     private Queue<Vaso> colaPedidos;
     private Pedido pedidoTemporal;
     private GeneradorArchivosVentas generadorArchivosVentas;
+    private GestorDeContabilidad gestorContabilidad; 
     
     // Constructor
-    public GestorDeVentas(GestorDeInventario inventario) {
+    public GestorDeVentas(GestorDeInventario gestorInventario, GestorDeContabilidad gestorContabilidad) {
         
         this.pedidoActual = new ArrayList<>();
-        this.inventario=inventario;
+        this.gestorInventario=gestorInventario;
+        this.gestorContabilidad = gestorContabilidad;
         generadorArchivosVentas = new GeneradorArchivosVentas();
         this.ventasHistoricas = generadorArchivosVentas.cargarVentasHistoricasDesdeArchivo();
         this.ventasDiarias = new ArrayList<>();

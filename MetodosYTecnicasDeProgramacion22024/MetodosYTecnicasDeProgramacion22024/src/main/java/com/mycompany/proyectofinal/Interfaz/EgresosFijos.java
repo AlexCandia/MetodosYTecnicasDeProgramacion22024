@@ -7,7 +7,7 @@ package com.mycompany.proyectofinal.Interfaz;
 import com.mycompany.proyectofinal.Contabilidad.EgresoFijo;
 import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
-import  com.mycompany.proyectofinal.Ventas.GestorDeVentas;
+import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -22,17 +22,16 @@ public class EgresosFijos extends javax.swing.JFrame {
     /**
      * Creates new form EgresoFijo_InterFaz
      */
-    
-    //Solo es para las pruebas, se debe borrar
-    GestorDeInventario gestorInventario = new GestorDeInventario();
-    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
-    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
+    private GestorDeInventario gestorInventario = new GestorDeInventario();
+    private GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario);   
+
     
     public EgresosFijos() {
         initComponents();
         String[] titulo = new String[]{"Fecha", "Nombre","Valor" };
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);
+        this.gestorContabilidad = gestorContabilidad;
     }
 
     public void agregar(){
