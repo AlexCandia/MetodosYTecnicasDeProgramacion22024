@@ -12,6 +12,14 @@
     <maven.compiler.release>17</maven.compiler.release>
     </properties>
     
+    <build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+        </resource>
+    </resources>
+    </build>
+    
     <dependencies>
         <dependency>
         <groupId>org.jfree</groupId>

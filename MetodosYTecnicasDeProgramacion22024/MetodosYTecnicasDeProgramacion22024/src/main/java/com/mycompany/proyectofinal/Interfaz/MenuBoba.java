@@ -7,6 +7,10 @@ import com.mycompany.proyectofinal.InicioyRegistro.UsuarioManager;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Interfaz.MenuVentas;
 import com.mycompany.proyectofinal.Interfaz.MenuInventario;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,10 +18,12 @@ import com.mycompany.proyectofinal.Interfaz.MenuInventario;
  */
 public class MenuBoba extends javax.swing.JFrame {
 
+    FondoPanel fondo = new FondoPanel();
     /**
      * Creates new form Menu
      */
     public MenuBoba() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -31,45 +37,17 @@ public class MenuBoba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new FondoPanel();
+        CerrarSesionBoton = new javax.swing.JButton();
         InventarioBoton = new javax.swing.JButton();
         VentasBoton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        CerrarSesionBoton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, 50, 50));
 
-        InventarioBoton.setBackground(new java.awt.Color(204, 204, 255));
-        InventarioBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        InventarioBoton.setForeground(new java.awt.Color(255, 255, 255));
-        InventarioBoton.setText("Inventario");
-        InventarioBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InventarioBotonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(InventarioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 180, 60));
-
-        VentasBoton.setBackground(new java.awt.Color(204, 204, 255));
-        VentasBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        VentasBoton.setForeground(new java.awt.Color(255, 255, 255));
-        VentasBoton.setText("Ventas");
-        VentasBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VentasBotonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(VentasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 160, 60));
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
-        jLabel3.setText("Menu");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 130, 60));
-
-        CerrarSesionBoton.setBackground(new java.awt.Color(204, 204, 255));
-        CerrarSesionBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CerrarSesionBoton.setBackground(new java.awt.Color(0, 204, 204));
+        CerrarSesionBoton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         CerrarSesionBoton.setForeground(new java.awt.Color(255, 255, 255));
         CerrarSesionBoton.setText("Cerrar Sesión");
         CerrarSesionBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,17 +55,109 @@ public class MenuBoba extends javax.swing.JFrame {
                 CerrarSesionBotonActionPerformed(evt);
             }
         });
-        getContentPane().add(CerrarSesionBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 610, 180, 60));
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 255));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 700));
+        InventarioBoton.setBackground(new java.awt.Color(153, 153, 255));
+        InventarioBoton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        InventarioBoton.setForeground(new java.awt.Color(255, 255, 255));
+        InventarioBoton.setText("Inventario");
+        InventarioBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InventarioBotonActionPerformed(evt);
+            }
+        });
+
+        VentasBoton.setBackground(new java.awt.Color(153, 153, 255));
+        VentasBoton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        VentasBoton.setForeground(new java.awt.Color(255, 255, 255));
+        VentasBoton.setText("Ventas");
+        VentasBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VentasBotonActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 90)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Menu");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(236, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(25, 25, 25))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(458, 458, 458)
+                        .addComponent(InventarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154)
+                        .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(785, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(CerrarSesionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(187, 187, 187)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InventarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(442, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CerrarSesionBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CerrarSesionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionBotonActionPerformed
+        // TODO add your handling code here:
+
+        InicioDeSesion ini = new InicioDeSesion(um);
+        ini.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CerrarSesionBotonActionPerformed
+
     private void InventarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioBotonActionPerformed
         // TODO add your handling code here:
-        
+
         MenuInventario inv = new MenuInventario();
         inv.setCargo("Empleado");
         inv.setVisible(true);
@@ -96,7 +166,7 @@ public class MenuBoba extends javax.swing.JFrame {
 
     private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
         // TODO add your handling code here:
-        
+
         MenuVentas vent = new MenuVentas();
         vent.setCargo("Empleado");
         vent.setVisible(true);
@@ -104,14 +174,6 @@ public class MenuBoba extends javax.swing.JFrame {
     }//GEN-LAST:event_VentasBotonActionPerformed
 
         UsuarioManager um = new UsuarioManager();
-
-    private void CerrarSesionBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionBotonActionPerformed
-        // TODO add your handling code here:
-        
-        InicioDeSesion ini = new InicioDeSesion(um);
-        ini.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_CerrarSesionBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,8 +221,18 @@ public class MenuBoba extends javax.swing.JFrame {
     private javax.swing.JButton CerrarSesionBoton;
     private javax.swing.JButton InventarioBoton;
     private javax.swing.JButton VentasBoton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/imagen/cajero.jpg")).getImage();
+            g.drawImage(imagen,0,0,getWidth(), getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 }

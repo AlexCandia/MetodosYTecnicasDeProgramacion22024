@@ -5,10 +5,14 @@
 package com.mycompany.proyectofinal.Interfaz;
 
 import com.mycompany.proyectofinal.Ventas.Pedido;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,10 +20,12 @@ import javax.swing.table.DefaultTableModel;
  * @author developerweb
  */
 public class HistorialVentasFrame extends javax.swing.JFrame {
+    FondoPanel fondo = new FondoPanel();
 
    private HashMap<String, Pedido> ventasHistoricas;
    private DefaultTableModel dtm;
     public HistorialVentasFrame() {
+        this.setContentPane(fondo);
         initComponents();
         dtm=(DefaultTableModel)tablaHistorialVentas.getModel();
     }
@@ -28,13 +34,16 @@ public class HistorialVentasFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        historialVentasLabel = new javax.swing.JLabel();
+        jPanel1 = new FondoPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaHistorialVentas = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        historialVentasLabel1 = new javax.swing.JLabel();
+        historialVentasLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        historialVentasLabel.setText("Historial de Ventas");
+        jPanel1.setPreferredSize(new java.awt.Dimension(1857, 840));
 
         tablaHistorialVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -49,29 +58,73 @@ public class HistorialVentasFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaHistorialVentas);
 
+        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+
+        historialVentasLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        historialVentasLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        historialVentasLabel1.setText("Historial de ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(historialVentasLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(historialVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
+        );
+
+        historialVentasLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        historialVentasLabel.setForeground(new java.awt.Color(153, 153, 255));
+        historialVentasLabel.setText("Ventas");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(520, 520, 520)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(historialVentasLabel)))
+                .addContainerGap(471, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(historialVentasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(135, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(historialVentasLabel)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(historialVentasLabel)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,6 +167,9 @@ public class HistorialVentasFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel historialVentasLabel;
+    private javax.swing.JLabel historialVentasLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaHistorialVentas;
     // End of variables declaration//GEN-END:variables
@@ -141,4 +197,15 @@ public class HistorialVentasFrame extends javax.swing.JFrame {
             }
         }
     }
+    
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/imagen/fondoBlanco.jpg")).getImage();
+            g.drawImage(imagen,0,0,getWidth(), getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
+    
 }
