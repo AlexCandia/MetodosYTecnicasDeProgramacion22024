@@ -1,0 +1,5 @@
+Ventas Historicas:
+Fecha:23/11/24
+Pedido:1Cliente:CesiNIT:244
+Nro Vaso:1Sabor 1 :ChocolateSabor 2 :MaracuyaTamaño :MedianoBase:AguaTipo Perlas:RegularSubTotal:15
+Total: 15

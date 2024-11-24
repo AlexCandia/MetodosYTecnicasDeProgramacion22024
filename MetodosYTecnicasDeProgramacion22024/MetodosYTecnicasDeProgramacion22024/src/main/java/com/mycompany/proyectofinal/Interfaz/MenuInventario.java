@@ -9,11 +9,16 @@ import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Inventario.Insumo;
 import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
+import com.mycompany.proyectofinal.Ventas.Pedido;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.Map;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
@@ -28,7 +33,7 @@ import javax.swing.JOptionPane;
 public class MenuInventario extends javax.swing.JFrame {
      DefaultTableModel dtm = new DefaultTableModel();
      private TableRowSorter<DefaultTableModel> sorter; // Para ordenar la tabla
-     private GestorDeInventario gestorInventario = new GestorDeInventario();
+     private GestorDeInventario gestorInventario;
     /**
      * Creates new form tabala
      */
@@ -46,6 +51,8 @@ public class MenuInventario extends javax.swing.JFrame {
         
         // Evento para el JComboBox
         comboOrdenar.addActionListener(e -> ordenarTabla());
+        gestorInventario = new GestorDeInventario();
+        rellenarTablaInicio();
     }
     // Método para ordenar la tabla según el criterio seleccionado en el JComboBox
     private void ordenarTabla() {
@@ -218,6 +225,8 @@ public class MenuInventario extends javax.swing.JFrame {
         ProveedoresBoton = new java.awt.Button();
         txtMinimo = new javax.swing.JTextField();
         lblMinimo = new javax.swing.JLabel();
+        buttonEliminar1 = new java.awt.Button();
+        buttonEliminar2 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -336,6 +345,28 @@ public class MenuInventario extends javax.swing.JFrame {
         lblMinimo.setText("Minimo");
         getContentPane().add(lblMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
 
+        buttonEliminar1.setBackground(new java.awt.Color(204, 153, 255));
+        buttonEliminar1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        buttonEliminar1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonEliminar1.setLabel("Eliminar");
+        buttonEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEliminar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonEliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, 200, 50));
+
+        buttonEliminar2.setBackground(new java.awt.Color(204, 153, 255));
+        buttonEliminar2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        buttonEliminar2.setForeground(new java.awt.Color(255, 255, 255));
+        buttonEliminar2.setLabel("Eliminar");
+        buttonEliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEliminar2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonEliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, 200, 50));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -361,10 +392,12 @@ public class MenuInventario extends javax.swing.JFrame {
     private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
         // TODO add your handling code here:
         if(cargo.equals("Admin")){
+            gestorInventario.guardarInventario();
             MenuBobaAdmin menu =  new MenuBobaAdmin();
             menu.setVisible(true);
             this.setVisible(false);
         }else{
+            gestorInventario.guardarInventario();
             MenuBoba men =  new MenuBoba();
             men.setVisible(true);
             this.setVisible(false);
@@ -374,13 +407,21 @@ public class MenuInventario extends javax.swing.JFrame {
     private void ProveedoresBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedoresBotonActionPerformed
         // TODO add your handling code here:
         
-        Provedor p = new Provedor();
+        ProveedoresFrameInventario p = new ProveedoresFrameInventario();
         p.setVisible(true);
     }//GEN-LAST:event_ProveedoresBotonActionPerformed
 
     private void txtMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinimoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMinimoActionPerformed
+
+    private void buttonEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonEliminar1ActionPerformed
+
+    private void buttonEliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonEliminar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,6 +461,8 @@ public class MenuInventario extends javax.swing.JFrame {
     private java.awt.Button buttonActtualizar;
     private java.awt.Button buttonAñadir;
     private java.awt.Button buttonEliminar;
+    private java.awt.Button buttonEliminar1;
+    private java.awt.Button buttonEliminar2;
     private javax.swing.JComboBox<String> comboOrdenar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidad;
@@ -433,4 +476,24 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtUnidad;
     // End of variables declaration//GEN-END:variables
+
+    private void rellenarTablaInicio() {
+        ArrayList<Insumo> llen = gestorInventario.getInsumos();
+        if(!llen.isEmpty()){
+            for (Insumo  insumo : llen) {
+                String nombreInsumo = insumo.getNombre();
+                String unidadInsumo = insumo.getUnidad();
+                String cantidadInsumo = insumo.getCantidad()+"";
+                String minimoInsumo = insumo.getMinimo()+"";
+                dtm.addRow(new Object[]{nombreInsumo,unidadInsumo,cantidadInsumo});
+            }
+        }else{
+            JOptionPane.showMessageDialog(
+            null,
+            "Archivo de Ventas no hallado,iniciando vacio",
+            "Error: Archivo no encontrado",
+            JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
 }

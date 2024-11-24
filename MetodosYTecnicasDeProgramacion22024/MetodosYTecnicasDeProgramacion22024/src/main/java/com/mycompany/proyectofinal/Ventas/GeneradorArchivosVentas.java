@@ -24,9 +24,13 @@ public class GeneradorArchivosVentas {
     private HashMap<String, Pedido> ventasHistoricas;
      private static final String FILE_PATH1 = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\ticket.txt";
      private static final String FILE_PATH2 = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\factura.txt";
-     private static final String FILE_PATH3 = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\historico.txt";
-     public GeneradorArchivosVentas() {
+     private static final String FILE_PATH3 = "C:\\Users\\developerweb\\Desktop\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Ventas\\VentasHistoricas.txt";
+     public GeneradorArchivosVentas(){
+         cargarVentasHistoricasDesdeArchivo();
     }
+     public HashMap<String, Pedido> getVentasHistoricas(){
+         return ventasHistoricas;
+     }
     public void generarTicket(Pedido pedido){
        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH1))) {
             writer.write("Nro Pedido:"+pedido.getNumPedido()+"Nombre:"+pedido.getNombre());
@@ -90,7 +94,7 @@ public class GeneradorArchivosVentas {
             System.out.println("Error al crear la el reporte: " + e.getMessage());
         } 
     }
-  public HashMap<String, Pedido> cargarVentasHistoricasDesdeArchivo() {
+  private void cargarVentasHistoricasDesdeArchivo() {
         ventasHistoricas = new HashMap<>();
     try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH3))) {
         Pedido pedidoActual = null;
@@ -121,10 +125,10 @@ public class GeneradorArchivosVentas {
             } else if (linea.startsWith("Nro Vaso:")) {
                 // Extraer los datos del vaso y añadirlo al pedido actual
                 String sabor1 = getValue(linea, "Sabor 1 :", "Sabor 2 :");
-                String tamaño = getValue(linea, "Tamanio :", "Base:");
+                String tamaño = getValue(linea, "Tamaño :", "Base:");
                 String base = getValue(linea, "Base:", "Tipo Perlas:");
-                String perlas = getValue(linea, "Tipo Perlas:", null);
-                String sabor2 = getValue(linea, "Sabor 2 :", "Tamanio :");  // Último campo
+                String perlas = getValue(linea, "Tipo Perlas:", "SubTotal:");
+                String sabor2 = getValue(linea, "Sabor 2 :", "Tamaño :");
 
                 // Crear un nuevo Vaso y agregarlo al pedido actual
                 Vaso vaso = new Vaso(tamaño, base, perlas, sabor1, sabor2);
@@ -134,9 +138,9 @@ public class GeneradorArchivosVentas {
             }
         }
     } catch (IOException e) {
-        System.out.println("Error al cargar el archivo de ventas históricas: " + e.getMessage());
+        ventasHistoricas = new HashMap<>();
     }
-    return ventasHistoricas;
+
 }
 
 // Método auxiliar para extraer valores entre dos etiquetas

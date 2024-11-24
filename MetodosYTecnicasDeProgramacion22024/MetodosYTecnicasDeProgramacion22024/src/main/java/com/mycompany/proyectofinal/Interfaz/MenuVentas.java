@@ -25,10 +25,6 @@ public class MenuVentas extends javax.swing.JFrame {
     GestorDeInventario gestorInventario = new GestorDeInventario();
     GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario);
     GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario, gestorContabilidad);
-    
-    /**
-     * Creates new form PantallaPrincipalVentas
-     */
     String tamaño="";
     String base="";
     String tipoBoba="";
@@ -47,7 +43,7 @@ public class MenuVentas extends javax.swing.JFrame {
         llenarinventarioprov();
         temp = new PedidoTemporalDialog(this,true);
         histo = new HistorialVentasFrame();
-        histo.rellenarVentas();
+        histo.recibirMap(gestorVentas.getVentasHistoricas());
         dtm=(DefaultTableModel)ColaDePedidos.getModel();
         mandargestor();
     }
@@ -452,7 +448,8 @@ public class MenuVentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void HistorialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialButtonActionPerformed
-         histo.setVisible(true);
+        histo.rellenarVentas(); 
+        histo.setVisible(true);
     }//GEN-LAST:event_HistorialButtonActionPerformed
 
     private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
@@ -651,6 +648,18 @@ public class MenuVentas extends javax.swing.JFrame {
         o[7]=vaso.getVaso().getSabor2();
         dtm.addRow(o);
     }
+     private void llenarinventarioprov() {
+       Insumo insum1 = new Insumo ("Grande","Unidad",10,3); 
+       gestorInventario.agregarInsumo(insum1);
+       Insumo insum2 = new Insumo ("Leche","L",10,3); 
+       gestorInventario.agregarInsumo(insum2);
+       Insumo insum3 = new Insumo ("Explosivo","Bolsa",10,3); 
+       gestorInventario.agregarInsumo(insum3);
+       Insumo insum4 = new Insumo ("Chocolate","L",2,1); 
+       gestorInventario.agregarInsumo(insum4);
+       Insumo insum5 = new Insumo ("Limon","L",2,1); 
+       gestorInventario.agregarInsumo(insum5);
+    }
     /**
      * @param args the command line arguments
      */
@@ -730,17 +739,5 @@ public class MenuVentas extends javax.swing.JFrame {
     private javax.swing.JButton terminarDiaButton;
     // End of variables declaration//GEN-END:variables
 
-    private void llenarinventarioprov() {
-       Insumo insum1 = new Insumo ("Grande","Unidad",10,3); 
-       gestorInventario.agregarInsumo(insum1);
-       Insumo insum2 = new Insumo ("Leche","L",10,3); 
-       gestorInventario.agregarInsumo(insum2);
-       Insumo insum3 = new Insumo ("Explosivo","Bolsa",10,3); 
-       gestorInventario.agregarInsumo(insum3);
-       Insumo insum4 = new Insumo ("Chocolate","L",2,1); 
-       gestorInventario.agregarInsumo(insum4);
-       Insumo insum5 = new Insumo ("Limon","L",2,1); 
-       gestorInventario.agregarInsumo(insum5);
-    }
 
 }

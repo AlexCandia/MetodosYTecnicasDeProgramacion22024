@@ -156,8 +156,8 @@ public class PedidoTemporalDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_eliminarVasoButonActionPerformed
 
     private void editarVasoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarVasoButtonActionPerformed
-       EditarVasoDialog edi;
-       edi = new EditarVasoDialog(this,true);
+       EditarVasoVentasDialog edi;
+       edi = new EditarVasoVentasDialog(this,true);
        edi.setLocationRelativeTo(this);
        edi.editarvaso(gestor,this);
        edi.agregarNumerosComboBox();

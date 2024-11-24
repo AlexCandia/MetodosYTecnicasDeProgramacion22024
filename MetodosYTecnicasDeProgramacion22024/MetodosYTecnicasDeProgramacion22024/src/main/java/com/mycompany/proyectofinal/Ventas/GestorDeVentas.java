@@ -34,7 +34,7 @@ public class GestorDeVentas {
         this.gestorInventario=gestorInventario;
         this.gestorContabilidad = gestorContabilidad;
         generadorArchivosVentas = new GeneradorArchivosVentas();
-        this.ventasHistoricas = generadorArchivosVentas.cargarVentasHistoricasDesdeArchivo();
+        this.ventasHistoricas = generadorArchivosVentas.getVentasHistoricas();
         this.ventasDiarias = new ArrayList<>();
         this.colaPedidos = new LinkedList<>();
         this.pedidoTemporal= null;
@@ -59,10 +59,10 @@ public class GestorDeVentas {
     public boolean existeVaso(String numVaso) {
         for (Vaso vaso : pedidoActual) {
             if (vaso.getNumVaso().equals(numVaso)) {
-                return true; // Si encuentra el vaso, devuelve true
+                return true; 
             }
         }
-        return false; // Si no encuentra el vaso, devuelve false
+        return false; 
     }
     
     private Vaso buscarVasoEnPedido(String numVaso){
@@ -110,14 +110,11 @@ public class GestorDeVentas {
             numPedido = 1;
         }
         pedidoTemporal.setNumPedido(numPedido);
-        // Recibe la informacion de un cliente (nombre,nit) para que todos los pedidos(vasos) sean 
-        // registrados a dicho nombre.
     }
 
     public void agregarVaso(Vaso vaso) {
         pedidoTemporal.añadir(vaso);
-        // Metodo que recibe un objeto de tipo vaso , y lo añade a un objeto de tipo pedido 
-        // mientras cliente no sea nulo
+ 
     }
     public void editarInfoVaso(String numVaso,String infoN,String parametro) {
         Vaso vasoEditado=buscarVasoEnPedido(numVaso);
@@ -192,6 +189,7 @@ public class GestorDeVentas {
             String codigoIdentificador = pedidoProcesado.generarCodigoIdentificador();
             ventasHistoricas.put(codigoIdentificador,pedidoProcesado);
         }
+        generadorArchivosVentas.generarReporte(ventasHistoricas);
     }
     public double calcularIngresosTotales() {
         double ingresosTotales = 0;
@@ -247,5 +245,6 @@ public class GestorDeVentas {
             recorrido.get(i).setNumVaso(i+1+"");
         }
     }
+
 
 }
