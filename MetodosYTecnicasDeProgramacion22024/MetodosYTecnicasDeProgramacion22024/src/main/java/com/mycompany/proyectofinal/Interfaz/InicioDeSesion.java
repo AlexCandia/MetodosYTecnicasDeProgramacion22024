@@ -270,10 +270,9 @@ public class InicioDeSesion extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InicioDeSesion().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+        UsuarioManager usuarioManager = new UsuarioManager(); // Crear instancia de UsuarioManager
+        new InicioDeSesion(usuarioManager).setVisible(true);  // Pasar instancia al constructor
         });
     }
 
