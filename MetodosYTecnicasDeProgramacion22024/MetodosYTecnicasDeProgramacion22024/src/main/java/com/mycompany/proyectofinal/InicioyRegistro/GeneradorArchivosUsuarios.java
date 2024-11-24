@@ -16,7 +16,7 @@ public class GeneradorArchivosUsuarios {
   public GeneradorArchivosUsuarios(){
     cargarUsuarios();  
     }
-  private static final String FILE_PATH = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\InicioyRegistro\\users.txt";
+  private static final String FILE_PATH = "C:\\Users\\developerweb\\Desktop\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\InicioyRegistro\\users.txt";
   public Usuario buscarUsuario(String codigoE) {
       return usuarios.get(codigoE);  
     }

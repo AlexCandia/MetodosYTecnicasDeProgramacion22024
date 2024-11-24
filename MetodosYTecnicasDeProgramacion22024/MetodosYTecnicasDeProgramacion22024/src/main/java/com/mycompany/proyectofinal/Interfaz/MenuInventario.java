@@ -11,6 +11,7 @@ import com.mycompany.proyectofinal.Inventario.Insumo;
 import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -32,7 +33,7 @@ import javax.swing.JPanel;
 public class MenuInventario extends javax.swing.JFrame {
      DefaultTableModel dtm = new DefaultTableModel();
      private TableRowSorter<DefaultTableModel> sorter; // Para ordenar la tabla
-     private GestorDeInventario gestorInventario = new GestorDeInventario();
+     private GestorDeInventario gestorInventario;
      FondoPanel fondo = new FondoPanel();
     /**
      * Creates new form tabala
@@ -52,6 +53,8 @@ public class MenuInventario extends javax.swing.JFrame {
         
         // Evento para el JComboBox
         comboOrdenar.addActionListener(e -> ordenarTabla());
+        gestorInventario = new GestorDeInventario();
+        rellenarTablaInicio();
     }
     // Método para ordenar la tabla según el criterio seleccionado en el JComboBox
     private void ordenarTabla() {
@@ -478,10 +481,12 @@ public class MenuInventario extends javax.swing.JFrame {
     private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
         // TODO add your handling code here:
         if(cargo.equals("Admin")){
+             gestorInventario.guardarInventario();
             MenuBobaAdmin menu =  new MenuBobaAdmin();
             menu.setVisible(true);
             this.setVisible(false);
         }else{
+             gestorInventario.guardarInventario();
             MenuBoba men =  new MenuBoba();
             men.setVisible(true);
             this.setVisible(false);
@@ -507,7 +512,7 @@ public class MenuInventario extends javax.swing.JFrame {
     private void ProveedoresBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedoresBotonActionPerformed
         // TODO add your handling code here:
 
-        Provedor p = new Provedor();
+        ProveedoresFrameInventario p = new ProveedoresFrameInventario();
         p.setVisible(true);
     }//GEN-LAST:event_ProveedoresBotonActionPerformed
 
@@ -521,6 +526,25 @@ public class MenuInventario extends javax.swing.JFrame {
     private String cargo;
     public void setCargo(String s){
         cargo = s;
+    }
+    private void rellenarTablaInicio() {
+        ArrayList<Insumo> llen = gestorInventario.getInsumos();
+        if(!llen.isEmpty()){
+            for (Insumo  insumo : llen) {
+                String nombreInsumo = insumo.getNombre();
+                String unidadInsumo = insumo.getUnidad();
+                String cantidadInsumo = insumo.getCantidad()+"";
+                String minimoInsumo = insumo.getMinimo()+"";
+                dtm.addRow(new Object[]{nombreInsumo,unidadInsumo,cantidadInsumo});
+            }
+        }else{
+            JOptionPane.showMessageDialog(
+            null,
+            "Archivo de Ventas no hallado,iniciando vacio",
+            "Error: Archivo no encontrado",
+            JOptionPane.WARNING_MESSAGE
+            );
+        }
     }
     /**
      * @param args the command line arguments
