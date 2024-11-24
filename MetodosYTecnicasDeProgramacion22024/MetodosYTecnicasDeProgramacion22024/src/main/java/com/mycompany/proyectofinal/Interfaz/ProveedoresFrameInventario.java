@@ -4,8 +4,12 @@
  */
 package com.mycompany.proyectofinal.Interfaz;
 
+import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
+import com.mycompany.proyectofinal.Inventario.Insumo;
+import com.mycompany.proyectofinal.Inventario.Proveedor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,11 +21,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProveedoresFrameInventario extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
-
+    GestorDeInventario gestorInventario;
     /**
      * Creates new form Provedor
      */
-    public ProveedoresFrameInventario() {
+    public ProveedoresFrameInventario(GestorDeInventario gestorInventario) {
         this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -29,6 +33,8 @@ public class ProveedoresFrameInventario extends javax.swing.JFrame {
         new Object[][] {}, // Lista vacía para evitar filas por defecto
         new String[] {"Nombre", "Teléfono", "Dirección"}
     ));
+        this.gestorInventario=gestorInventario;
+        rellenarTablaInicio();
     }
 
     /**
@@ -102,7 +108,7 @@ public class ProveedoresFrameInventario extends javax.swing.JFrame {
         Cerrar.setBackground(new java.awt.Color(0, 204, 204));
         Cerrar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Cerrar.setForeground(new java.awt.Color(255, 255, 255));
-        Cerrar.setText("Ventas");
+        Cerrar.setText("Inventario");
         Cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CerrarActionPerformed(evt);
@@ -194,30 +200,29 @@ public class ProveedoresFrameInventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProvActionPerformed
-         DefaultTableModel model = (DefaultTableModel) tablita.getModel();
-
-    // Pedir al usuario que ingrese el nombre
-    String nombre = JOptionPane.showInputDialog("Ingrese el nombre del proveedor:");
-
-    // Crear un ciclo para validar el teléfono
-    String telefonoStr = null;
-    boolean telefonoValido = false;
-    while (!telefonoValido) {
-        telefonoStr = JOptionPane.showInputDialog("Ingrese el teléfono del proveedor:");
-        try {
-            Integer.parseInt(telefonoStr); // Intentamos convertir el teléfono a int
-            telefonoValido = true; // Si es válido, salir del ciclo
-        } catch (NumberFormatException e) {
-            // Si no es un número, mostramos un mensaje de error
-            JOptionPane.showMessageDialog(this, "Debe colocar solo números en el campo de teléfono.");
+        DefaultTableModel model = (DefaultTableModel) tablita.getModel();
+        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del proveedor:");
+        String telefonoStr = null;
+        boolean telefonoValido = false;
+        while (!telefonoValido) {
+            telefonoStr = JOptionPane.showInputDialog("Ingrese el teléfono del proveedor:");
+            try {
+                Integer.parseInt(telefonoStr); 
+                telefonoValido = true; 
+            } catch (NumberFormatException e) {
+                // Si no es un número, mostramos un mensaje de error
+                JOptionPane.showMessageDialog(this, "Debe colocar solo números en el campo de teléfono.");
+            }
         }
-    }
 
     // Pedir la dirección
     String direccion = JOptionPane.showInputDialog("Ingrese la dirección del proveedor:");
 
     // Agregar una nueva fila con los datos ingresados si todo es válido
     if (nombre != null && telefonoStr != null && direccion != null) {
+        
+        Proveedor proveedor = new Proveedor(nombre,telefonoStr,direccion);
+        gestorInventario.getProveedores().add(proveedor);
         model.addRow(new Object[]{nombre, Integer.parseInt(telefonoStr), direccion});
     }
     }//GEN-LAST:event_agregarProvActionPerformed
@@ -237,6 +242,7 @@ public class ProveedoresFrameInventario extends javax.swing.JFrame {
             if (confirm == JOptionPane.YES_OPTION) {
                 DefaultTableModel model = (DefaultTableModel) tablita.getModel();
                 model.removeRow(selectedRow);
+                gestorInventario.getProveedores().remove(selectedRow);
             }
         } else {
         // Mostrar mensaje si no se ha seleccionado ninguna fila
@@ -280,24 +286,45 @@ public class ProveedoresFrameInventario extends javax.swing.JFrame {
                 if (opcion.equals("Dirección") || opcion.equals("Todo")) {
                     direccion = JOptionPane.showInputDialog("Nueva dirección:", direccion);
                 }
-
-                // Actualizar la fila con los nuevos datos
                 DefaultTableModel model = (DefaultTableModel) tablita.getModel();
                 model.setValueAt(nombre, selectedRow, 0);
+                gestorInventario.getProveedores().get(selectedRow).setNombre(nombre);
                 model.setValueAt(telefono, selectedRow, 1);
+                gestorInventario.getProveedores().get(selectedRow).setNombre(telefono);
                 model.setValueAt(direccion, selectedRow, 2);
+                gestorInventario.getProveedores().get(selectedRow).setNombre(direccion);
             }
         } else {
-            // Mostrar un mensaje si no se seleccionó ninguna fila
             JOptionPane.showMessageDialog(this, "Selecciona un proveedor para editar.");
         }
     }//GEN-LAST:event_editarActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
-        // TODO add your handling code here:
+        gestorInventario.guardarProveedores();
         this.setVisible(false);
     }//GEN-LAST:event_CerrarActionPerformed
-
+    private void rellenarTablaInicio() {
+        DefaultTableModel model = (DefaultTableModel) tablita.getModel();
+        ArrayList<Proveedor> llen = gestorInventario.getProveedores();
+        if(!llen.isEmpty()){
+            for (Proveedor  proveedor : llen) {
+                String nombreProv = proveedor.getNombre();
+                String telProv = proveedor.getTelefono();
+                String dirProv = proveedor.getDireccion();
+                model.addRow(new Object[]{nombreProv,telProv,dirProv});
+            }
+        }else{
+            JOptionPane.showMessageDialog(
+            null,
+            "Archivo de Proveedores no hallado,iniciando vacio",
+            "Error: Archivo no encontrado",
+            JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
+    public void recibirGestor(GestorDeInventario gestorInventario){
+        this.gestorInventario=gestorInventario;
+    }
     /**
      * @param args the command line arguments
      */
@@ -331,7 +358,8 @@ public class ProveedoresFrameInventario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProveedoresFrameInventario().setVisible(true);
+                GestorDeInventario gestor;
+                new ProveedoresFrameInventario(null).setVisible(true);
             }
         });
     }

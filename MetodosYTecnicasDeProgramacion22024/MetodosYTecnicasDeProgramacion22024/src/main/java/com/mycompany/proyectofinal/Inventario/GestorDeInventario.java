@@ -31,15 +31,20 @@ import javax.swing.JOptionPane;
 
 public class GestorDeInventario {
     private ArrayList<Insumo> insumos;
+    private ArrayList<Proveedor> proveedores;
     private GeneradorArchivosInventario productsfile;
 
 
     public GestorDeInventario() {
         productsfile= new GeneradorArchivosInventario();
-        insumos= productsfile.getProductos();      
+        insumos= productsfile.getProductos();
+        proveedores= productsfile.getProveedores(); 
     }   
     public ArrayList<Insumo> getInsumos(){
         return insumos;
+    }
+    public ArrayList<Proveedor> getProveedores(){
+        return proveedores;
     }
     public void agregarInsumo(Insumo insum) {
         insumos.add(insum);
@@ -91,6 +96,10 @@ public class GestorDeInventario {
     public void guardarInventario() {
         productsfile.setInsumos(insumos);
         productsfile.añadirAlarchivoInsumo();
+    }
+    public void guardarProveedores() {
+        productsfile.setProveedores(proveedores);
+        productsfile.añadirAlarchivoProveedores();
     }
    /*
     public void recibirNuevoInsumo(String nombreInsumo, String cantidadStr) {
