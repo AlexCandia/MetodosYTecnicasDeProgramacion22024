@@ -512,7 +512,7 @@ public class MenuInventario extends javax.swing.JFrame {
     private void ProveedoresBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProveedoresBotonActionPerformed
         // TODO add your handling code here:
 
-        ProveedoresFrameInventario p = new ProveedoresFrameInventario();
+        ProveedoresFrameInventario p = new ProveedoresFrameInventario(gestorInventario);
         p.setVisible(true);
     }//GEN-LAST:event_ProveedoresBotonActionPerformed
 
