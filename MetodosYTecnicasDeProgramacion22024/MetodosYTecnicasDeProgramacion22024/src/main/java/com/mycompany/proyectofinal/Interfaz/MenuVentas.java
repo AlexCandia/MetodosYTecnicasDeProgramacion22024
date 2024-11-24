@@ -47,15 +47,15 @@ public class MenuVentas extends javax.swing.JFrame {
     private DefaultTableModel dtm;
     private String cargo; 
     public MenuVentas() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null);
         llenarinventarioprov();
         temp = new PedidoTemporalDialog(this,true);
         histo = new HistorialVentasFrame();
-        histo.rellenarVentas();
+        histo.recibirMap(gestorVentas.getVentasHistoricas());
         dtm=(DefaultTableModel)ColaDePedidos.getModel();
         mandargestor();
-        this.setContentPane(fondo);
     }
 
     /**
@@ -503,7 +503,7 @@ public class MenuVentas extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gestorDeVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gestorDeVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(149, 149, 149)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -518,7 +518,7 @@ public class MenuVentas extends javax.swing.JFrame {
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DetallesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 414, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -598,6 +598,7 @@ public class MenuVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuButtonActionPerformed
 
     private void HistorialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialButtonActionPerformed
+        histo.rellenarVentas(); 
         histo.setVisible(true);
     }//GEN-LAST:event_HistorialButtonActionPerformed
 

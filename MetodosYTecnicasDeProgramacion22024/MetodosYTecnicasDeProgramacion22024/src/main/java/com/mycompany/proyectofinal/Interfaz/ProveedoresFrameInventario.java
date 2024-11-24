@@ -15,13 +15,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Camila
  */
-public class Provedor extends javax.swing.JFrame {
+public class ProveedoresFrameInventario extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
 
     /**
      * Creates new form Provedor
      */
-    public Provedor() {
+    public ProveedoresFrameInventario() {
         this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -315,21 +315,23 @@ public class Provedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Provedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedoresFrameInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Provedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedoresFrameInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Provedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedoresFrameInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Provedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProveedoresFrameInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Provedor().setVisible(true);
+                new ProveedoresFrameInventario().setVisible(true);
             }
         });
     }

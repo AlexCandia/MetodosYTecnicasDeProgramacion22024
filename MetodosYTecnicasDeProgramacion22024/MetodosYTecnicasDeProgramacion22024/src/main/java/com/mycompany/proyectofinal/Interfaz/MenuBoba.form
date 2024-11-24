@@ -45,7 +45,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="458" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="452" max="-2" attributes="0"/>
                           <Component id="InventarioBoton" min="-2" pref="230" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                           <Component id="VentasBoton" min="-2" pref="230" max="-2" attributes="0"/>

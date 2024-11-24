@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -195,6 +196,13 @@ public class HistorialVentasFrame extends javax.swing.JFrame {
                 // Añadir una fila al modelo de la tabla
                 dtm.addRow(new Object[]{clave, fechaFormateada, nroPedido,nombreCliente,nitCliente,nroVasos,total});
             }
+        }else{
+            JOptionPane.showMessageDialog(
+            null,
+            "Archivo de Ventas no hallado,iniciando vacio",
+            "Error: Archivo no encontrado",
+            JOptionPane.WARNING_MESSAGE
+            );
         }
     }
     

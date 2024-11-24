@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author developerweb
  */
-public class EditarVasoDialog extends javax.swing.JDialog {
+public class EditarVasoVentasDialog extends javax.swing.JDialog {
     FondoPanel fondo = new FondoPanel();
 
     private PedidoTemporalDialog parent;
@@ -24,7 +24,7 @@ public class EditarVasoDialog extends javax.swing.JDialog {
     String parametro;
     String nuevo;
     String nVaso;
-    public EditarVasoDialog(java.awt.Dialog parent, boolean modal) {
+    public EditarVasoVentasDialog(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setContentPane(fondo);
@@ -198,7 +198,7 @@ public class EditarVasoDialog extends javax.swing.JDialog {
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(mostrarParametro)
@@ -391,20 +391,21 @@ public class EditarVasoDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarVasoDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVasoVentasDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarVasoDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVasoVentasDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarVasoDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVasoVentasDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarVasoDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarVasoVentasDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditarVasoDialog dialog = new EditarVasoDialog(new javax.swing.JDialog(), true);
+                EditarVasoVentasDialog dialog = new EditarVasoVentasDialog(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -426,7 +427,6 @@ public class EditarVasoDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -434,7 +434,6 @@ public class EditarVasoDialog extends javax.swing.JDialog {
     private javax.swing.JLabel mostrarParametro;
     private javax.swing.JLabel mostrarParametroLabel;
     private javax.swing.JLabel seleccioneNVasoLabel1;
-    private javax.swing.JLabel seleccioneParametroLabel1;
     private javax.swing.JLabel seleccioneParametroLabel2;
     private javax.swing.JLabel seleccioneParametroNuevoLabel;
     // End of variables declaration//GEN-END:variables

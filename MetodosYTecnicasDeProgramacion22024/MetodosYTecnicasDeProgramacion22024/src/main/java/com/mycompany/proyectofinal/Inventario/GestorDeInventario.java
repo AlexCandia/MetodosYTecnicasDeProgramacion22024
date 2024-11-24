@@ -35,7 +35,8 @@ public class GestorDeInventario {
 
 
     public GestorDeInventario() {
-        insumos= new ArrayList<>();     
+        productsfile= new GeneradorArchivosInventario();
+        insumos= productsfile.getProductos();      
     }   
     public ArrayList<Insumo> getInsumos(){
         return insumos;
@@ -87,11 +88,11 @@ public class GestorDeInventario {
     
     
     // Método para guardar el inventario actual en un archivo
-    /*public void guardarInventario() {
-        productsfile = new GeneradorArchivosInventario(insumos);
-        productsfile.añadirAlarchivo();
+    public void guardarInventario() {
+        productsfile.setInsumos(insumos);
+        productsfile.añadirAlarchivoInsumo();
     }
-   
+   /*
     public void recibirNuevoInsumo(String nombreInsumo, String cantidadStr) {
         // Convertimos el String cantidadStr a un entero
         int cantidad = Integer.parseInt(cantidadStr);
