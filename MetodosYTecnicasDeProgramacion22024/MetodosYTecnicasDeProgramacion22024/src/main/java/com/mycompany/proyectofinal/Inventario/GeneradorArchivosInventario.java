@@ -20,7 +20,7 @@ public class GeneradorArchivosInventario {
   public GeneradorArchivosInventario(ArrayList<Insumo> productos){
      this.productos=productos; 
     }
-  private static final String FILE_PATH = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\productos.txt";
+  private static final String FILE_PATH = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Inventario\\productos.txt";
   public void añadirAlarchivo(){
       try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Insumo producto : productos) {

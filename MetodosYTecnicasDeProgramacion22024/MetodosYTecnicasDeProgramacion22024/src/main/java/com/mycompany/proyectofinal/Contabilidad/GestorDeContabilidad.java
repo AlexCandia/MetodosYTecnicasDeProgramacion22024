@@ -185,7 +185,7 @@ public class GestorDeContabilidad {
     }
     public void guardarReporteHistorico() {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String ruta = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\Contabilidad\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
+        String ruta = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Contabilidad\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
 
         // Verifica si la carpeta existe, si no la crea
         Path path = Paths.get("C://");

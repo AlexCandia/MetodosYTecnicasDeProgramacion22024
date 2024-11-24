@@ -22,9 +22,9 @@ import java.util.HashMap;
  */
 public class GeneradorArchivosVentas {
     private HashMap<String, Pedido> ventasHistoricas;
-     private static final String FILE_PATH1 = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\ticket.txt";
-     private static final String FILE_PATH2 = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\factura.txt";
-     private static final String FILE_PATH3 = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\historico.txt";
+     private static final String FILE_PATH1 = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Ventas\\ticket.txt";
+     private static final String FILE_PATH2 = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Ventas\\factura.txt";
+     private static final String FILE_PATH3 = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Ventas\\historico.txt";
      public GeneradorArchivosVentas() {
     }
     public void generarTicket(Pedido pedido){
