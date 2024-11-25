@@ -34,6 +34,7 @@ public class EgresosFijos extends javax.swing.JFrame {
     public EgresosFijos() {
         this.setContentPane(fondo);
         initComponents();
+        this.setLocationRelativeTo(null);
         String[] titulo = new String[]{"Fecha", "Nombre","Valor" };
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);

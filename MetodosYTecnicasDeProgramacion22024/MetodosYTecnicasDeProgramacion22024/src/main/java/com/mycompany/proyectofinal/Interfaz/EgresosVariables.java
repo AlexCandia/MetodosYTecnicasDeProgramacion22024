@@ -39,6 +39,7 @@ public class EgresosVariables extends javax.swing.JFrame {
     public EgresosVariables() {
         this.setContentPane(fondo);
         initComponents();
+        this.setLocationRelativeTo(null);
         String[] titulo = new String[]{"Fecha","Nombre", "Detalle", "Valor"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);

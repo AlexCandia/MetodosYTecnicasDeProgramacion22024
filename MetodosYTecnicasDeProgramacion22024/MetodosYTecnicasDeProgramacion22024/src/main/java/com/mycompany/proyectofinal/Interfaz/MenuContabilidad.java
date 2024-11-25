@@ -277,6 +277,11 @@ public class MenuContabilidad extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Egreso Fijo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(153, 153, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -501,10 +506,16 @@ public class MenuContabilidad extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        
+        EgresosVariables ev = new EgresosVariables();
+        ev.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        
+        EgresosInsumos ei  = new EgresosInsumos();
+        ei.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -536,6 +547,14 @@ public class MenuContabilidad extends javax.swing.JFrame {
         pack();
         repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        EgresosFijos egfi = new EgresosFijos();
+        egfi.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private String cargo;
     public void setCargo(String s){
