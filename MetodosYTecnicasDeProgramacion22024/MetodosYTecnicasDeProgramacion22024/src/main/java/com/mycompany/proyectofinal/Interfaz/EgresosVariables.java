@@ -4,14 +4,12 @@
  */
 package com.mycompany.proyectofinal.Interfaz;
 
-import com.mycompany.proyectofinal.Contabilidad.EgresoFijo;
 import com.mycompany.proyectofinal.Contabilidad.EgresoVariable;
 import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
-import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
-import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
@@ -33,15 +31,16 @@ public class EgresosVariables extends javax.swing.JFrame {
      */
      
      //Solo es para las pruebas se debe borrar
-    private GestorDeInventario gestorInventario = new GestorDeInventario();
-    private GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario); 
+    private GestorDeContabilidad gestorContabilidad;
      
-    public EgresosVariables() {
+    public EgresosVariables(GestorDeContabilidad gestorContabilidad) {
         this.setContentPane(fondo);
         initComponents();
         String[] titulo = new String[]{"Fecha","Nombre", "Detalle", "Valor"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);
+        this.gestorContabilidad = gestorContabilidad;
+        rellenarTablaInicio();
     }
     
     void agregar(){
@@ -162,7 +161,25 @@ public class EgresosVariables extends javax.swing.JFrame {
         valorTotal.setText(text);
     }
     
-    
+    private void rellenarTablaInicio() {
+        ArrayList<EgresoVariable> egresosVariables = gestorContabilidad.getEgresosVariables();
+        if(!egresosVariables.isEmpty()){
+            for (EgresoVariable  egresoVariable : egresosVariables) {
+                String fecha = egresoVariable.getFecha();
+                String nombre = egresoVariable.getNombre();
+                String detalle = egresoVariable.getDetalle();
+                String valor = egresoVariable.getValor()+"";
+                dtm.addRow(new Object[]{fecha,nombre,detalle,valor});
+            }
+        }else{
+            JOptionPane.showMessageDialog(
+            null,
+            "Archivo de Egresos Insumos no hallado,iniciando vacio",
+            "Error: Archivo no encontrado",
+            JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -332,7 +349,16 @@ public class EgresosVariables extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(TituloColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(368, 368, 368)
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(buttonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                    .addComponent(buttonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(21, 21, 21)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -347,15 +373,8 @@ public class EgresosVariables extends javax.swing.JFrame {
                                     .addComponent(txtValor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(VolverBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(118, 118, 118)
-                                    .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(645, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 844, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(773, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,16 +394,20 @@ public class EgresosVariables extends javax.swing.JFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
+                .addGap(146, 146, 146))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -418,10 +441,7 @@ public class EgresosVariables extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAñadirActionPerformed
 
     private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
-        // TODO add your handling code here:
-        
-        MenuContabilidad men = new MenuContabilidad();
-        men.setVisible(true);
+       gestorContabilidad.guardarEgresosVariables();
         this.setVisible(false);
     }//GEN-LAST:event_VolverBotonActionPerformed
 
@@ -461,7 +481,7 @@ public class EgresosVariables extends javax.swing.JFrame {
 
         /* Create and display the form */
         SwingUtilities.invokeLater(() -> {
-            new EgresosVariables().setVisible(true);
+            new EgresosVariables(null).setVisible(true);
         });
     }
 

@@ -13,8 +13,8 @@ import com.mycompany.proyectofinal.Inventario.Insumo;
 import java.io.*;
 import java.util.ArrayList;
 public class GeneradorArchivosInventario {
-    public ArrayList<Insumo> productos;
-    public ArrayList<Proveedor> proveedores;
+    private ArrayList<Insumo> productos;
+    private ArrayList<Proveedor> proveedores;
     public GeneradorArchivosInventario(){
         cargarInsumos();
         cargarProveedores();

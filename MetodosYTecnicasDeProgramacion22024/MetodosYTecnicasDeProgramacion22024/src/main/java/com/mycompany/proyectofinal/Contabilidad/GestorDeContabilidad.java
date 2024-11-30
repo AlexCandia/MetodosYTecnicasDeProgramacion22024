@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class GestorDeContabilidad {
 
     private double ingresosBoba;
+    private GeneradorArchivosContabilidad egresosFile;
     private ArrayList<EgresoFijo> egresosFijos;
     private ArrayList<EgresoInsumo> egresosInsumos;
     private ArrayList<EgresoVariable> egresosVariables;
@@ -32,9 +33,10 @@ public class GestorDeContabilidad {
     private HashMap<String, Pedido> ventasHistoricas;
 
     public GestorDeContabilidad(GestorDeInventario gestorDeInventario) {
-        egresosFijos = new ArrayList<>();
-        egresosInsumos = new ArrayList<>();
-        egresosVariables = new ArrayList<>();
+        egresosFile = new GeneradorArchivosContabilidad(); 
+        egresosFijos = egresosFile.getEgresosFijos();
+        egresosInsumos = egresosFile.getEgresosInsumos();
+        egresosVariables = egresosFile.getEgresosVariables();
         this.gestorDeInventario = gestorDeInventario;
     }
     public double getIngresosBoba() {
@@ -205,6 +207,18 @@ public class GestorDeContabilidad {
         } catch (IOException e) {
             System.out.println("Error al guardar el reporte histórico: " + e.getMessage());
         }
+    }
+    public void guardarEgresosFijos() {
+        egresosFile.setEgresosFijos(egresosFijos);
+        egresosFile.añadirAlarchivoEgresosFijos();
+    }
+    public void guardarEgresosInsumos() {
+        egresosFile.setEgresosInsumos(egresosInsumos);
+        egresosFile.añadirAlarchivoEgresosInsumos();
+    }
+    public void guardarEgresosVariables() {
+        egresosFile.setEgresosVariables(egresosVariables);
+        egresosFile.añadirAlarchivoEgresosVariables();
     }
     
     public void imprimirReporteHistorico() {
