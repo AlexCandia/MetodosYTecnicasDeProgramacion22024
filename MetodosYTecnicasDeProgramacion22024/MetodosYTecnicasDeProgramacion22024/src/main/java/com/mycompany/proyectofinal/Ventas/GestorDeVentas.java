@@ -181,22 +181,13 @@ public class GestorDeVentas {
             System.out.print("El vaso Nro: " + vasoCompletado.getVaso().getNumVaso());
             System.out.print("Del cliente: " + vasoCompletado.getNombreCliente());
             System.out.println(" esta listo");
-        }else{
-            System.out.println("No existen vasos pendientes");
         }
-    }
-    private void agregarVentasAHistoricas() {
-        for(Pedido pedidoProcesado : ventasDiarias){
-            String codigoIdentificador = pedidoProcesado.generarCodigoIdentificador();
-            ventasHistoricas.put(codigoIdentificador,pedidoProcesado);
-        }
-         generadorArchivosVentas.generarReporte(ventasHistoricas);
     }
     public double calcularIngresosTotales() {
         double ingresosTotales = 0;
         
         for (Pedido pedido : ventasHistoricas.values()) {
-            ingresosTotales += pedido.calcularTotal(); // Sumando el total de cada pedido
+            ingresosTotales += pedido.calcularTotal(); 
         }
         
         return ingresosTotales;
@@ -215,10 +206,12 @@ public class GestorDeVentas {
         agregarVentasAHistoricas();
         ventasDiarias = null;
     }
-
-
-    public void generarReporteVentas() {
-        generadorArchivosVentas.generarReporte(ventasHistoricas);
+    private void agregarVentasAHistoricas() {
+        for(Pedido pedidoProcesado : ventasDiarias){
+            String codigoIdentificador = pedidoProcesado.generarCodigoIdentificador();
+            ventasHistoricas.put(codigoIdentificador,pedidoProcesado);
+        }
+         generadorArchivosVentas.generarReporte(ventasHistoricas);
     }
 
     /*private void actualizarinfo(VasoEnCola vasoCompletado) {

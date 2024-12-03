@@ -46,9 +46,10 @@ public class MenuVentas extends javax.swing.JFrame {
     HistorialVentasFrame histo;
     private DefaultTableModel dtm;
     private String cargo; 
-    public MenuVentas() {
+    public MenuVentas() {      
         this.setContentPane(fondo);
         initComponents();
+        scrollPanel.getHorizontalScrollBar().setBlockIncrement(100);
         this.setLocationRelativeTo(null);
         llenarinventarioprov();
         temp = new PedidoTemporalDialog(this,true);
@@ -68,6 +69,7 @@ public class MenuVentas extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
+        scrollPanel = new javax.swing.JScrollPane();
         jPanel2 = new FondoPanel();
         MenuButton = new javax.swing.JButton();
         HistorialButton = new javax.swing.JButton();
@@ -113,6 +115,13 @@ public class MenuVentas extends javax.swing.JFrame {
         jCheckBoxMenuItem3.setText("jCheckBoxMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1533, 1397));
+
+        scrollPanel.setBorder(null);
+        scrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(1531, 1000));
 
         MenuButton.setBackground(new java.awt.Color(0, 204, 204));
         MenuButton.setFont(new java.awt.Font("Segoe UI", 1, 29)); // NOI18N
@@ -219,8 +228,8 @@ public class MenuVentas extends javax.swing.JFrame {
                             .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NitField, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(NuevoClienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NuevoClienteButton)
+                        .addGap(11, 11, 11)
                         .addComponent(ConfirmarDatosButton)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -536,18 +545,6 @@ public class MenuVentas extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(colaDePedidosLabel))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(VasoTerminadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(gestorDeVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -566,19 +563,37 @@ public class MenuVentas extends javax.swing.JFrame {
                             .addComponent(VerPedidoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(HistorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(terminarDiaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(41, 41, 41))
+                            .addComponent(terminarDiaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(colaDePedidosLabel))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(VasoTerminadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 211, Short.MAX_VALUE))
         );
+
+        scrollPanel.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -612,20 +627,24 @@ public class MenuVentas extends javax.swing.JFrame {
             );
             return;
         }
-        NameField.setText("");
-        NitField.setText("");
-        NombreClienteDetalle.setText("");
-        NroPedidoDetalle.setText("");
-        NroVasoContador.setText("");
-        setOptionsDefault();
+        resetearLabels();
         gestorVentas.terminarDia();
         histo.recibirMap(gestorVentas.getVentasHistoricas());
-        histo.rellenarVentas();
     }//GEN-LAST:event_terminarDiaButtonActionPerformed
 
     private void VasoTerminadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VasoTerminadoButtonActionPerformed
         gestorVentas.marcarPedidoCompletado();
-        dtm.removeRow(0);
+        if(dtm.getRowCount()>0){
+           dtm.removeRow(0); 
+        }else{
+           JOptionPane.showMessageDialog(
+                null,
+                "No existen vasos en cola",
+                "Accion Inconclusa",
+                JOptionPane.WARNING_MESSAGE
+            );
+            return; 
+        }
     }//GEN-LAST:event_VasoTerminadoButtonActionPerformed
 
     private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
@@ -698,11 +717,20 @@ public class MenuVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_Sabor1BoxActionPerformed
 
     private void VerPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerPedidoButtonActionPerformed
-
-        temp.setLocationRelativeTo(this);
-        temp.setMensaje(gestorVentas.getPedidoTemporal().getNombre(),"cliente");
-        temp.setMensaje(gestorVentas.getPedidoTemporal().getNumPedido(),"nroPedido");
-        temp.setVisible(true);
+        if(gestorVentas.getPedidoTemporal().getNombre()!=null){
+            temp.setLocationRelativeTo(this);
+            temp.setMensaje(gestorVentas.getPedidoTemporal().getNombre(),"cliente");
+            temp.setMensaje(gestorVentas.getPedidoTemporal().getNumPedido(),"nroPedido");
+            temp.setVisible(true);
+        }else{
+           JOptionPane.showMessageDialog(
+                null,
+                "No existe pedido temporal",
+                "Accion Inconclusa",
+                JOptionPane.WARNING_MESSAGE
+            );
+            return; 
+        }
     }//GEN-LAST:event_VerPedidoButtonActionPerformed
 
     private void AgregarVasoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarVasoButtonActionPerformed
@@ -785,6 +813,14 @@ public class MenuVentas extends javax.swing.JFrame {
         o[7]=vaso.getVaso().getSabor2();
         dtm.addRow(o);
     }
+    public void resetearLabels(){
+        NameField.setText("");
+        NitField.setText("");
+        NombreClienteDetalle.setText("");
+        NroPedidoDetalle.setText("");
+        NroVasoContador.setText("");
+        setOptionsDefault();
+    }
     /**
      * @param args the command line arguments
      */
@@ -864,6 +900,7 @@ public class MenuVentas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane scrollPanel;
     private javax.swing.JButton terminarDiaButton;
     // End of variables declaration//GEN-END:variables
 

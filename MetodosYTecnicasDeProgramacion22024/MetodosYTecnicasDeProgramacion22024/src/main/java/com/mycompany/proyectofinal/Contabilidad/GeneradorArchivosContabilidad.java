@@ -107,7 +107,7 @@ public class GeneradorArchivosContabilidad {
 
     private ArrayList<EgresoVariable> cargarEgresosVariables() {
        egresosVariables = new ArrayList<>();
-       try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
+       try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH3))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("!");
@@ -131,7 +131,7 @@ public class GeneradorArchivosContabilidad {
 
     private ArrayList<EgresoInsumo> cargarEgresosInsumos() {
        egresosInsumos = new ArrayList<>();
-       try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH3))) {
+       try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("!");
