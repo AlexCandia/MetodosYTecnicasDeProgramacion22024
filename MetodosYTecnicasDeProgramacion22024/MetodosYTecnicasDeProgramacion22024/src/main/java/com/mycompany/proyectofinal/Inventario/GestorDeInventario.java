@@ -69,12 +69,12 @@ public class GestorDeInventario {
             in.setMinimo(min);
         }
     }
-    
     public void ordenarPorNombre() {
-        insumos.sort(Comparator.comparing(Insumo::getNombre));
+        Collections.sort(insumos, Comparator.comparing(Insumo::getNombre));
     }
-    public void ordenarPorCantidadDescendente() {
-        insumos.sort((i1, i2) -> Integer.compare(i2.getCantidad(), i1.getCantidad()));
+
+    public void ordenarPorCantidad() {
+        Collections.sort(insumos, Comparator.comparingInt(Insumo::getCantidad));
     }
     public void verificarNivelMinimo() {
         for (Insumo insumo : insumos) {
