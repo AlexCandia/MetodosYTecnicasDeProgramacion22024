@@ -25,20 +25,19 @@ import java.util.ArrayList;
 public class GestorDeContabilidad {
 
     private double ingresosBoba;
+    private GeneradorArchivosContabilidad egresosFile;
     private ArrayList<EgresoFijo> egresosFijos;
     private ArrayList<EgresoInsumo> egresosInsumos;
     private ArrayList<EgresoVariable> egresosVariables;
-    private GestorDeVentas gestorDeVentas;
     private GestorDeInventario gestorDeInventario;
     private HashMap<String, Pedido> ventasHistoricas;
 
-    public GestorDeContabilidad(GestorDeInventario gestorDeInventario,GestorDeVentas gestorDeVentas) {
-        egresosFijos = new ArrayList<>();
-        egresosInsumos = new ArrayList<>();
-        egresosVariables = new ArrayList<>();
+    public GestorDeContabilidad(GestorDeInventario gestorDeInventario) {
+        egresosFile = new GeneradorArchivosContabilidad(); 
+        egresosFijos = egresosFile.getEgresosFijos();
+        egresosInsumos = egresosFile.getEgresosInsumos();
+        egresosVariables = egresosFile.getEgresosVariables();
         this.gestorDeInventario = gestorDeInventario;
-        this.gestorDeVentas = gestorDeVentas;
-        ventasHistoricas = gestorDeVentas.getVentasHistoricas();
     }
     public double getIngresosBoba() {
         return ingresosBoba;
@@ -52,9 +51,9 @@ public class GestorDeContabilidad {
     public ArrayList<EgresoVariable> getEgresosVariables() {
         return egresosVariables;
     }
-    public void calcularIngreso () {
-        ingresosBoba=gestorDeVentas.calcularIngresosTotales();
-    }
+//    public void calcularIngreso () {
+//        ingresosBoba=gestorDeVentas.calcularIngresosTotales();
+//    }
 
     public void registrarEgresoFijo(EgresoFijo egreso) {
         egresosFijos.add(egreso);
@@ -124,17 +123,29 @@ public class GestorDeContabilidad {
     
     // Método para calcular el total de egresos fijos
     public double calcularTotalEgresosFijos() {
-        return egresosFijos.stream().mapToDouble(EgresoFijo::getValor).sum();
+        if (!egresosFijos.isEmpty()){
+            return egresosFijos.stream().mapToDouble(EgresoFijo::getValor).sum();
+        }else{
+            return 0.0;  
+        }
     }
 
     // Método para calcular el total de egresos de insumos
     public double calcularTotalEgresosInsumos() {
-        return egresosInsumos.stream().mapToDouble(EgresoInsumo::getValor).sum();
+        if (!egresosInsumos.isEmpty()){
+           return egresosInsumos.stream().mapToDouble(EgresoInsumo::getValor).sum(); 
+        }else{
+            return 0.0;
+        }
     }
 
     // Método para calcular el total de egresos varios
     public double calcularTotalEgresosVariables() {
-        return egresosVariables.stream().mapToDouble(EgresoVariable::getValor).sum();
+        if(!egresosVariables.isEmpty()){
+            return egresosVariables.stream().mapToDouble(EgresoVariable::getValor).sum(); 
+        }else{
+            return 0.0;
+        }
     }
 
     // Método para calcular el balance (ganancias o pérdidas)
@@ -188,7 +199,7 @@ public class GestorDeContabilidad {
     }
     public void guardarReporteHistorico() {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String ruta = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\Contabilidad\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
+        String ruta = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Contabilidad\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
 
         // Verifica si la carpeta existe, si no la crea
         Path path = Paths.get("C://");
@@ -208,6 +219,18 @@ public class GestorDeContabilidad {
         } catch (IOException e) {
             System.out.println("Error al guardar el reporte histórico: " + e.getMessage());
         }
+    }
+    public void guardarEgresosFijos() {
+        egresosFile.setEgresosFijos(egresosFijos);
+        egresosFile.añadirAlarchivoEgresosFijos();
+    }
+    public void guardarEgresosInsumos() {
+        egresosFile.setEgresosInsumos(egresosInsumos);
+        egresosFile.añadirAlarchivoEgresosInsumos();
+    }
+    public void guardarEgresosVariables() {
+        egresosFile.setEgresosVariables(egresosVariables);
+        egresosFile.añadirAlarchivoEgresosVariables();
     }
     
     public void imprimirReporteHistorico() {

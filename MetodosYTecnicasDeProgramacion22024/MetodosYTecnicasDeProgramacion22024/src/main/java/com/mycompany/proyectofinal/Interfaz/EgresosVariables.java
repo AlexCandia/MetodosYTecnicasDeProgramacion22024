@@ -4,22 +4,26 @@
  */
 package com.mycompany.proyectofinal.Interfaz;
 
-import com.mycompany.proyectofinal.Contabilidad.EgresoFijo;
 import com.mycompany.proyectofinal.Contabilidad.EgresoVariable;
 import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
-import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
-import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Usuario
  */
 public class EgresosVariables extends javax.swing.JFrame {
+    FondoPanel fondo = new FondoPanel();
+    
      DefaultTableModel dtm = new DefaultTableModel();
 
     /**
@@ -27,15 +31,19 @@ public class EgresosVariables extends javax.swing.JFrame {
      */
      
      //Solo es para las pruebas se debe borrar
-    GestorDeInventario gestorInventario = new GestorDeInventario();
-    GestorDeVentas gestorVentas = new GestorDeVentas(gestorInventario);
-    GestorDeContabilidad gestorContabilidad = new GestorDeContabilidad(gestorInventario,gestorVentas);
+    private GestorDeContabilidad gestorContabilidad;
      
-    public EgresosVariables() {
+    public EgresosVariables(GestorDeContabilidad gestorContabilidad) {
+        this.setContentPane(fondo);
         initComponents();
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
         String[] titulo = new String[]{"Fecha","Nombre", "Detalle", "Valor"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);
+        this.gestorContabilidad = gestorContabilidad;
+        rellenarTablaInicio();
     }
     
     void agregar(){
@@ -156,7 +164,25 @@ public class EgresosVariables extends javax.swing.JFrame {
         valorTotal.setText(text);
     }
     
-    
+    private void rellenarTablaInicio() {
+        ArrayList<EgresoVariable> egresosVariables = gestorContabilidad.getEgresosVariables();
+        if(!egresosVariables.isEmpty()){
+            for (EgresoVariable  egresoVariable : egresosVariables) {
+                String fecha = egresoVariable.getFecha();
+                String nombre = egresoVariable.getNombre();
+                String detalle = egresoVariable.getDetalle();
+                String valor = egresoVariable.getValor()+"";
+                dtm.addRow(new Object[]{fecha,nombre,detalle,valor});
+            }
+        }else{
+            JOptionPane.showMessageDialog(
+            null,
+            "Archivo de Egresos Insumos no hallado,iniciando vacio",
+            "Error: Archivo no encontrado",
+            JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,6 +192,7 @@ public class EgresosVariables extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new FondoPanel();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         lblValor = new javax.swing.JLabel();
@@ -180,29 +207,33 @@ public class EgresosVariables extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
+        VolverBoton = new java.awt.Button();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         valorTotal = new javax.swing.JLabel();
-        VolverBoton = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblNombre.setText("Nombre");
+        jPanel1.setPreferredSize(new java.awt.Dimension(1857, 840));
+
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNombre.setText("Nombre:");
+        lblNombre.setToolTipText("");
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        lblValor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblValor.setText("Valor");
+        lblValor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblValor.setText("Valor:");
 
-        lblDetalle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblDetalle.setText("Detalle");
+        lblDetalle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblDetalle.setText("Detalle:");
 
         txtValor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         txtDetalle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        buttonAñadir.setBackground(new java.awt.Color(204, 153, 255));
-        buttonAñadir.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        buttonAñadir.setBackground(new java.awt.Color(153, 153, 255));
+        buttonAñadir.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         buttonAñadir.setForeground(new java.awt.Color(255, 255, 255));
         buttonAñadir.setLabel("Añadir");
         buttonAñadir.addActionListener(new java.awt.event.ActionListener() {
@@ -211,8 +242,8 @@ public class EgresosVariables extends javax.swing.JFrame {
             }
         });
 
-        buttonEliminar.setBackground(new java.awt.Color(204, 153, 255));
-        buttonEliminar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        buttonEliminar.setBackground(new java.awt.Color(153, 153, 255));
+        buttonEliminar.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         buttonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         buttonEliminar.setLabel("Eliminar");
         buttonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -221,8 +252,8 @@ public class EgresosVariables extends javax.swing.JFrame {
             }
         });
 
-        buttonActtualizar.setBackground(new java.awt.Color(204, 153, 255));
-        buttonActtualizar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        buttonActtualizar.setBackground(new java.awt.Color(153, 153, 255));
+        buttonActtualizar.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         buttonActtualizar.setForeground(new java.awt.Color(255, 255, 255));
         buttonActtualizar.setLabel("Actualizar");
         buttonActtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -231,30 +262,32 @@ public class EgresosVariables extends javax.swing.JFrame {
             }
         });
 
-        TituloColor.setBackground(new java.awt.Color(204, 153, 255));
+        TituloColor.setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Variable");
+        jLabel11.setText("Egreso");
 
         javax.swing.GroupLayout TituloColorLayout = new javax.swing.GroupLayout(TituloColor);
         TituloColor.setLayout(TituloColorLayout);
         TituloColorLayout.setHorizontalGroup(
             TituloColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TituloColorLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TituloColorLayout.createSequentialGroup()
+                .addContainerGap(133, Short.MAX_VALUE)
                 .addComponent(jLabel11)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap())
         );
         TituloColorLayout.setVerticalGroup(
             TituloColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TituloColorLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TituloColorLayout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabel11)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTitulo.setText("Egreso");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(153, 153, 255));
+        lblTitulo.setText("Variable");
 
         tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,12 +302,9 @@ public class EgresosVariables extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDatos);
 
-        jLabel1.setText("Total");
-
-        valorTotal.setText("0");
-
-        VolverBoton.setBackground(new java.awt.Color(204, 153, 255));
-        VolverBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        VolverBoton.setBackground(new java.awt.Color(0, 255, 255));
+        VolverBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        VolverBoton.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         VolverBoton.setForeground(new java.awt.Color(255, 255, 255));
         VolverBoton.setLabel("Volver");
         VolverBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -283,85 +313,132 @@ public class EgresosVariables extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Total");
+
+        valorTotal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        valorTotal.setText("0");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(valorTotal))
+                .addGap(18, 18, 18))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(TituloColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(329, 329, 329)
+                                .addComponent(VolverBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(267, 267, 267)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNombre)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(110, 110, 110)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDetalle)
+                                    .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(130, 130, 130)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblValor)
+                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(268, 268, 268)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(6, 6, 6))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TituloColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(VolverBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblNombre)
+                        .addGap(8, 8, 8)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDetalle)
+                    .addComponent(lblValor)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(31, 31, 31)
-                        .addComponent(valorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
-                        .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNombre)
-                        .addGap(182, 182, 182)
-                        .addComponent(lblDetalle)))
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblValor)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(TituloColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(VolverBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TituloColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitulo)
-                    .addComponent(VolverBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(lblDetalle)
-                    .addComponent(lblValor))
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(valorTotal))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonActtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -380,10 +457,7 @@ public class EgresosVariables extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAñadirActionPerformed
 
     private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
-        // TODO add your handling code here:
-        
-        MenuContabilidad men = new MenuContabilidad();
-        men.setVisible(true);
+       gestorContabilidad.guardarEgresosVariables();
         this.setVisible(false);
     }//GEN-LAST:event_VolverBotonActionPerformed
 
@@ -423,7 +497,7 @@ public class EgresosVariables extends javax.swing.JFrame {
 
         /* Create and display the form */
         SwingUtilities.invokeLater(() -> {
-            new EgresosVariables().setVisible(true);
+            new EgresosVariables(null).setVisible(true);
         });
     }
 
@@ -435,6 +509,8 @@ public class EgresosVariables extends javax.swing.JFrame {
     private java.awt.Button buttonEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDetalle;
     private javax.swing.JLabel lblNombre;
@@ -446,4 +522,14 @@ public class EgresosVariables extends javax.swing.JFrame {
     private javax.swing.JTextField txtValor;
     private javax.swing.JLabel valorTotal;
     // End of variables declaration//GEN-END:variables
+
+     class FondoPanel extends JPanel{
+        private Image imagen;
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/imagen/fondoBlanco.jpg")).getImage();
+            g.drawImage(imagen,0,0,getWidth(), getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 }

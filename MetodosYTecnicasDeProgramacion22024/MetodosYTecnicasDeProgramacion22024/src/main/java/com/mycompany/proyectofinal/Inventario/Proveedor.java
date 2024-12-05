@@ -11,7 +11,7 @@ package com.mycompany.proyectofinal.Inventario;
 public class Proveedor {
     private String nombre;
     private String telefono;
-    private String direccion; // Puede representar zona o localidad
+    private String direccion;
 
     // Constructor
     public Proveedor(String nombre, String telefono, String direccion) {

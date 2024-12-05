@@ -8,6 +8,7 @@ package com.mycompany.proyectofinal.Ventas;
  *
  * @author Camila
  */
+import com.mycompany.proyectofinal.Contabilidad.GestorDeContabilidad;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,20 +19,22 @@ public class GestorDeVentas {
     // Atributos de la clase GestorDeVentas
     
     private ArrayList<Vaso> pedidoActual;
-    private GestorDeInventario inventario;
+    private GestorDeInventario gestorInventario;
     private HashMap<String, Pedido> ventasHistoricas;
     private ArrayList<Pedido> ventasDiarias;
     private Queue<Vaso> colaPedidos;
     private Pedido pedidoTemporal;
     private GeneradorArchivosVentas generadorArchivosVentas;
+    private GestorDeContabilidad gestorContabilidad; 
     
     // Constructor
-    public GestorDeVentas(GestorDeInventario inventario) {
+    public GestorDeVentas(GestorDeInventario gestorInventario, GestorDeContabilidad gestorContabilidad) {
         
         this.pedidoActual = new ArrayList<>();
-        this.inventario=inventario;
+        this.gestorInventario=gestorInventario;
+        this.gestorContabilidad = gestorContabilidad;
         generadorArchivosVentas = new GeneradorArchivosVentas();
-        this.ventasHistoricas = generadorArchivosVentas.cargarVentasHistoricasDesdeArchivo();
+        this.ventasHistoricas = generadorArchivosVentas.getVentasHistoricas();
         this.ventasDiarias = new ArrayList<>();
         this.colaPedidos = new LinkedList<>();
         this.pedidoTemporal= null;
@@ -56,10 +59,10 @@ public class GestorDeVentas {
     public boolean existeVaso(String numVaso) {
         for (Vaso vaso : pedidoActual) {
             if (vaso.getNumVaso().equals(numVaso)) {
-                return true; // Si encuentra el vaso, devuelve true
+                return true; 
             }
         }
-        return false; // Si no encuentra el vaso, devuelve false
+        return false; 
     }
     
     private Vaso buscarVasoEnPedido(String numVaso){
@@ -107,14 +110,12 @@ public class GestorDeVentas {
             numPedido = 1;
         }
         pedidoTemporal.setNumPedido(numPedido);
-        // Recibe la informacion de un cliente (nombre,nit) para que todos los pedidos(vasos) sean 
-        // registrados a dicho nombre.
+        
     }
 
     public void agregarVaso(Vaso vaso) {
         pedidoTemporal.añadir(vaso);
-        // Metodo que recibe un objeto de tipo vaso , y lo añade a un objeto de tipo pedido 
-        // mientras cliente no sea nulo
+        
     }
     public void editarInfoVaso(String numVaso,String infoN,String parametro) {
         Vaso vasoEditado=buscarVasoEnPedido(numVaso);
@@ -180,21 +181,13 @@ public class GestorDeVentas {
             System.out.print("El vaso Nro: " + vasoCompletado.getVaso().getNumVaso());
             System.out.print("Del cliente: " + vasoCompletado.getNombreCliente());
             System.out.println(" esta listo");
-        }else{
-            System.out.println("No existen vasos pendientes");
-        }
-    }
-    private void agregarVentasAHistoricas() {
-        for(Pedido pedidoProcesado : ventasDiarias){
-            String codigoIdentificador = pedidoProcesado.generarCodigoIdentificador();
-            ventasHistoricas.put(codigoIdentificador,pedidoProcesado);
         }
     }
     public double calcularIngresosTotales() {
         double ingresosTotales = 0;
         
         for (Pedido pedido : ventasHistoricas.values()) {
-            ingresosTotales += pedido.calcularTotal(); // Sumando el total de cada pedido
+            ingresosTotales += pedido.calcularTotal(); 
         }
         
         return ingresosTotales;
@@ -213,10 +206,12 @@ public class GestorDeVentas {
         agregarVentasAHistoricas();
         ventasDiarias = null;
     }
-
-
-    public void generarReporteVentas() {
-        generadorArchivosVentas.generarReporte(ventasHistoricas);
+    private void agregarVentasAHistoricas() {
+        for(Pedido pedidoProcesado : ventasDiarias){
+            String codigoIdentificador = pedidoProcesado.generarCodigoIdentificador();
+            ventasHistoricas.put(codigoIdentificador,pedidoProcesado);
+        }
+         generadorArchivosVentas.generarReporte(ventasHistoricas);
     }
 
     /*private void actualizarinfo(VasoEnCola vasoCompletado) {

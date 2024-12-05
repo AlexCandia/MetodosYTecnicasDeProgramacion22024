@@ -13,24 +13,91 @@ import com.mycompany.proyectofinal.Inventario.Insumo;
 import java.io.*;
 import java.util.ArrayList;
 public class GeneradorArchivosInventario {
-    public ArrayList<Insumo> productos = new ArrayList<>();
+    private ArrayList<Insumo> productos;
+    private ArrayList<Proveedor> proveedores;
+    public GeneradorArchivosInventario(){
+        cargarInsumos();
+        cargarProveedores();
+    }
     public ArrayList<Insumo> getProductos(){
         return productos;
     }
-  public GeneradorArchivosInventario(ArrayList<Insumo> productos){
-     this.productos=productos; 
+    public ArrayList<Proveedor> getProveedores(){
+        return proveedores;
     }
-  private static final String FILE_PATH = "C:\\Proyectos\\MetodosYTecnicasDeProgramacion22024\\ProyectoFinal\\src\\main\\java\\productos.txt";
-  public void añadirAlarchivo(){
-      try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-            for (Insumo producto : productos) {
-                writer.write(producto.getNombre() + "/" + producto.getUnidad()+ "/" + producto.getCantidad());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.out.println("Error al guardar usuarios en el archivo: " + e.getMessage());
-        }
-  }
+    public void setInsumos(ArrayList<Insumo> nuevo){
+        productos=nuevo;
+    }
+    public void setProveedores(ArrayList<Proveedor> nuevo){
+        proveedores=nuevo;
+    }
+    private static final String FILE_PATH = "C:\\\\Users\\\\developerweb\\\\Desktop\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\src\\\\main\\\\java\\\\com\\\\mycompany\\\\proyectofinal\\\\Inventario\\\\Insumos.txt";
+    private static final String FILE_PATH2 = "C:\\\\Users\\\\developerweb\\\\Desktop\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\src\\\\main\\\\java\\\\com\\\\mycompany\\\\proyectofinal\\\\Inventario\\\\Proveedores.txt";
+    public void añadirAlarchivoInsumo(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+              for (Insumo producto : productos) {
+                  writer.write(producto.getNombre() + "/" + producto.getUnidad()+ "/" + producto.getCantidad()+ "/" + producto.getMinimo()+"");
+                  writer.newLine();
+              }
+          } catch (IOException e) {
+              System.out.println("Error al guardar usuarios en el archivo: " + e.getMessage());
+          }
+    }
+    public void añadirAlarchivoProveedores(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH2))) {
+              for (Proveedor proveedor : proveedores) {
+                  writer.write(proveedor.getNombre() + "/" + proveedor.getTelefono()+ "/" + proveedor.getDireccion());
+                  writer.newLine();
+              }
+          } catch (IOException e) {
+              System.out.println("Error al guardar proveedores en el archivo: " + e.getMessage());
+          }
+    }
   
   //Generar archivos para el inventario
+    private ArrayList<Insumo> cargarInsumos(){
+       productos = new ArrayList<>();
+       try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("/");
+                if (parts.length == 4){
+                    String nombre = parts[0];
+                    String unidad = parts[1];
+                    String cantidad = parts[2];
+                    String cantidadMin = parts[3];
+                    int cantidadProd = Integer.parseInt(cantidad);
+                    int cantidadMinProd = Integer.parseInt(cantidadMin);
+                    Insumo producto =new Insumo(nombre, unidad,cantidadProd,cantidadMinProd);
+                    productos.add(producto);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo de productos no encontrado.");
+        } catch (IOException e) {
+            System.out.println("Error al cargar productos desde el archivo: " + e.getMessage());
+        }
+      return productos;
+    }
+    private ArrayList<Insumo> cargarProveedores(){
+       proveedores = new ArrayList<>();
+       try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH2))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("/");
+                if (parts.length == 3){
+                    String nombre = parts[0];
+                    String telefono = parts[1];
+                    String direccion = parts[2];
+                    Proveedor proveedor =new Proveedor(nombre,telefono,direccion);
+                    proveedores.add(proveedor);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo de productos no encontrado.");
+        } catch (IOException e) {
+            System.out.println("Error al cargar productos desde el archivo: " + e.getMessage());
+        }
+      return productos;
+    }
 } 
