@@ -41,7 +41,9 @@ public class MenuInventario extends javax.swing.JFrame {
     public MenuInventario() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        this.setResizable(false); // Hace que la ventana no sea redimensionablethis.setLocationRelativeTo(null);
         String[] titulo = new String[]{"Nombre", "Unidad", "Cantidad"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);

@@ -219,15 +219,12 @@
                               <Component id="ingresosLabel" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="egresosFijosLabel" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                                   <Component id="egresosVariablesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="egresosInsumosLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="egresosInsumosLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -245,14 +242,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ingresosLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="ingresosNumero" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="ingresosLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="egresosFijosNumero" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="egresosFijosLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="egresosFijosLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">

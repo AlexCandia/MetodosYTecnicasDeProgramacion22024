@@ -32,7 +32,9 @@ public class PedidoTemporalDialog extends javax.swing.JDialog {
         super(parent, modal);
         this.setContentPane(fondo);
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
         dtm=(DefaultTableModel)TablaPedidoTemporal.getModel();
         
     }

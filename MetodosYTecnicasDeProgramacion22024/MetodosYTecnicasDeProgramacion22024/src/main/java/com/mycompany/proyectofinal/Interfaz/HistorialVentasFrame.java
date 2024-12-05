@@ -28,6 +28,9 @@ public class HistorialVentasFrame extends javax.swing.JFrame {
     public HistorialVentasFrame() {
         this.setContentPane(fondo);
         initComponents();
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
         dtm=(DefaultTableModel)tablaHistorialVentas.getModel();
     }
 
