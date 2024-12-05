@@ -28,7 +28,9 @@ public class ProveedoresFrameInventario extends javax.swing.JFrame {
     public ProveedoresFrameInventario(GestorDeInventario gestorInventario) {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
         tablita.setModel(new DefaultTableModel(
         new Object[][] {}, // Lista vacía para evitar filas por defecto
         new String[] {"Nombre", "Teléfono", "Dirección"}

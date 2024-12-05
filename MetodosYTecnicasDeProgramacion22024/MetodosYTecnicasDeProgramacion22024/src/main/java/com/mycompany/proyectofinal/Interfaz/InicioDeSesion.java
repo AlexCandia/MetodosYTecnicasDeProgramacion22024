@@ -23,7 +23,9 @@ public class InicioDeSesion extends javax.swing.JFrame {
     public InicioDeSesion(UsuarioManager usuarioManager) {
         this.setContentPane(fondo);
         initComponents();  // Inicializa los componentes del JFrame
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
         this.usuarioManager = usuarioManager;  // Almacena la instancia de UsuarioManager para ser utilizada
     }
 

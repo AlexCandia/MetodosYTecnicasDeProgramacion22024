@@ -50,7 +50,9 @@ public class MenuVentas extends javax.swing.JFrame {
         this.setContentPane(fondo);
         initComponents();
         scrollPanel.getHorizontalScrollBar().setBlockIncrement(100);
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
         llenarinventarioprov();
         temp = new PedidoTemporalDialog(this,true);
         histo = new HistorialVentasFrame();
