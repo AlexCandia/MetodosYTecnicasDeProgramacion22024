@@ -49,7 +49,6 @@ public class MenuVentas extends javax.swing.JFrame {
     public MenuVentas() {      
         this.setContentPane(fondo);
         initComponents();
-        scrollPanel.getHorizontalScrollBar().setBlockIncrement(100);
         this.setLocationRelativeTo(null); // Centra la ventana
         this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
         this.setResizable(false); // Hace que la ventana no sea redimensionable
@@ -71,7 +70,6 @@ public class MenuVentas extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
-        scrollPanel = new javax.swing.JScrollPane();
         jPanel2 = new FondoPanel();
         MenuButton = new javax.swing.JButton();
         HistorialButton = new javax.swing.JButton();
@@ -119,14 +117,10 @@ public class MenuVentas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1533, 1397));
 
-        scrollPanel.setBorder(null);
-        scrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-        jPanel2.setPreferredSize(new java.awt.Dimension(1531, 1000));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1280, 800));
 
         MenuButton.setBackground(new java.awt.Color(0, 204, 204));
-        MenuButton.setFont(new java.awt.Font("Segoe UI", 1, 29)); // NOI18N
+        MenuButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         MenuButton.setForeground(new java.awt.Color(255, 255, 255));
         MenuButton.setText("Menu");
         MenuButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -137,7 +131,7 @@ public class MenuVentas extends javax.swing.JFrame {
         });
 
         HistorialButton.setBackground(new java.awt.Color(0, 204, 204));
-        HistorialButton.setFont(new java.awt.Font("Segoe UI", 1, 29)); // NOI18N
+        HistorialButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         HistorialButton.setForeground(new java.awt.Color(255, 255, 255));
         HistorialButton.setText("Historial de \nventas");
         HistorialButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -148,7 +142,7 @@ public class MenuVentas extends javax.swing.JFrame {
         });
 
         terminarDiaButton.setBackground(new java.awt.Color(0, 204, 204));
-        terminarDiaButton.setFont(new java.awt.Font("Segoe UI", 1, 29)); // NOI18N
+        terminarDiaButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         terminarDiaButton.setForeground(new java.awt.Color(255, 255, 255));
         terminarDiaButton.setText("Terminar Dia");
         terminarDiaButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -159,7 +153,7 @@ public class MenuVentas extends javax.swing.JFrame {
         });
 
         VasoTerminadoButton.setBackground(new java.awt.Color(153, 153, 255));
-        VasoTerminadoButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        VasoTerminadoButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         VasoTerminadoButton.setForeground(new java.awt.Color(255, 255, 255));
         VasoTerminadoButton.setText("Vaso Terminado"); // NOI18N
         VasoTerminadoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +227,7 @@ public class MenuVentas extends javax.swing.JFrame {
                         .addComponent(NuevoClienteButton)
                         .addGap(11, 11, 11)
                         .addComponent(ConfirmarDatosButton)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +381,7 @@ public class MenuVentas extends javax.swing.JFrame {
         );
 
         VerPedidoButton.setBackground(new java.awt.Color(153, 153, 255));
-        VerPedidoButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        VerPedidoButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         VerPedidoButton.setForeground(new java.awt.Color(255, 255, 255));
         VerPedidoButton.setText("Ver Pedido");
         VerPedidoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -397,7 +391,7 @@ public class MenuVentas extends javax.swing.JFrame {
         });
 
         AgregarVasoButton.setBackground(new java.awt.Color(153, 153, 255));
-        AgregarVasoButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AgregarVasoButton.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         AgregarVasoButton.setForeground(new java.awt.Color(255, 255, 255));
         AgregarVasoButton.setText("Agregar Vaso");
         AgregarVasoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -426,7 +420,7 @@ public class MenuVentas extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
 
-        gestorDeVentasLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        gestorDeVentasLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         gestorDeVentasLabel.setForeground(new java.awt.Color(255, 255, 255));
         gestorDeVentasLabel.setText("GESTOR DE ");
 
@@ -435,7 +429,7 @@ public class MenuVentas extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addComponent(gestorDeVentasLabel)
                 .addContainerGap())
         );
@@ -478,7 +472,7 @@ public class MenuVentas extends javax.swing.JFrame {
                         .addComponent(NroPedidoDetalleLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NroPedidoDetalle)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,11 +491,11 @@ public class MenuVentas extends javax.swing.JFrame {
         DetallesLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         DetallesLabel.setText("DETALLES DE PEDIDO ");
 
-        colaDePedidosLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        colaDePedidosLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         colaDePedidosLabel.setText("COLA DE PEDIDOS :");
 
         gestorDeVentasLabel1.setBackground(new java.awt.Color(153, 153, 255));
-        gestorDeVentasLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        gestorDeVentasLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         gestorDeVentasLabel1.setForeground(new java.awt.Color(153, 153, 255));
         gestorDeVentasLabel1.setText("VENTAS");
 
@@ -511,91 +505,88 @@ public class MenuVentas extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 62, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InformacionLabel)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DetallesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DetallesLabel)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gestorDeVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(InformacionLabel)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(AgregarVasoButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(VerPedidoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(DetallesLabel))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DetallesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 414, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addComponent(gestorDeVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(HistorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(terminarDiaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(colaDePedidosLabel)
-                    .addComponent(VasoTerminadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(VasoTerminadoButton)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(HistorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(36, 36, 36)
+                            .addComponent(terminarDiaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26)
+                            .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(AgregarVasoButton)
+                .addGap(35, 35, 35)
+                .addComponent(VerPedidoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(gestorDeVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(InformacionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(gestorDeVentasLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(InformacionLabel)
+                            .addComponent(colaDePedidosLabel)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(terminarDiaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HistorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(DetallesLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(DetallesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AgregarVasoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(VerPedidoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(HistorialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(terminarDiaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(colaDePedidosLabel))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(VasoTerminadoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 211, Short.MAX_VALUE))
+                        .addComponent(DetallesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
+                        .addComponent(VasoTerminadoButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AgregarVasoButton)
+                    .addComponent(VerPedidoButton))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
-
-        scrollPanel.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -902,7 +893,6 @@ public class MenuVentas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane scrollPanel;
     private javax.swing.JButton terminarDiaButton;
     // End of variables declaration//GEN-END:variables
 
