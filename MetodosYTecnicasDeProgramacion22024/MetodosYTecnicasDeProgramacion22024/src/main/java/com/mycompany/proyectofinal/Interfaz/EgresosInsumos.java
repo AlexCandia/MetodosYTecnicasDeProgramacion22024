@@ -43,6 +43,10 @@ public class EgresosInsumos extends javax.swing.JFrame {
     public EgresosInsumos() {
         this.setContentPane(fondo);
         initComponents();
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
+        
         String[] titulo = new String[]{"Fecha", "Nombre:", "Cantidad:", "Valor:"};
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);

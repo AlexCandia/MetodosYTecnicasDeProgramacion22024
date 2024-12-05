@@ -48,6 +48,11 @@ public class MenuVentas extends javax.swing.JFrame {
     private String cargo; 
     public MenuVentas() {
         initComponents();
+        
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
+        
         this.setLocationRelativeTo(null);
         llenarinventarioprov();
         temp = new PedidoTemporalDialog(this,true);
@@ -55,7 +60,7 @@ public class MenuVentas extends javax.swing.JFrame {
         histo.rellenarVentas();
         dtm=(DefaultTableModel)ColaDePedidos.getModel();
         mandargestor();
-        this.setContentPane(fondo);
+        //this.setContentPane(fondo);
     }
 
     /**
@@ -881,7 +886,7 @@ public class MenuVentas extends javax.swing.JFrame {
     class FondoPanel extends JPanel{
         private Image imagen;
         public void paint(Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/imagen/fondoBlanco.jpg")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/imagen/Egresos.jpg")).getImage();
             g.drawImage(imagen,0,0,getWidth(), getHeight(),this);
             setOpaque(false);
             super.paint(g);

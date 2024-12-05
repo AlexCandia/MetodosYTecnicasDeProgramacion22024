@@ -34,7 +34,10 @@ public class MenuContabilidad extends javax.swing.JFrame {
     public MenuContabilidad() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
+        
          
     }
     

@@ -27,6 +27,10 @@ public class EditarVasoDialog extends javax.swing.JDialog {
     public EditarVasoDialog(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null); // Centra la ventana
+        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana
+        this.setResizable(false); // Hace que la ventana no sea redimensionable
+        
         this.setContentPane(fondo);
     }
 
