@@ -217,6 +217,7 @@ public class PedidoTemporalDialog extends javax.swing.JDialog {
                     .addComponent(editarVasoButton)
                     .addComponent(confirmarPedidoButton))
                 .addGap(18, 18, 18)
+
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(98, Short.MAX_VALUE))
         );

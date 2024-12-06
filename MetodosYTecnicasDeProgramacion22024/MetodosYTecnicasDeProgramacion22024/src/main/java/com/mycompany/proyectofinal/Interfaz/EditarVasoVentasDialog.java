@@ -67,7 +67,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         comboBoxParametro.setBackground(new java.awt.Color(153, 153, 255));
-        comboBoxParametro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comboBoxParametro.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         comboBoxParametro.setForeground(new java.awt.Color(255, 255, 255));
         comboBoxParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione el parametro a editar--", "Tamaño", "Base", "Tipo Boba", "Sabor 1", "Sabor 2" }));
         comboBoxParametro.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         });
 
         comboBoxNVaso.setBackground(new java.awt.Color(153, 153, 255));
-        comboBoxNVaso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comboBoxNVaso.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         comboBoxNVaso.setForeground(new java.awt.Color(255, 255, 255));
         comboBoxNVaso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione el Nro de Vaso--" }));
         comboBoxNVaso.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +90,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         mostrarParametro.setText("--------");
 
         comboBoxNParametro.setBackground(new java.awt.Color(153, 153, 255));
-        comboBoxNParametro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comboBoxNParametro.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         comboBoxNParametro.setForeground(new java.awt.Color(255, 255, 255));
         comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione el parametro nuevo--" }));
         comboBoxNParametro.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        mostrarParametroLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        mostrarParametroLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         mostrarParametroLabel.setText("Parametro actual");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -125,7 +125,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        seleccioneParametroLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        seleccioneParametroLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         seleccioneParametroLabel2.setText("Seleccione el parametro a editar");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -148,7 +148,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        seleccioneNVasoLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        seleccioneNVasoLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         seleccioneNVasoLabel1.setText("Ingrese el numero de vaso");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -171,7 +171,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        seleccioneParametroNuevoLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        seleccioneParametroNuevoLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         seleccioneParametroNuevoLabel.setText("Seleccione el parametro nuevo");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -181,7 +181,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(seleccioneParametroNuevoLabel)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,8 +201,8 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(mostrarParametro)
                     .addComponent(comboBoxNParametro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,7 +238,7 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         );
 
         editButton.setBackground(new java.awt.Color(153, 153, 255));
-        editButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        editButton.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         editButton.setForeground(new java.awt.Color(255, 255, 255));
         editButton.setText("EDITAR");
         editButton.addActionListener(new java.awt.event.ActionListener() {
@@ -262,44 +262,45 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(historialVentasLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(158, Short.MAX_VALUE)
+                .addComponent(historialVentasLabel1)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(historialVentasLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(259, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historialVentasLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(historialVentasLabel))
                     .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(historialVentasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(67, 67, 67)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(45, 45, 45)
                 .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -308,13 +309,13 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 464, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
