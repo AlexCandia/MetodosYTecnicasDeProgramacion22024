@@ -22,9 +22,9 @@ import java.util.HashMap;
  */
 public class GeneradorArchivosVentas {
     private HashMap<String, Pedido> ventasHistoricas;
-     private static final String FILE_PATH1 = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Ventas\\ticket.txt";
-     private static final String FILE_PATH2 = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Ventas\\factura.txt";
-     private static final String FILE_PATH3 = "C:\\\\Users\\\\developerweb\\\\Desktop\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\src\\\\main\\\\java\\\\com\\\\mycompany\\\\proyectofinal\\\\Ventas\\\\VentasHistoricas.txt";
+     private static final String FILE_PATH1 = "Archivos/ArchivosVentas/ticket.txt";
+     private static final String FILE_PATH2 = "Archivos/ArchivosVentas/factura.txt";
+     private static final String FILE_PATH3 = "Archivos/ArchivosVentas/VentasHistoricas.txt";
      public GeneradorArchivosVentas() {
          cargarVentasHistoricasDesdeArchivo();
     }

@@ -28,6 +28,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
 
      private DefaultTableModel modeloTabla;
+     String[] masVendidos;
      private GestorDeVentas gestorVentas;
      private GestorDeInventario gestorInventario;
      private GestorDeContabilidad gestorContabilidad;
@@ -38,13 +39,14 @@ public class MenuContabilidad extends javax.swing.JFrame {
     public MenuContabilidad() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocationRelativeTo(null); // Centra la ventana
-        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
-        this.setResizable(false); // Hace que la ventana no sea redimensionable
+        this.setLocationRelativeTo(null); 
+        this.setSize(1280, 800); 
+        this.setResizable(false); 
         gestorInventario = new GestorDeInventario();
         gestorContabilidad = new GestorDeContabilidad(gestorInventario);
          gestorVentas = new GestorDeVentas(gestorInventario,gestorContabilidad);
         fijarParametrosEconomicos();
+        fijarSaboresMasVendidos();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,14 +76,14 @@ public class MenuContabilidad extends javax.swing.JFrame {
         botonAgregarEgresoVariable = new javax.swing.JButton();
         botonAgregarEgresoInsumo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        egresoFijoo = new javax.swing.JTextField();
-        egresoInsumoo = new javax.swing.JTextField();
-        egresoVariableOtro = new javax.swing.JTextField();
+        sabor1Label = new javax.swing.JLabel();
+        sabor2Label = new javax.swing.JLabel();
+        sabor3Label = new javax.swing.JLabel();
+        sabor2 = new javax.swing.JTextField();
+        sabor1 = new javax.swing.JTextField();
+        sabor3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        graficarButton = new javax.swing.JButton();
         VolverBoton1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -277,14 +279,14 @@ public class MenuContabilidad extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel16.setText("Chocolate");
+        sabor1Label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sabor1Label.setText("Chocolate");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Frutilla");
+        sabor2Label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sabor2Label.setText("Frutilla");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setText("Mora");
+        sabor3Label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sabor3Label.setText("Mora");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -293,14 +295,14 @@ public class MenuContabilidad extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sabor1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sabor2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sabor3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(egresoFijoo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(egresoInsumoo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(egresoVariableOtro, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sabor2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sabor1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sabor3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -308,29 +310,29 @@ public class MenuContabilidad extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(egresoInsumoo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sabor1Label)
+                    .addComponent(sabor1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(egresoFijoo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(sabor2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sabor2Label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(egresoVariableOtro, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(jLabel14))
+                    .addComponent(sabor3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(sabor3Label))
                 .addGap(17, 17, 17))
         );
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel13.setText("Sabores mas vendidos");
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Graficar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        graficarButton.setBackground(new java.awt.Color(153, 153, 255));
+        graficarButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        graficarButton.setForeground(new java.awt.Color(255, 255, 255));
+        graficarButton.setText("Graficar");
+        graficarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                graficarButtonActionPerformed(evt);
             }
         });
 
@@ -393,7 +395,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(graficarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(58, 58, 58)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(miGrafica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -451,7 +453,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
+                            .addComponent(graficarButton)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(80, 80, 80))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,15 +505,30 @@ public class MenuContabilidad extends javax.swing.JFrame {
         e.setVisible(true);
     }//GEN-LAST:event_botonAgregarEgresoInsumoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void graficarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graficarButtonActionPerformed
 
-        int egresoFijo = Integer.parseInt(egresoFijoo.getText());
-        int egresoVariable = Integer.parseInt(egresoVariableOtro.getText());
-        int egresoInsumo = Integer.parseInt(egresoInsumoo.getText());
+        int egresoFijo = Integer.parseInt(sabor1.getText());
+        int egresoVariable = Integer.parseInt(sabor2.getText());
+        int egresoInsumo = Integer.parseInt(sabor3.getText());
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
-        datos.setValue(egresoFijo,"Sabor1","Chocolate");
-        datos.setValue(egresoVariable,"Sabor2","Mora");
-        datos.setValue(egresoInsumo,"Sabor3","Frutilla");
+        String primerSabor=masVendidos[0];
+        String segundoSabor=masVendidos[1];
+        String tercerSabor=masVendidos[2];
+        if(primerSabor!=null){
+            datos.setValue(egresoFijo,primerSabor.substring(0, primerSabor.length()-1),"0");
+        }else{
+            datos.setValue(egresoFijo,"-----","0");
+        }
+        if(segundoSabor!=null){
+            datos.setValue(egresoVariable,segundoSabor.substring(0, segundoSabor.length()-1),"0");
+        }else{
+            datos.setValue(egresoVariable,"-----","0");
+        }
+        if(tercerSabor!=null){
+            datos.setValue(egresoInsumo,tercerSabor.substring(0, tercerSabor.length()-1),"0");
+        }else{
+            datos.setValue(egresoInsumo,"-----","0");
+        }
         JFreeChart grafico_barras = ChartFactory.createBarChart(
             "Boba Queen",
             "Sabores",
@@ -531,7 +548,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
 
         pack();
         repaint();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_graficarButtonActionPerformed
 
     private void botonAgregarEgresoFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEgresoFijoActionPerformed
         EgresosFijos e = new EgresosFijos(gestorContabilidad);
@@ -539,7 +556,9 @@ public class MenuContabilidad extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAgregarEgresoFijoActionPerformed
 
     private void VolverBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBoton1ActionPerformed
-        // TODO add your handling code here:
+        MenuBobaAdmin menu =  new MenuBobaAdmin();
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_VolverBoton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -562,6 +581,30 @@ public class MenuContabilidad extends javax.swing.JFrame {
         egresosVariablesNumero.setText(egresosVariables+"");
         egresosInsumosNumero.setText(egresosInsumos+"");
         
+    }
+    private void fijarSaboresMasVendidos(){
+        sabor1.setText("0");
+        sabor2.setText("0");
+        sabor3.setText("0");
+        masVendidos=gestorVentas.calcularSaboresMasVendidos();
+        String primerSabor=masVendidos[0];
+        String segundoSabor=masVendidos[1];
+        String tercerSabor=masVendidos[2];
+        if(primerSabor!=null){
+            int l=primerSabor.length()-1;
+            sabor1Label.setText(primerSabor.substring(0,l));
+            sabor1.setText(primerSabor.charAt(l)+"");
+        }
+        if(segundoSabor!=null){
+            int l=segundoSabor.length()-1;
+            sabor2Label.setText(segundoSabor.substring(0,l));
+            sabor2.setText(segundoSabor.charAt(l)+"");
+        }
+        if(tercerSabor!=null){
+            int l=tercerSabor.length()-1;
+            sabor3Label.setText(tercerSabor.substring(0,l));
+            sabor3.setText(tercerSabor.charAt(l)+"");
+        }
     }
     /**
      * @param args the command line arguments
@@ -607,25 +650,19 @@ public class MenuContabilidad extends javax.swing.JFrame {
     private javax.swing.JButton botonAgregarEgresoInsumo;
     private javax.swing.JButton botonAgregarEgresoVariable;
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JTextField egresoFijoo;
-    private javax.swing.JTextField egresoInsumoo;
-    private javax.swing.JTextField egresoVariableOtro;
     private javax.swing.JLabel egresosFijosLabel;
     private javax.swing.JLabel egresosFijosNumero;
     private javax.swing.JLabel egresosInsumosLabel;
     private javax.swing.JLabel egresosInsumosNumero;
     private javax.swing.JLabel egresosVariablesLabel;
     private javax.swing.JLabel egresosVariablesNumero;
+    private javax.swing.JButton graficarButton;
     private javax.swing.JLabel ingresosLabel;
     private javax.swing.JLabel ingresosNumero;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
@@ -636,6 +673,12 @@ public class MenuContabilidad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JPanel miGrafica;
+    private javax.swing.JTextField sabor1;
+    private javax.swing.JLabel sabor1Label;
+    private javax.swing.JTextField sabor2;
+    private javax.swing.JLabel sabor2Label;
+    private javax.swing.JTextField sabor3;
+    private javax.swing.JLabel sabor3Label;
     // End of variables declaration//GEN-END:variables
 
     class FondoPanel extends JPanel{

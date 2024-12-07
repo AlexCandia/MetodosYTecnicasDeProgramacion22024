@@ -5,7 +5,7 @@ import java.util.List;
 
 public class UsuarioManager {
 
-    private static final String FILE_NAME = "ListaUsuarios.txt";
+    private static final String FILE_NAME = "Archivos/ArchivosUsuarios/ListaUsuarios.txt";
     private List<Usuario> listaUsuarios;
 
     // Constructor que carga los listaUsuarios desde el archivo

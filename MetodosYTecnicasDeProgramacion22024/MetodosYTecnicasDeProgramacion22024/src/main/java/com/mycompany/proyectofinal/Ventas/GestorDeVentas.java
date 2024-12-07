@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 public class GestorDeVentas {
     // Atributos de la clase GestorDeVentas
     
@@ -238,6 +240,29 @@ public class GestorDeVentas {
         for(int i=0;i<lim;i++){
             recorrido.get(i).setNumVaso(i+1+"");
         }
+    }
+
+    public String[] calcularSaboresMasVendidos() {
+        
+         HashMap<String, Integer> contadorSabores = new HashMap<>();
+         for (Pedido pedido : ventasHistoricas.values()) {
+            for (Vaso vaso : pedido.getVasos()) {
+                String sabor1 = vaso.getSabor1();
+                contadorSabores.put(sabor1, contadorSabores.getOrDefault(sabor1, 0) + 1);
+                String sabor2 = vaso.getSabor2();
+                if (sabor2 != null && !sabor2.isEmpty()) {
+                    contadorSabores.put(sabor2, contadorSabores.getOrDefault(sabor2, 0) + 1);
+                }
+            }
+        }
+        List<Map.Entry<String, Integer>> listaSabores = new ArrayList<>(contadorSabores.entrySet());
+        listaSabores.sort((a, b) -> b.getValue() - a.getValue()); 
+        String[] tresSabores = new String[3];
+        for (int i = 0; i < 3 && i < listaSabores.size(); i++) {
+            tresSabores[i] = listaSabores.get(i).getKey()+listaSabores.get(i).getValue()+"";
+        }
+
+        return tresSabores;
     }
 
 }
