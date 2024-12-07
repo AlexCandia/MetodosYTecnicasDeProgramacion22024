@@ -1,0 +1,18 @@
+Historial Contable - Fecha: 07/12/2024
+Reporte Mensual
+Ingresos totales: 0.0
+Egresos Fijos: 232.0
+Egresos Insumos: 0.0
+Egresos Otros: 12.0
+Balance: -244.0
+
+-------------------------
+Historial Contable - Fecha: 07/12/2024
+Reporte Mensual
+Ingresos totales: 60.0
+Egresos Fijos: 232.0
+Egresos Insumos: 0.0
+Egresos Otros: 12.0
+Balance: -244.0
+
+-------------------------
