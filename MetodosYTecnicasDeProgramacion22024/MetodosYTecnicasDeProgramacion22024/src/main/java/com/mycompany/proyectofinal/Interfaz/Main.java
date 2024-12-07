@@ -25,7 +25,7 @@ public class Main {
                 // Crear y mostrar la ventana de inicio de sesión, pasándole UsuarioManager
                 InicioDeSesion loginFrame = new InicioDeSesion(usuarioManager);
                 loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                loginFrame.setSize(1000, 700);
+                //loginFrame.setSize(1000, 700);
                 loginFrame.setLocationRelativeTo(null);
                 loginFrame.setVisible(true);
             }
