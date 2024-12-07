@@ -1,8 +1,0 @@
-Ventas Historicas:
-Fecha:03/12/24
-Pedido:1Cliente:onkotynyNIT:3453
-Nro Vaso:1Sabor 1 :MentaSabor 2 :LimonTamaño :GrandeBase:LecheTipo Perlas:ExplosivoSubTotal:20
-Total: 20
-Pedido:2Cliente:asdadNIT:13123
-Nro Vaso:1Sabor 1 :MentaSabor 2 :LimonTamaño :GrandeBase:AguaTipo Perlas:ExplosivoSubTotal:20
-Total: 20

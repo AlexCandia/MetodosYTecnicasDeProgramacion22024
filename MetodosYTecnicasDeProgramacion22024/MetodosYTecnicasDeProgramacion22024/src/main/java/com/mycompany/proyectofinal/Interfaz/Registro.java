@@ -26,7 +26,7 @@ public class Registro extends javax.swing.JFrame {
         this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null); // Centra la ventana
-        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
+        //this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
         this.setResizable(false); // Hace que la ventana no sea redimensionable
         this.usuarioManager = usuarioManager;
     }
@@ -266,7 +266,7 @@ public class Registro extends javax.swing.JFrame {
             // Crear una nueva instancia de InicioDeSesion con el UsuarioManager
             InicioDeSesion inicioDeSesion = new InicioDeSesion(usuarioManager);
             inicioDeSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            inicioDeSesion.setSize(1000, 700);
+            //inicioDeSesion.setSize(1000, 700);
             inicioDeSesion.setLocationRelativeTo(null);
             inicioDeSesion.setVisible(true);
         } else {

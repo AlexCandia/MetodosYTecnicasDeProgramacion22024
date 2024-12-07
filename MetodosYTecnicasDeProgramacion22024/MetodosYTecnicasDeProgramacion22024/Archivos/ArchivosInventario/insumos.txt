@@ -8,3 +8,4 @@ Explosivo/Unidad/12/1
 Regular/Unidad/12/1
 Maracuya/Bolsa/23/2
 Fresa/Bolsa/25/2
+Durazno/Unidad/33/-1

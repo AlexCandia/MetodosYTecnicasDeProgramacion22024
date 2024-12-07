@@ -1,5 +1,0 @@
-Nombre:sadadNIT:675712
-Nro Vaso:1Sabor 1 :moraSabor 2 :duraznoTamaño :GrandeTipo Perlas:perlas20
-Nro Vaso:2Sabor 1 :chocoSabor 2 :frutiTamaño :MedianoTipo Perlas:perlas15
-Nro Vaso:3Sabor 1 :machaSabor 2 :ningunoTamaño :GrandeTipo Perlas:explosive20
-Total : 55

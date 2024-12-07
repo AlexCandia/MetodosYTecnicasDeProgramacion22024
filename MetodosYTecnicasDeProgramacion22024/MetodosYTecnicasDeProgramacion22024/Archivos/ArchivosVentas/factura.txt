@@ -1,0 +1,3 @@
+Nombre:JackelineNIT:4513458
+Nro Vaso:1Sabor 1 :ChocolateSabor 2 :LimonTamaño :GrandeTipo Perlas:Regular20
+Total : 20

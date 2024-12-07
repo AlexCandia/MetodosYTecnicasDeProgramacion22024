@@ -31,8 +31,8 @@ public class GeneradorArchivosInventario {
     public void setProveedores(ArrayList<Proveedor> nuevo){
         proveedores=nuevo;
     }
-    private static final String FILE_PATH = "C:\\\\Users\\\\developerweb\\\\Desktop\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\src\\\\main\\\\java\\\\com\\\\mycompany\\\\proyectofinal\\\\Inventario\\\\Insumos.txt";
-    private static final String FILE_PATH2 = "C:\\\\Users\\\\developerweb\\\\Desktop\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\MetodosYTecnicasDeProgramacion22024\\\\src\\\\main\\\\java\\\\com\\\\mycompany\\\\proyectofinal\\\\Inventario\\\\Proveedores.txt";
+    private static final String FILE_PATH = "Archivos/ArchivosInventario/Insumos.txt";
+    private static final String FILE_PATH2 = "Archivos/ArchivosInventario/Proveedores.txt";
     public void añadirAlarchivoInsumo(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
               for (Insumo producto : productos) {
