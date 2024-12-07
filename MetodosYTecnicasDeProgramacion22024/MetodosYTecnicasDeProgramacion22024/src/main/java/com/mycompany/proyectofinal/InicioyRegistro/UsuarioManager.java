@@ -77,7 +77,6 @@ public class UsuarioManager {
         }
     }
 
-    // Método opcional para mostrar listaUsuarios (para depuración)
     public void mostrarUsuarios() {
         listaUsuarios.forEach(usuario -> 
             System.out.println("Nombre: " + usuario.getUsuario() +

@@ -10,7 +10,6 @@ package com.mycompany.proyectofinal.Contabilidad;
  * @author vale
  */
 import java.util.*;
-import com.mycompany.proyectofinal.Ventas.GestorDeVentas;
 import com.mycompany.proyectofinal.Inventario.GestorDeInventario;
 import com.mycompany.proyectofinal.Ventas.Pedido;
 import com.mycompany.proyectofinal.Ventas.Vaso;
@@ -51,9 +50,6 @@ public class GestorDeContabilidad {
     public ArrayList<EgresoVariable> getEgresosVariables() {
         return egresosVariables;
     }
-//    public void calcularIngreso () {
-//        ingresosBoba=gestorDeVentas.calcularIngresosTotales();
-//    }
 
     public void registrarEgresoFijo(EgresoFijo egreso) {
         egresosFijos.add(egreso);
@@ -74,8 +70,6 @@ public class GestorDeContabilidad {
     }
     
     public void registrarEgresoInsumo(EgresoInsumo egreso) {
-        //Revisar comentario cuando hagamos vinculaciones
-        //gestorDeInventario.recibirNuevoInsumo(egreso.getNombre(), egreso.getCantidad()+"");
         egresosInsumos.add(egreso);
     }
     
@@ -187,33 +181,22 @@ public class GestorDeContabilidad {
         }
     }
     
-    public String imprimirReporteMensual() {
+    public String imprimirReporteMensual(double ingresos) {
         StringBuilder reporte = new StringBuilder();
         reporte.append("Reporte Mensual\n");
-        reporte.append("Ingresos totales: ").append(ingresosBoba).append("\n");
+        reporte.append("Ingresos totales: ").append(ingresos).append("\n");
         reporte.append("Egresos Fijos: ").append(calcularTotalEgresosFijos()).append("\n");
         reporte.append("Egresos Insumos: ").append(calcularTotalEgresosInsumos()).append("\n");
         reporte.append("Egresos Otros: ").append(calcularTotalEgresosVariables()).append("\n");
         reporte.append("Balance: ").append(calcularBalance()).append("\n");
         return reporte.toString();
     }
-    public void guardarReporteHistorico() {
+    public void guardarReporteHistorico(double ingresos) {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String ruta = "C:\\Users\\Camila\\OneDrive\\Escritorio\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\MetodosYTecnicasDeProgramacion22024\\src\\main\\java\\com\\mycompany\\proyectofinal\\Contabilidad\\historicoContabilidad.txt"; // Ruta donde se guardará el archivo
-
-        // Verifica si la carpeta existe, si no la crea
-        Path path = Paths.get("C://");
-        if (!Files.exists(path)) {
-            try {
-                Files.createDirectory(path);
-            } catch (IOException e) {
-                System.out.println("Error al crear la carpeta: " + e.getMessage());
-            }
-        }
-
+        String ruta = "Archivos/ArchivosContabilidad/historicoContabilidad.txt";
         try (FileWriter writer = new FileWriter(ruta, true)) { // El true añade el contenido sin borrar el archivo anterior
             writer.write("Historial Contable - Fecha: " + fecha + "\n");
-            writer.write(imprimirReporteMensual());
+            writer.write(imprimirReporteMensual(ingresos));
             writer.write("\n-------------------------\n");
             System.out.println("Reporte histórico guardado en: " + ruta);
         } catch (IOException e) {
@@ -231,9 +214,5 @@ public class GestorDeContabilidad {
     public void guardarEgresosVariables() {
         egresosFile.setEgresosVariables(egresosVariables);
         egresosFile.añadirAlarchivoEgresosVariables();
-    }
-    
-    public void imprimirReporteHistorico() {
-        guardarReporteHistorico();
     }
 }

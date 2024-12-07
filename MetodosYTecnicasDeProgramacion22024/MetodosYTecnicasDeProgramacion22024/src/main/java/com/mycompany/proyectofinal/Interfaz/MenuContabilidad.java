@@ -85,7 +85,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         graficarButton = new javax.swing.JButton();
         VolverBoton1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        generarReporteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -346,15 +346,15 @@ public class MenuContabilidad extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Imprimir Reporte");
-        jButton1.setMaximumSize(new java.awt.Dimension(96, 39));
-        jButton1.setMinimumSize(new java.awt.Dimension(96, 39));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        generarReporteButton.setBackground(new java.awt.Color(0, 204, 204));
+        generarReporteButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        generarReporteButton.setForeground(new java.awt.Color(255, 255, 255));
+        generarReporteButton.setText("Generar Reporte");
+        generarReporteButton.setMaximumSize(new java.awt.Dimension(96, 39));
+        generarReporteButton.setMinimumSize(new java.awt.Dimension(96, 39));
+        generarReporteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                generarReporteButtonActionPerformed(evt);
             }
         });
 
@@ -404,7 +404,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addGap(324, 324, 324))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(generarReporteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(260, 260, 260))))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -422,7 +422,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel11)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(generarReporteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(75, 75, 75)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -561,9 +561,9 @@ public class MenuContabilidad extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_VolverBoton1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void generarReporteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarReporteButtonActionPerformed
+        gestorContabilidad.guardarReporteHistorico(gestorVentas.calcularIngresosTotales());
+    }//GEN-LAST:event_generarReporteButtonActionPerformed
 
     private String cargo;
     public void setCargo(String s){
@@ -656,10 +656,10 @@ public class MenuContabilidad extends javax.swing.JFrame {
     private javax.swing.JLabel egresosInsumosNumero;
     private javax.swing.JLabel egresosVariablesLabel;
     private javax.swing.JLabel egresosVariablesNumero;
+    private javax.swing.JButton generarReporteButton;
     private javax.swing.JButton graficarButton;
     private javax.swing.JLabel ingresosLabel;
     private javax.swing.JLabel ingresosNumero;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
