@@ -239,13 +239,13 @@ public class InicioDeSesion extends javax.swing.JFrame {
                 if(cargo.equals("Administrador")){
                     MenuBobaAdmin menuAdmin = new MenuBobaAdmin();
                     menuAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    menuAdmin.setSize(1000, 700);
+                    //menuAdmin.setSize(1000, 700);
                     menuAdmin.setLocationRelativeTo(null);
                     menuAdmin.setVisible(true);
                 }else{
                     MenuBoba menu = new MenuBoba();
                     menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    menu.setSize(1000, 700);
+                    //menu.setSize(1000, 700);
                     menu.setLocationRelativeTo(null);
                     menu.setVisible(true);
                 }

@@ -68,9 +68,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         lblResultado = new javax.swing.JLabel();
         miGrafica = new javax.swing.JPanel();
-        Reportes1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        VolverBoton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         botonAgregarEgresoFijo = new javax.swing.JButton();
         botonAgregarEgresoVariable = new javax.swing.JButton();
@@ -84,6 +82,8 @@ public class MenuContabilidad extends javax.swing.JFrame {
         egresoVariableOtro = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        VolverBoton1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -237,28 +237,8 @@ public class MenuContabilidad extends javax.swing.JFrame {
             .addGap(0, 359, Short.MAX_VALUE)
         );
 
-        Reportes1.setBackground(new java.awt.Color(0, 204, 204));
-        Reportes1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        Reportes1.setForeground(new java.awt.Color(255, 255, 255));
-        Reportes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte Mensual", "Reporte Historico" }));
-        Reportes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Reportes1ActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel5.setText("Registar Egresos");
-
-        VolverBoton.setBackground(new java.awt.Color(0, 204, 204));
-        VolverBoton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        VolverBoton.setForeground(new java.awt.Color(255, 255, 255));
-        VolverBoton.setText("Menu");
-        VolverBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VolverBotonActionPerformed(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(153, 153, 255));
@@ -354,6 +334,28 @@ public class MenuContabilidad extends javax.swing.JFrame {
             }
         });
 
+        VolverBoton1.setBackground(new java.awt.Color(0, 204, 204));
+        VolverBoton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        VolverBoton1.setForeground(new java.awt.Color(255, 255, 255));
+        VolverBoton1.setText("Menu");
+        VolverBoton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverBoton1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Imprimir Reporte");
+        jButton1.setMaximumSize(new java.awt.Dimension(96, 39));
+        jButton1.setMinimumSize(new java.awt.Dimension(96, 39));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -366,7 +368,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 55, Short.MAX_VALUE)
+                        .addGap(0, 52, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,40 +391,36 @@ public class MenuContabilidad extends javax.swing.JFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(miGrafica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(324, 324, 324))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(Reportes1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(VolverBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(58, 58, 58)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(miGrafica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(59, 59, 59))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(260, 260, 260))))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addContainerGap(1056, Short.MAX_VALUE)
+                    .addComponent(VolverBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(49, 49, 49)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(34, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(VolverBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Reportes1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jLabel13)
-                        .addGap(18, 18, 18)
-                        .addComponent(miGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel11)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(75, 75, 75)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -436,7 +434,12 @@ public class MenuContabilidad extends javax.swing.JFrame {
                                 .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
                                 .addComponent(jLabel5)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 21, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(miGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -451,6 +454,11 @@ public class MenuContabilidad extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(80, 80, 80))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(44, 44, 44)
+                    .addComponent(VolverBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(712, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -484,24 +492,6 @@ public class MenuContabilidad extends javax.swing.JFrame {
             lblResultado.setText("Error: valores no válidos en etiquetas.");
         }
     }//GEN-LAST:event_btnCalcularActionPerformed
-
-    private void Reportes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reportes1ActionPerformed
-        // TODO add your handling code here:
-        //String s = Reportes.getSelectedItem().toString();
-    }//GEN-LAST:event_Reportes1ActionPerformed
-
-    private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
-        // TODO add your handling code here:
-        if(cargo.equals("Admin")){
-            MenuBobaAdmin menu =  new MenuBobaAdmin();
-            menu.setVisible(true);
-            this.setVisible(false);
-        }else{
-            MenuBoba men =  new MenuBoba();
-            men.setVisible(true);
-            this.setVisible(false);
-        }
-    }//GEN-LAST:event_VolverBotonActionPerformed
 
     private void botonAgregarEgresoVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEgresoVariableActionPerformed
         EgresosVariables e = new EgresosVariables(gestorContabilidad);
@@ -547,6 +537,14 @@ public class MenuContabilidad extends javax.swing.JFrame {
         EgresosFijos e = new EgresosFijos(gestorContabilidad);
         e.setVisible(true);
     }//GEN-LAST:event_botonAgregarEgresoFijoActionPerformed
+
+    private void VolverBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBoton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VolverBoton1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private String cargo;
     public void setCargo(String s){
@@ -604,8 +602,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Reportes1;
-    private javax.swing.JButton VolverBoton;
+    private javax.swing.JButton VolverBoton1;
     private javax.swing.JButton botonAgregarEgresoFijo;
     private javax.swing.JButton botonAgregarEgresoInsumo;
     private javax.swing.JButton botonAgregarEgresoVariable;
@@ -621,6 +618,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
     private javax.swing.JLabel egresosVariablesNumero;
     private javax.swing.JLabel ingresosLabel;
     private javax.swing.JLabel ingresosNumero;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
