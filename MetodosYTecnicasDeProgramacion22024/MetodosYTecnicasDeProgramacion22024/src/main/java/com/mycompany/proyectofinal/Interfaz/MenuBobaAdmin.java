@@ -200,7 +200,6 @@ public class MenuBobaAdmin extends javax.swing.JFrame {
 
     private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
         // TODO add your handling code here:
-
         MenuVentas vent = new MenuVentas();
         vent.setCargo("Admin");
         vent.setVisible(true);

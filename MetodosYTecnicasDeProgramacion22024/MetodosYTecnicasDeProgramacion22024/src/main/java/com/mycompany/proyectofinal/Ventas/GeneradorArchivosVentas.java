@@ -82,7 +82,7 @@ public class GeneradorArchivosVentas {
                     for (Vaso vaso : pedido.getVasos()) {
                     total+=vaso.getPrecio();
                     writer.write("Nro Vaso:"+vaso.getNumVaso()+ "Sabor 1 :" +vaso.getSabor1()+ "Sabor 2 :" + 
-                            vaso.getSabor2()+ "Tamaño :" + vaso.getTamVaso()+ "Base:" +vaso.getBase() + "Tipo Perlas:" + vaso.getTipoBoba()+ 
+                            vaso.getSabor2()+ "Tamanio :" + vaso.getTamVaso()+ "Base:" +vaso.getBase() + "Tipo Perlas:" + vaso.getTipoBoba()+ 
                             "SubTotal:"+vaso.getPrecio());
                     writer.newLine();
                 }
@@ -125,10 +125,10 @@ public class GeneradorArchivosVentas {
             } else if (linea.startsWith("Nro Vaso:")) {
                 // Extraer los datos del vaso y añadirlo al pedido actual
                 String sabor1 = getValue(linea, "Sabor 1 :", "Sabor 2 :");
-                String tamaño = getValue(linea, "Tamaño :", "Base:");
+                String tamaño = getValue(linea, "Tamanio :", "Base:");
                 String base = getValue(linea, "Base:", "Tipo Perlas:");
                 String perlas = getValue(linea, "Tipo Perlas:", "SubTotal:");
-                String sabor2 = getValue(linea, "Sabor 2 :", "Tamaño :");
+                String sabor2 = getValue(linea, "Sabor 2 :", "Tamanio :");
 
                 // Crear un nuevo Vaso y agregarlo al pedido actual
                 Vaso vaso = new Vaso(tamaño, base, perlas, sabor1, sabor2);
