@@ -73,7 +73,6 @@ public class GestorDeInventario {
     public void ordenarPorNombre() {
         Collections.sort(insumos, Comparator.comparing(Insumo::getNombre));
     }
-
     public void ordenarPorCantidad() {
         Collections.sort(insumos, Comparator.comparingInt(Insumo::getCantidad));
     }
