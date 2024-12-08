@@ -58,18 +58,24 @@ public class MenuInventario extends javax.swing.JFrame {
         gestorInventario = new GestorDeInventario();
         rellenarTablaInicio();
     }
-    // Método para ordenar la tabla según el criterio seleccionado en el JComboBox
     private void ordenarTabla() {
         String seleccion = (String) comboOrdenar.getSelectedItem();
-        
         if ("Ordenar por Nombre".equals(seleccion)) {
-            // Ordenar por la columna "Nombre" (índice 0)
-            sorter.setComparator(0, Comparator.naturalOrder());
-            sorter.setSortKeys(java.util.List.of(new RowSorter.SortKey(0, SortOrder.ASCENDING)));
+            gestorInventario.ordenarPorNombre();
         } else if ("Ordenar por Cantidad".equals(seleccion)) {
-            // Ordenar por la columna "Cantidad" (índice 2) de menor a mayor
-            sorter.setComparator(2, Comparator.comparingInt(o -> Integer.parseInt(o.toString())));
-            sorter.setSortKeys(java.util.List.of(new RowSorter.SortKey(2, SortOrder.ASCENDING)));
+            gestorInventario.ordenarPorCantidad();
+        }
+        actualizarTabla();
+    }
+    private void actualizarTabla() {
+        dtm.setRowCount(0);
+        for (Insumo insumo : gestorInventario.getInsumos()) {
+            dtm.addRow(new Object[]{
+                insumo.getNombre(),
+                insumo.getUnidad(),
+                insumo.getCantidad(),
+                insumo.getMinimo()
+            });
         }
     }
     void agregar(){
@@ -169,7 +175,7 @@ public class MenuInventario extends javax.swing.JFrame {
                 dtm.setValueAt(nombre, fila, 0);
             }
             if(!unidad.isEmpty()){
-                dtm.setValueAt(nombre, fila, 1);
+                dtm.setValueAt(unidad, fila, 1);
             }
             if(!cantidad.isEmpty()){
                 try{
