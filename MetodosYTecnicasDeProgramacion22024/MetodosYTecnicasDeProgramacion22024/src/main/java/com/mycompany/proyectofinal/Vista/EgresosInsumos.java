@@ -32,15 +32,9 @@ import javax.swing.table.DefaultTableModel;
 public class EgresosInsumos extends javax.swing.JFrame {
     DefaultTableModel dtm = new DefaultTableModel();
     FondoPanel fondo = new FondoPanel();
-
-    /**
-     * Creates new form Egresoinsumo
-     */
-    
-     //Solo es para las pruebas se debe borrar
     private GestorDeContabilidad gestorContabilidad;
-    
-    public EgresosInsumos(GestorDeContabilidad gestorContabilidad) {
+    private MenuContabilidad menu;
+    public EgresosInsumos(GestorDeContabilidad gestorContabilidad,MenuContabilidad menu) {
         this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null); // Centra la ventana
@@ -49,6 +43,7 @@ public class EgresosInsumos extends javax.swing.JFrame {
         String[] titulo = new String[]{"Fecha", "Nombre:", "Cantidad:", "Valor:"};
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);
+        this.menu=menu;
         this.gestorContabilidad = gestorContabilidad;
         rellenarTablaInicio();
     }
@@ -522,6 +517,7 @@ public class EgresosInsumos extends javax.swing.JFrame {
 
     private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
         gestorContabilidad.guardarEgresosInsumos();
+        menu.fijarParametrosEconomicos();
         this.setVisible(false);
     }//GEN-LAST:event_VolverBotonActionPerformed
 
@@ -557,7 +553,7 @@ public class EgresosInsumos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new EgresosInsumos(null).setVisible(true);
+                new EgresosInsumos(null,null).setVisible(true);
             }
         });
     }

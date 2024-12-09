@@ -144,9 +144,9 @@ public class GeneradorArchivosContabilidad {
                     String nombre = parts[1];
                     String cantidad = parts[2];
                     String valor = parts[3];
-                    Integer cantidadI = Integer.valueOf(cantidad);
                     Double value = Double.valueOf(valor);
-                    EgresoInsumo egresoInsumo =new EgresoInsumo(fecha,nombre,cantidadI,value);
+                    int numero = (int) Double.parseDouble(cantidad);
+                    EgresoInsumo egresoInsumo =new EgresoInsumo(fecha,nombre,numero,value);
                     egresosInsumos.add(egresoInsumo);
                 }
             }

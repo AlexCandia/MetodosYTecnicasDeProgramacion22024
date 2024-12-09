@@ -25,14 +25,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author Camila
  */
 public class MenuContabilidad extends javax.swing.JFrame {
-    FondoPanel fondo = new FondoPanel();
 
      private DefaultTableModel modeloTabla;
      String[] masVendidos;
      private GestorDeVentas gestorVentas;
      private GestorDeInventario gestorInventario;
      private GestorDeContabilidad gestorContabilidad;
-     
+     FondoPanel fondo = new FondoPanel();
     /**
      * Creates new form Conta
      */
@@ -496,12 +495,12 @@ public class MenuContabilidad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void botonAgregarEgresoVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEgresoVariableActionPerformed
-        EgresosVariables e = new EgresosVariables(gestorContabilidad);
+        EgresosVariables e = new EgresosVariables(gestorContabilidad,this);
         e.setVisible(true);
     }//GEN-LAST:event_botonAgregarEgresoVariableActionPerformed
 
     private void botonAgregarEgresoInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEgresoInsumoActionPerformed
-        EgresosInsumos e = new EgresosInsumos(gestorContabilidad);
+        EgresosInsumos e = new EgresosInsumos(gestorContabilidad,this);
         e.setVisible(true);
     }//GEN-LAST:event_botonAgregarEgresoInsumoActionPerformed
 
@@ -551,7 +550,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
     }//GEN-LAST:event_graficarButtonActionPerformed
 
     private void botonAgregarEgresoFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEgresoFijoActionPerformed
-        EgresosFijos e = new EgresosFijos(gestorContabilidad);
+        EgresosFijos e = new EgresosFijos(gestorContabilidad,this);
         e.setVisible(true);
     }//GEN-LAST:event_botonAgregarEgresoFijoActionPerformed
 
@@ -569,7 +568,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
     public void setCargo(String s){
         cargo = s;
     }
-    private void fijarParametrosEconomicos(){
+    public void fijarParametrosEconomicos(){
         double ingresos = gestorVentas.calcularIngresosTotales();
         double egresosFijos =gestorContabilidad.calcularTotalEgresosFijos();
         double egresosVariables =gestorContabilidad.calcularTotalEgresosVariables();

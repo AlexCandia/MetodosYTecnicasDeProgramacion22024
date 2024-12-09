@@ -25,15 +25,9 @@ public class EgresosVariables extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
     
      DefaultTableModel dtm = new DefaultTableModel();
-
-    /**
-     * Creates new form tabala
-     */
-     
-     //Solo es para las pruebas se debe borrar
     private GestorDeContabilidad gestorContabilidad;
-     
-    public EgresosVariables(GestorDeContabilidad gestorContabilidad) {
+    private MenuContabilidad menu;  
+    public EgresosVariables(GestorDeContabilidad gestorContabilidad,MenuContabilidad menu) {
         this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null); // Centra la ventana
@@ -42,6 +36,7 @@ public class EgresosVariables extends javax.swing.JFrame {
         String[] titulo = new String[]{"Fecha","Nombre", "Detalle", "Valor"};
         dtm.setColumnIdentifiers(titulo);
         tblDatos.setModel(dtm);
+        this.menu=menu;
         this.gestorContabilidad = gestorContabilidad;
         rellenarTablaInicio();
     }
@@ -458,6 +453,7 @@ public class EgresosVariables extends javax.swing.JFrame {
 
     private void VolverBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBotonActionPerformed
        gestorContabilidad.guardarEgresosVariables();
+       menu.fijarParametrosEconomicos();
         this.setVisible(false);
     }//GEN-LAST:event_VolverBotonActionPerformed
 
@@ -497,7 +493,7 @@ public class EgresosVariables extends javax.swing.JFrame {
 
         /* Create and display the form */
         SwingUtilities.invokeLater(() -> {
-            new EgresosVariables(null).setVisible(true);
+            new EgresosVariables(null,null).setVisible(true);
         });
     }
 

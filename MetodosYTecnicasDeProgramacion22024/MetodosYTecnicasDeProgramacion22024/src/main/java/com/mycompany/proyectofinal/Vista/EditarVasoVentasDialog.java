@@ -17,13 +17,13 @@ import javax.swing.JPanel;
  * @author developerweb
  */
 public class EditarVasoVentasDialog extends javax.swing.JDialog {
-    FondoPanel fondo = new FondoPanel();
 
     private PedidoTemporalDialog parent;
     private GestorDeVentas gestor;
     String parametro;
     String nuevo;
     String nVaso;
+    FondoPanel fondo = new FondoPanel();
     public EditarVasoVentasDialog(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();

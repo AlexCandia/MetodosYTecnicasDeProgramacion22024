@@ -25,13 +25,9 @@ import javax.swing.table.DefaultTableModel;
 public class EgresosFijos extends javax.swing.JFrame {
     DefaultTableModel dtm = new DefaultTableModel();
     FondoPanel fondo = new FondoPanel();
-    /**
-     * Creates new form EgresoFijo_InterFaz
-     */
     private GestorDeContabilidad gestorContabilidad;  
-
-    
-    public EgresosFijos(GestorDeContabilidad gestorContabilidad) {
+    private MenuContabilidad menu;   
+    public EgresosFijos(GestorDeContabilidad gestorContabilidad,MenuContabilidad menu) {
         this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null); // Centra la ventana
@@ -40,6 +36,7 @@ public class EgresosFijos extends javax.swing.JFrame {
         String[] titulo = new String[]{"Fecha", "Nombre","Valor" };
         dtm.setColumnIdentifiers(titulo);
         jTable1.setModel(dtm);
+        this.menu=menu;
         this.gestorContabilidad = gestorContabilidad;
         rellenarTablaInicio();
     }
@@ -420,6 +417,7 @@ public class EgresosFijos extends javax.swing.JFrame {
 
     private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverActionPerformed
         gestorContabilidad.guardarEgresosFijos();
+        menu.fijarParametrosEconomicos();
         this.setVisible(false);
     }//GEN-LAST:event_BotonVolverActionPerformed
 
@@ -464,7 +462,7 @@ public class EgresosFijos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EgresosFijos(null).setVisible(true);
+                new EgresosFijos(null,null).setVisible(true);
             }
         });
     }
