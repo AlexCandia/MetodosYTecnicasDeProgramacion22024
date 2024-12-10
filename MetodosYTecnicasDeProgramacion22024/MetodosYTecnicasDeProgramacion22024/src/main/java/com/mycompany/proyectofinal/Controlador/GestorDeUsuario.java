@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GestorDeUsuario {
 
-    private static final String FILE_NAME = "Archivos/ArchivosUsuarios/ListaUsuariosTest.txt";
+    private static final String FILE_NAME = "Archivos/ArchivosUsuarios/ListaUsuarios.txt";
     private List<Usuario> listaUsuarios;
 
     public GestorDeUsuario() {
