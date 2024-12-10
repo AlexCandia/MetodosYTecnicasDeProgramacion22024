@@ -137,8 +137,6 @@ public class GestorDeVentas {
               default -> System.out.println("No existe tal caracteritica del vaso");
           }   
         }       
-        // Metodo que recibe un objeto de tipo vaso , y lo añade a un objeto de tipo pedido 
-        // mientras cliente no sea nulo
     }
     public boolean eliminarVaso(String numVaso) {
          

@@ -10,3 +10,8 @@ Fecha:07/12/24
 Pedido:1Cliente:JackelineNIT:4513458
 Nro Vaso:1Sabor 1 :ChocolateSabor 2 :LimonTamanio :GrandeBase:AguaTipo Perlas:RegularSubTotal:20
 Total: 20
+Fecha:09/12/24
+Pedido:1Cliente:CandyNIT:13525846
+Nro Vaso:1Sabor 1 :FrutillaSabor 2 :ChocolateTamanio :GrandeBase:LecheTipo Perlas:ExplosivaSubTotal:20
+Nro Vaso:2Sabor 1 :ChocolateSabor 2 :OreoTamanio :MedianoBase:AguaTipo Perlas:TapiocaSubTotal:15
+Total: 35

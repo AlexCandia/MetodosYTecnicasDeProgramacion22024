@@ -9,3 +9,13 @@ Regular/Unidad/12/1
 Maracuya/Bolsa/23/2
 Fresa/Bolsa/25/2
 Durazno/Unidad/33/-1
+Mora/Bolsa/15/1
+Cafe/Bolsa/18/2
+Matcha/Bolsa/20/3
+Taro/Bolsa/22/2
+Vainilla/Bolsa/17/2
+Frutilla/Bolsa/19/2
+Pinia/Bolsa/16/1
+Sandia/Bolsa/21/2
+Coco/Bolsa/24/2
+LCondensada/Bolsa/30/3

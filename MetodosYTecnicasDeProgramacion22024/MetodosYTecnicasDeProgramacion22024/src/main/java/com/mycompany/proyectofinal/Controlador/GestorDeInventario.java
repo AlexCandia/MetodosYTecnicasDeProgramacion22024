@@ -101,22 +101,6 @@ public class GestorDeInventario {
         productsfile.setProveedores(proveedores);
         productsfile.añadirAlarchivoProveedores();
     }
-   /*
-    public void recibirNuevoInsumo(String nombreInsumo, String cantidadStr) {
-        // Convertimos el String cantidadStr a un entero
-        int cantidad = Integer.parseInt(cantidadStr);
-
-        // Verificamos si el insumo ya existe en el inventario
-        if (inventarioInsumos.containsKey(nombreInsumo)) {
-            // Si ya existe, actualizamos la cantidad sumando la nueva cantidad
-            int cantidadActual = inventarioInsumos.get(nombreInsumo);
-            inventarioInsumos.put(nombreInsumo, cantidadActual + cantidad);
-        } else {
-            // Si no existe, lo agregamos como un nuevo insumo
-            inventarioInsumos.put(nombreInsumo, cantidad);
-        }
-    }*/
-
     public String verificarInsumos(Vaso vaso) {
         String logrado = "No";
         String tamaño = vaso.getTamVaso();

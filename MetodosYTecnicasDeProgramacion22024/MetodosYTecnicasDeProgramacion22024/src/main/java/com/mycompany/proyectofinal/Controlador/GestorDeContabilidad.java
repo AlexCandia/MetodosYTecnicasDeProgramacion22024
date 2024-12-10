@@ -150,30 +150,6 @@ public class GestorDeContabilidad {
         return ingresosBoba - totalEgresos;
     }
     
-    public ArrayList<String> obtenerSaboresMasVendidos() {
-        HashMap<String, Integer> conteoSabores = new HashMap<>();
-        for (Pedido pedido : ventasHistoricas.values()) {
-            for (Vaso vaso : pedido.getVasos()) {
-                agregarUnidadesDeSabor(conteoSabores, vaso.getSabor1());
-                if (vaso.getSabor2() != null && !vaso.getSabor2().isEmpty()) {
-                    agregarUnidadesDeSabor(conteoSabores, vaso.getSabor2());
-                }
-            }
-        }
-        List<Map.Entry<String, Integer>> listaSabores = new ArrayList<>(conteoSabores.entrySet());
-        Collections.sort(listaSabores, new Comparator<Map.Entry<String, Integer>>() {
-            @Override
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return o2.getValue() - o1.getValue(); // Ordenar de mayor a menor
-            }
-        });
-        ArrayList<String> saboresMasVendidos = new ArrayList<>();
-        for (Map.Entry<String, Integer> entrada : listaSabores) {
-            saboresMasVendidos.add(entrada.getKey());
-        }
-
-        return saboresMasVendidos;
-    }
     
     private void agregarUnidadesDeSabor(HashMap<String, Integer> conteoSabores, String sabor) {
         if (conteoSabores.containsKey(sabor)) {
@@ -195,7 +171,7 @@ public class GestorDeContabilidad {
     }
     public void guardarReporteHistorico(double ingresos) {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String ruta = "Archivos/ArchivosContabilidad/historicoContabilidad.txt";
+        String ruta = "target/Archivos/ArchivosContabilidad/historicoContabilidad.txt";
         try (FileWriter writer = new FileWriter(ruta, true)) { // El true añade el contenido sin borrar el archivo anterior
             writer.write("Historial Contable - Fecha: " + fecha + "\n");
             writer.write(imprimirReporteMensual(ingresos));
