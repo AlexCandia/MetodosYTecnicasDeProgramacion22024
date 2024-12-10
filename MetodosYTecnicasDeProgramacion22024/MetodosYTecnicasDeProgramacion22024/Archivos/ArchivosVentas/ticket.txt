@@ -1,2 +1,3 @@
-Nro Pedido:1Nombre:Jackeline
-Nro Vaso:1Sabor 1 :ChocolateSabor 2 :LimonTamaño :GrandeBase:AguaTipo Perlas:Regular
+Nro Pedido:1Nombre:Soliz
+Nro Vaso:1Sabor 1 :ChocolateSabor 2 :OreoTamaño :GrandeBase:AguaTipo Perlas:Regular
+Nro Vaso:2Sabor 1 :LimonSabor 2 :OreoTamaño :GrandeBase:LecheTipo Perlas:Regular

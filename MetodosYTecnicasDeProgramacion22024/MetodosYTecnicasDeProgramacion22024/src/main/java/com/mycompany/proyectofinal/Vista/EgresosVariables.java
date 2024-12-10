@@ -39,6 +39,7 @@ public class EgresosVariables extends javax.swing.JFrame {
         this.menu=menu;
         this.gestorContabilidad = gestorContabilidad;
         rellenarTablaInicio();
+        calcularTotal();
     }
     
     void agregar(){

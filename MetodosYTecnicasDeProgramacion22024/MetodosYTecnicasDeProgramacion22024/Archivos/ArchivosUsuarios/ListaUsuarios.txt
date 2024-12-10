@@ -3,3 +3,5 @@ Alex;123;Administrador
 Valery;1234;Administrador
 Jose;1234;Cajero
 Steve;123;Administrador
+Maria;1234;Cajero
+Cristian;1234;Cajero

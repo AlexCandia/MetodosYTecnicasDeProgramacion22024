@@ -39,6 +39,7 @@ public class EgresosFijos extends javax.swing.JFrame {
         this.menu=menu;
         this.gestorContabilidad = gestorContabilidad;
         rellenarTablaInicio();
+        calcularTotal();
     }
 
     public void agregar(){

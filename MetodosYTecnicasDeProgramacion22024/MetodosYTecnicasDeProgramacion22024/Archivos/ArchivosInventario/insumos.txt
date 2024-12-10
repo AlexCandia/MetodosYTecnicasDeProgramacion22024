@@ -1,10 +1,10 @@
-Chocolate/Bolsa/12/1
-Oreo/Bolsa/12/1
-Menta/Bolsa/12/1
-Limon/Bolsa/12/1
-Grande/Unidad/12/1
-Mediano/Unidad/12/1
+Chocolate/Kilo/24/-1
 Explosivo/Unidad/12/1
+Grande/Unidad/12/1
+Limon/Bolsa/12/1
+Mediano/Unidad/12/1
+Menta/Bolsa/12/1
+Oreo/Bolsa/12/1
 Regular/Unidad/12/1
 Maracuya/Bolsa/23/2
 Fresa/Bolsa/25/2

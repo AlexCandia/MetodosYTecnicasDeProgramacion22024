@@ -46,6 +46,7 @@ public class EgresosInsumos extends javax.swing.JFrame {
         this.menu=menu;
         this.gestorContabilidad = gestorContabilidad;
         rellenarTablaInicio();
+        calcularTotal();
     }
     void agregar(){
         SimpleDateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
