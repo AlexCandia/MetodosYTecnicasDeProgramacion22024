@@ -25,13 +25,13 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
     String nVaso;
     FondoPanel fondo = new FondoPanel();
     public EditarVasoVentasDialog(java.awt.Dialog parent, boolean modal) {
+        
         super(parent, modal);
         this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null); // Centra la ventana
         this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
         this.setResizable(false); // Hace que la ventana no sea redimensionable
-        
     }
 
     /**
@@ -370,9 +370,9 @@ public class EditarVasoVentasDialog extends javax.swing.JDialog {
     }
     private void agregarOpcionesComboBox(String antiguo) {
        switch (antiguo) {
-           case "Tamaño" ->comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione sabor--", "Grande","Mediano" }));
-           case "Base" -> comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione sabor--", "Agua","Leche" }));
-           case "Tipo Boba" -> comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione sabor--", "Regular","Explosivo" }));
+           case "Tamaño" ->comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione tamaño--", "Grande","Mediano" }));
+           case "Base" -> comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione base--", "Agua","Leche" }));
+           case "Tipo Boba" -> comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione tipo boba--", "Regular","Explosivo" }));
            case "Sabor 1" ->  comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione sabor--", "Chocolate",
                               "Oreo", "Limon", "Maracuya"}));
            case "Sabor 2" -> comboBoxNParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione sabor--", "Chocolate",

@@ -1,4 +1,1 @@
-Nombre:CandyNIT:13525846
-Nro Vaso:1Sabor 1 :FrutillaSabor 2 :ChocolateTamaño :GrandeTipo Perlas:Explosiva20
-Nro Vaso:2Sabor 1 :ChocolateSabor 2 :OreoTamaño :MedianoTipo Perlas:Tapioca15
-Total : 35
+

@@ -16,3 +16,12 @@ Egresos Otros: 12.0
 Balance: -244.0
 
 -------------------------
+Historial Contable - Fecha: 09/12/2024
+Reporte Mensual
+Ingresos totales: 100.0
+Egresos Fijos: 380.0
+Egresos Insumos: 56.0
+Egresos Otros: 40.0
+Balance: -476.0
+
+-------------------------
