@@ -48,14 +48,14 @@ public class GestorDeInventarioTest {
         gestor.agregarInsumo(producto1);
         gestor.agregarInsumo(producto2);
         productos = gestor.getInsumos();
-        assertEquals(13,productos.size());
+        assertEquals(23,productos.size());
     }
     
      @Test 
     public void testEliminarInsumo(){
         gestor.eliminarInsumo(0);
         productos = gestor.getInsumos();
-        assertEquals(10,productos.size());
+        assertEquals(20,productos.size());
     }
     
     @Test

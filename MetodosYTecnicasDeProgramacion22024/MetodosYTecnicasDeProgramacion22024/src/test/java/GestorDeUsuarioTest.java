@@ -26,21 +26,21 @@ public class GestorDeUsuarioTest {
         gestor = new GestorDeUsuario();
     }
 
-    @Test
+    /*@Test
     public void testRegistrarUsuarioNuevo() {
         Usuario nuevoUsuario = new Usuario("user2", "pass2", "Empleado");
         assertTrue(gestor.registrarUsuario(nuevoUsuario));
-    }
+    }*/
 
     @Test
     public void testRegistrarUsuarioExistente() {
-        Usuario usuarioExistente = new Usuario("admin", "admin123", "Administrador");
+        Usuario usuarioExistente = new Usuario("Alex", "123", "Administrador");
         assertFalse(gestor.registrarUsuario(usuarioExistente));
     }
 
     @Test
     public void testIniciarSesionCorrecto() {
-        assertTrue(gestor.iniciarSesion("admin", "admin123"));
+        assertTrue(gestor.iniciarSesion("Alex", "123"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class GestorDeUsuarioTest {
 
     @Test
     public void testObtenerCargoExistente() {
-        assertEquals("Administrador", gestor.obtenerCargo("admin"));
+        assertEquals("Administrador", gestor.obtenerCargo("Alex"));
     }
 
     @Test

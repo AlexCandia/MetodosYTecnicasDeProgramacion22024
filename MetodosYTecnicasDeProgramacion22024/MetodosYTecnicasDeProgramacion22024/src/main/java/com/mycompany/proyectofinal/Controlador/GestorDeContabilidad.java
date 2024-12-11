@@ -171,7 +171,7 @@ public class GestorDeContabilidad {
     }
     public void guardarReporteHistorico(double ingresos) {
         String fecha = LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String ruta = "target/Archivos/ArchivosContabilidad/historicoContabilidad.txt";
+        String ruta = "Archivos/ArchivosContabilidad/historicoContabilidad.txt";
         try (FileWriter writer = new FileWriter(ruta, true)) { // El true añade el contenido sin borrar el archivo anterior
             writer.write("Historial Contable - Fecha: " + fecha + "\n");
             writer.write(imprimirReporteMensual(ingresos));

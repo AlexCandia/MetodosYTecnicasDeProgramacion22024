@@ -26,6 +26,10 @@ public class GeneradorArchivosContabilidad {
     private ArrayList<EgresoFijo> egresosFijos;
     private ArrayList<EgresoInsumo> egresosInsumos;
     private ArrayList<EgresoVariable> egresosVariables;
+    private static final String FILE_PATH = "Archivos/ArchivosContabilidad/EgresosFijos.txt";
+    private static final String FILE_PATH2 = "Archivos/ArchivosContabilidad/EgresosInsumos.txt";
+    private static final String FILE_PATH3 = "Archivos/ArchivosContabilidad/EgresosVariables.txt";
+    
     public GeneradorArchivosContabilidad(){
          cargarEgresosFijos();
          cargarEgresosVariables();
@@ -49,9 +53,7 @@ public class GeneradorArchivosContabilidad {
     public void setEgresosVariables(ArrayList<EgresoVariable> egresosVariables){
         this.egresosVariables=egresosVariables;              
     }
-    private static final String FILE_PATH = "Archivos/ArchivosContabilidad/EgresosFijos.txt";
-    private static final String FILE_PATH2 = "Archivos/ArchivosContabilidad/EgresosInsumos.txt";
-    private static final String FILE_PATH3 = "Archivos/ArchivosContabilidad/EgresosVariables.txt";
+
     
     public void añadirAlarchivoEgresosFijos(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {

@@ -43,7 +43,7 @@ public class MenuContabilidad extends javax.swing.JFrame {
         this.setResizable(false); 
         gestorInventario = new GestorDeInventario();
         gestorContabilidad = new GestorDeContabilidad(gestorInventario);
-         gestorVentas = new GestorDeVentas(gestorInventario,gestorContabilidad);
+        gestorVentas = new GestorDeVentas(gestorInventario,gestorContabilidad);
         fijarParametrosEconomicos();
         fijarSaboresMasVendidos();
     }
