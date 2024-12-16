@@ -58,11 +58,9 @@ public class GestorDeInventario {
         if(!"".equals(nom)){
             in.setNombre(nom);
         }
-        
         if(!"".equals(uni)){
             in.setUnidad(uni);
         }
-        
         if(can != -1){
             in.setCantidad(can);
         }
@@ -86,13 +84,6 @@ public class GestorDeInventario {
             }
         }
     }
-    
-
-    
-  
-    
-    
-    // Método para guardar el inventario actual en un archivo
     public void guardarInventario() {
         productsfile.setInsumos(insumos);
         productsfile.añadirAlarchivoInsumo();

@@ -117,7 +117,6 @@ public class GestorDeContabilidad {
         }
     }
     
-    // Método para calcular el total de egresos fijos
     public double calcularTotalEgresosFijos() {
         if (!egresosFijos.isEmpty()){
             return egresosFijos.stream().mapToDouble(EgresoFijo::getValor).sum();
@@ -125,8 +124,7 @@ public class GestorDeContabilidad {
             return 0.0;  
         }
     }
-
-    // Método para calcular el total de egresos de insumos
+    
     public double calcularTotalEgresosInsumos() {
         if (!egresosInsumos.isEmpty()){
            return egresosInsumos.stream().mapToDouble(EgresoInsumo::getValor).sum(); 
@@ -135,7 +133,6 @@ public class GestorDeContabilidad {
         }
     }
 
-    // Método para calcular el total de egresos varios
     public double calcularTotalEgresosVariables() {
         if(!egresosVariables.isEmpty()){
             return egresosVariables.stream().mapToDouble(EgresoVariable::getValor).sum(); 
@@ -144,12 +141,10 @@ public class GestorDeContabilidad {
         }
     }
 
-    // Método para calcular el balance (ganancias o pérdidas)
     public double calcularBalance() {
         double totalEgresos = calcularTotalEgresosFijos() + calcularTotalEgresosInsumos() + calcularTotalEgresosVariables();
         return ingresosBoba - totalEgresos;
     }
-    
     
     private void agregarUnidadesDeSabor(HashMap<String, Integer> conteoSabores, String sabor) {
         if (conteoSabores.containsKey(sabor)) {

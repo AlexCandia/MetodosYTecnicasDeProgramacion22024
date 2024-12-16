@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public class GestorDeVentas {
-    // Atributos de la clase GestorDeVentas
     
     private ArrayList<Vaso> pedidoActual;
     private GestorDeInventario gestorInventario;
@@ -32,7 +31,6 @@ public class GestorDeVentas {
     private GeneradorArchivosVentas generadorArchivosVentas;
     private GestorDeContabilidad gestorContabilidad; 
     
-    // Constructor
     public GestorDeVentas(GestorDeInventario gestorInventario, GestorDeContabilidad gestorContabilidad) {
         
         this.pedidoActual = new ArrayList<>();
@@ -43,18 +41,8 @@ public class GestorDeVentas {
         this.ventasDiarias = new ArrayList<>();
         this.colaPedidos = new LinkedList<>();
         this.pedidoTemporal= null;
-        
     }
     
-    public void generarTicket() {
-        generadorArchivosVentas.generarTicket(pedidoTemporal); // Pasar el pedido
-    }
-
-    public void generarFactura() {
-        generadorArchivosVentas.generarFactura(pedidoTemporal); // Pasar el pedido
-    }
-
-    // Métodos
     public HashMap<String, Pedido> getVentasHistoricas(){
         return ventasHistoricas;
     }
@@ -180,7 +168,6 @@ public class GestorDeVentas {
     public void marcarPedidoCompletado() {
         if(!colaPedidos.isEmpty()){
             Vaso vasoCompletado=colaPedidos.poll();
-            //actualizarinfo(vasoCompletado);
             System.out.print("El vaso Nro: " + vasoCompletado.getVaso().getNumVaso());
             System.out.print("Del cliente: " + vasoCompletado.getNombreCliente());
             System.out.println(" esta listo");
@@ -201,7 +188,6 @@ public class GestorDeVentas {
         System.out.println("Total de ingresos: " + totalIngresos);
     }
 
-
     public void volverMenu() {
         agregarVentasAHistoricas();
     }
@@ -217,23 +203,13 @@ public class GestorDeVentas {
          generadorArchivosVentas.generarReporte(ventasHistoricas);
     }
 
-    /*private void actualizarinfo(VasoEnCola vasoCompletado) {
-        String sabor1 =vasoCompletado.getVaso().getSabor1();
-        String sabor2 =vasoCompletado.getVaso().getSabor2();
-        String tamaño =vasoCompletado.getVaso().getTamVaso();
-        String perlas =vasoCompletado.getVaso().getTipoBoba();
-        String base =vasoCompletado.getVaso().getBase();
-        inventario.editarCantidadInsumo(sabor1, "0.2",false);
-        inventario.editarCantidadInsumo(sabor2, "0.2",false);
-        if("Grande".equals(tamaño)){
-            inventario.editarCantidadInsumo(tamaño, "20",false);  
-        }else{
-            inventario.editarCantidadInsumo(tamaño, "15",false);
-        }
-        inventario.editarCantidadInsumo(base, "0.2",false);
-        inventario.editarCantidadInsumo(perlas, "0.2",false);  
+    public void generarTicket() {
+        generadorArchivosVentas.generarTicket(pedidoTemporal); 
     }
-   */
+
+    public void generarFactura() {
+        generadorArchivosVentas.generarFactura(pedidoTemporal); 
+    }
 
     private void recalcularnums() {
         ArrayList<Vaso> recorrido=pedidoTemporal.getVasos();

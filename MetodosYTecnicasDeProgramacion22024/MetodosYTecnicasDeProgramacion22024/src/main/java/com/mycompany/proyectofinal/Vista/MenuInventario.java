@@ -120,7 +120,6 @@ public class MenuInventario extends javax.swing.JFrame {
     void eliminar(){
         int fila = tblDatos.getSelectedRow();
         if (fila >= 0) {  // Asegurarse de que haya una fila seleccionada
-            // Mostrar cuadro de confirmación
             int opcion = JOptionPane.showConfirmDialog(
                     this,
                     "¿Estás seguro que deseas eliminar esta fila?",
@@ -130,7 +129,6 @@ public class MenuInventario extends javax.swing.JFrame {
             );
 
             if (opcion == JOptionPane.YES_OPTION) {
-                // Si elige "Sí", eliminar la fila
                 dtm.removeRow(fila);
                 gestorInventario.eliminarInsumo(fila);
             }
@@ -200,14 +198,11 @@ public class MenuInventario extends javax.swing.JFrame {
                 min = -1;
             }
             gestorInventario.editarInsumo(fila, nombre, unidad, cant, min);
-        }
-        
-        
+        }    
         txtNombre.setText(null);
         txtUnidad.setText(null);
         txtCantidad.setText(null);
         txtMinimo.setText(null);
-
     }
     /**
      * This method is called from within the constructor to initialize the form.
