@@ -49,9 +49,8 @@ public class MenuVentas extends javax.swing.JFrame {
     public MenuVentas() {      
         this.setContentPane(fondo);
         initComponents();
-        this.setLocationRelativeTo(null); // Centra la ventana
-        this.setSize(1280, 800); // Establece el tamaño fijo de la ventana más grande
-        this.setResizable(false); // Hace que la ventana no sea redimensionable
+        this.setLocationRelativeTo(null);
+        this.setSize(1280, 800); 
         llenarinventarioprov();
         temp = new PedidoTemporalDialog(this,true);
         histo = new HistorialVentasFrame();
@@ -717,20 +716,20 @@ public class MenuVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_Sabor1BoxActionPerformed
 
     private void VerPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerPedidoButtonActionPerformed
-        if(gestorVentas.getPedidoTemporal().getNombre()!=null){
+        try {    
             temp.setLocationRelativeTo(this);
-            temp.setMensaje(gestorVentas.getPedidoTemporal().getNombre(),"cliente");
-            temp.setMensaje(gestorVentas.getPedidoTemporal().getNumPedido(),"nroPedido");
+            temp.setMensaje(gestorVentas.getPedidoTemporal().getNombre(), "cliente");
+            temp.setMensaje(gestorVentas.getPedidoTemporal().getNumPedido(), "nroPedido");
             temp.setVisible(true);
-        }else{
-           JOptionPane.showMessageDialog(
-                null,
-                "No existe pedido temporal",
-                "Accion Inconclusa",
-                JOptionPane.WARNING_MESSAGE
-            );
-            return; 
-        }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(
+            null,
+            "No existe pedido temporal",
+            "Acción Inconclusa",
+            JOptionPane.WARNING_MESSAGE
+         );
+            return;
+}
     }//GEN-LAST:event_VerPedidoButtonActionPerformed
 
     private void AgregarVasoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarVasoButtonActionPerformed

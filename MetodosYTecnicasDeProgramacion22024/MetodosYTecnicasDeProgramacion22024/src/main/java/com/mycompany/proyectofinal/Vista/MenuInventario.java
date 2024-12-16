@@ -89,14 +89,11 @@ public class MenuInventario extends javax.swing.JFrame {
         }
         
         try {
-        // Validación para que `nombre` y `unidad` solo contengan letras
         if (!nombre.matches("[a-zA-Z]+") || !unidad.matches("[a-zA-Z]+")) {
             JOptionPane.showMessageDialog(this, "Los campos 'Nombre' y 'Unidad' deben contener solo letras.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        // Validación para que `cantidad` sea un número entero
-            int cantidadInt = Integer.parseInt(cantidad); // Si no es un número, lanzará una excepción
+            int cantidadInt = Integer.parseInt(cantidad); 
             int minimoInt = Integer.parseInt(minimo); 
             Insumo insu = new Insumo(nombre, unidad, cantidadInt, minimoInt);
                 gestorInventario.agregarInsumo(insu);

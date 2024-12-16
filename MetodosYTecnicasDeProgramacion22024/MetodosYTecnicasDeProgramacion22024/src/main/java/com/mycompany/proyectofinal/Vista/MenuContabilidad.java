@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
@@ -589,20 +590,23 @@ public class MenuContabilidad extends javax.swing.JFrame {
         String primerSabor=masVendidos[0];
         String segundoSabor=masVendidos[1];
         String tercerSabor=masVendidos[2];
-        if(primerSabor!=null){
+        try{
             int l=primerSabor.length()-1;
             sabor1Label.setText(primerSabor.substring(0,l));
             sabor1.setText(primerSabor.charAt(l)+"");
-        }
-        if(segundoSabor!=null){
-            int l=segundoSabor.length()-1;
-            sabor2Label.setText(segundoSabor.substring(0,l));
-            sabor2.setText(segundoSabor.charAt(l)+"");
-        }
-        if(tercerSabor!=null){
-            int l=tercerSabor.length()-1;
-            sabor3Label.setText(tercerSabor.substring(0,l));
-            sabor3.setText(tercerSabor.charAt(l)+"");
+            int l2=segundoSabor.length()-1;
+            sabor2Label.setText(segundoSabor.substring(0,l2));
+            sabor2.setText(segundoSabor.charAt(l2)+"");
+            int l3=tercerSabor.length()-1;
+            sabor3Label.setText(tercerSabor.substring(0,l3));
+            sabor3.setText(tercerSabor.charAt(l3)+"");
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(
+            null,
+            "Ocurrió un error al cargar los archivos: " + e.getMessage(),
+            "Error",
+            JOptionPane.ERROR_MESSAGE
+    );  
         }
     }
     /**

@@ -1,4 +1,4 @@
-Chocolate/Bolsa/12/1
+Chocolate/Bolsa/2/1
 Oreo/Bolsa/12/1
 Menta/Bolsa/12/1
 Limon/Bolsa/12/1
